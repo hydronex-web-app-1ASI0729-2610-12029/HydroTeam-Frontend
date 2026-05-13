@@ -5,23 +5,45 @@
     <p>{{ 'alerts.description' | translate }}</p>
   </header>
 
-  <div class="alerts-list">
-    <article class="alert-card alert-card--warning">
-      <span class="alert-icon">⚠</span>
-      <div>
-        <strong>{{ 'alerts.sample.lowTitle' | translate }}</strong>
-        <p>{{ 'alerts.sample.lowDescription' | translate }}</p>
-      </div>
-      <small>{{ 'alerts.level.low' | translate }}</small>
-    </article>
+  @if (store.loading()) {
+    <mat-spinner diameter="40"/>
+  }
 
-    <article class="alert-card alert-card--success">
-      <span class="alert-icon">✓</span>
-      <div>
-        <strong>{{ 'alerts.sample.resolvedTitle' | translate }}</strong>
-        <p>{{ 'alerts.sample.resolvedDescription' | translate }}</p>
-      </div>
-      <small>{{ 'alerts.level.resolved' | translate }}</small>
-    </article>
+  @if (store.error()) {
+    <p style="color: red;">{{ store.error() }}</p>
+  }
+
+  <div class="alerts-list">
+    @for (alert of store.alerts(); track alert.id) {
+      <article class="alert-card"
+               [class.alert-card--warning]="alert.type === 'LOW' && !alert.isResolved"
+               [class.alert-card--critical]="alert.type === 'CRITICAL' && !alert.isResolved"
+               [class.alert-card--success]="alert.isResolved">
+  <span class="alert-icon">
+      @if (alert.isResolved) {
+          <mat-icon>check_circle</mat-icon>
+          } @else if (alert.type === 'CRITICAL') {
+            <mat-icon>error</mat-icon>
+          } @else {
+            <mat-icon>warning</mat-icon>
+          }
+        </span>
+        <div>
+          <strong>{{ alert.message }}</strong>
+          <p>{{ alert.timestamp | date:'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+        <small>
+          @if (alert.isResolved) {
+            {{ 'alerts.level.resolved' | translate }}
+          } @else {
+            {{ alert.type === 'CRITICAL' ? ('alerts.level.critical' | translate) : ('alerts.level.low' | translate) }}
+          }
+        </small>
+      </article>
+    }
+
+    @if (store.alerts().length === 0 && !store.loading()) {
+      <p>{{ 'alerts.empty' | translate }}</p>
+    }
   </div>
 </section>
