@@ -1,0 +1,159 @@
+{
+  "option": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "login": "Iniciar sesión"
+  },
+  "landing": {
+    "hero": {
+      "eyebrow": "Gestión inteligente del agua",
+      "title": "Monitoreo inteligente de agua para edificios residenciales",
+      "subtitle": "Monitorea el nivel de la cisterna, anticipa desabastecimientos y mantén informados a los residentes desde una plataforma clara.",
+      "primaryAction": "Acceder a la plataforma",
+      "secondaryAction": "Conocer más"
+    },
+    "problem": {
+      "eyebrow": "Por qué TankIQ",
+      "title": "Diseñado para edificios que dependen de cisternas",
+      "cardOne": {
+        "title": "Sin visibilidad en tiempo real",
+        "content": "Los administradores suelen revisar la cisterna manualmente y reaccionan cuando el problema ya es visible."
+      },
+      "cardTwo": {
+        "title": "Cortes imprevistos",
+        "content": "Los residentes se ven afectados cuando los avisos llegan tarde y no pueden planificar sus rutinas."
+      },
+      "cardThree": {
+        "title": "Poca transparencia",
+        "content": "Los gastos de agua y las decisiones de recarga son difíciles de sustentar sin registros claros."
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "Sobre el producto",
+    "title": "Sobre TankIQ",
+    "content": "TankIQ es una aplicación web para la gestión inteligente del suministro de agua en edificios residenciales que dependen de cisternas.",
+    "mission": {
+      "title": "Misión",
+      "content": "Ayudar a los administradores a tomar decisiones informadas sobre la disponibilidad de agua y reducir costos innecesarios de recarga."
+    },
+    "value": {
+      "title": "Propuesta de valor",
+      "content": "Una plataforma simple que combina monitoreo, alertas e información transparente para administradores y residentes."
+    }
+  },
+  "dashboard": {
+    "eyebrow": "Vista del administrador",
+    "title": "Resumen general",
+    "description": "Visualiza indicadores clave y monitorea la disponibilidad de agua del edificio.",
+    "metric": {
+      "currentLevel": "Nivel actual",
+      "estimatedDays": "Días estimados",
+      "activeAlerts": "Alertas activas",
+      "days": "días restantes",
+      "daysShort": "días",
+      "availableLiters": "litros disponibles",
+      "averageConsumption": "Consumo promedio",
+      "lastRefill": "Última recarga",
+      "april": "abril"
+    },
+    "status": {
+      "normal": "Normal",
+      "noAlerts": "Sin alertas activas"
+    },
+    "cistern": {
+      "title": "Estado de cisterna",
+      "level": "Nivel",
+      "optimal": "Estado óptimo",
+      "sensorTemp": "Temp. sensor",
+      "signal": "Señal IoT",
+      "excellent": "Excelente"
+    },
+    "action": {
+      "registerRefill": "Registrar recarga"
+    },
+    "consumption": {
+      "title": "Consumo diario (litros)",
+      "month": "mes",
+      "months": "meses",
+      "average": "Promedio diario",
+      "peak": "Pico máximo",
+      "monthTotal": "Total mes"
+    },
+    "alerts": {
+      "title": "Alertas activas",
+      "viewAll": "Ver todas",
+      "unusualConsumption": "Consumo inusual detectado",
+      "unusualConsumptionDetail": "El lunes el consumo fue 18% mayor al promedio · revisar fugas",
+      "refillRegistered": "Recarga registrada correctamente",
+      "twoHoursAgo": "Hace 2h",
+      "yesterday": "Ayer"
+    }
+  },
+  "monitoring": {
+    "eyebrow": "Monitoreo de cisterna",
+    "title": "Monitoreo de agua",
+    "description": "Supervisa niveles de agua y disponibilidad estimada desde una interfaz visual simple.",
+    "currentStatus": "Estado actual de la cisterna",
+    "currentStatusDescription": "El nivel de la cisterna se encuentra dentro del rango normal. Esta vista está lista para integrar datos del sensor o json-server.",
+    "mock": {
+      "title": "Datos mock del sensor",
+      "description": "Valores temporales preparados para integrar json-server y luego conectar con backend.",
+      "capacity": "Capacidad",
+      "updated": "Actualizado"
+    }
+  },
+  "alerts": {
+    "eyebrow": "Gestión de riesgos",
+    "title": "Alertas y notificaciones",
+    "description": "Revisa alertas relacionadas con niveles críticos, consumo inusual y eventos del suministro.",
+    "level": {
+      "low": "Nivel bajo",
+      "resolved": "Resuelto"
+    },
+    "sample": {
+      "lowTitle": "La cisterna se acerca al umbral de advertencia",
+      "lowDescription": "El sistema puede notificar al administrador antes de que la cisterna llegue a un nivel crítico.",
+      "resolvedTitle": "Recarga registrada correctamente",
+      "resolvedDescription": "Este placeholder muestra cómo aparecerán los eventos resueltos en el historial de alertas."
+    }
+  },
+  "iam": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Accede a la plataforma TankIQ",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "action": "Ingresar",
+      "language": "Selecciona el idioma de la plataforma"
+    }
+  },
+  "underConstruction": {
+    "title": "Funcionalidad en construcción",
+    "description": "Este módulo ya está conectado a las rutas de la aplicación y será implementado por el equipo responsable."
+  },
+  "page-not-found": {
+    "title": "Página no encontrada",
+    "content": "La ruta <strong>{{ invalid_path }}</strong> no es válida.",
+    "go-home": "Ir a Inicio"
+  },
+  "footer": {
+    "description": "Monitoreo inteligente de cisternas para edificios residenciales.",
+    "rights": "Todos los derechos reservados."
+  },
+  "dashboardLayout": {
+    "title": "Dashboard",
+    "subtitle": "Edificio Los Pinos · SJL · Actualizado hace 3 min",
+    "nav": {
+      "home": "Inicio",
+      "alerts": "Alertas",
+      "history": "Historial",
+      "reports": "Reportes",
+      "settings": "Configuración",
+      "profile": "Perfil"
+    },
+    "user": {
+      "role": "Administrador"
+    }
+  }
+}

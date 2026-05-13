@@ -1,0 +1,28 @@
+<section class="monitoring-page">
+  <header class="context-header">
+    <span class="section-eyebrow">{{ 'monitoring.eyebrow' | translate }}</span>
+    <h2>{{ 'monitoring.title' | translate }}</h2>
+    <p>{{ 'monitoring.description' | translate }}</p>
+  </header>
+
+  <div class="monitoring-grid">
+    <article class="tankiq-panel monitoring-card">
+      <div class="tank-visual"><span>72%</span></div>
+      <div>
+        <h3>{{ 'monitoring.currentStatus' | translate }}</h3>
+        <p>{{ 'monitoring.currentStatusDescription' | translate }}</p>
+        <span class="status-pill status-pill--success">{{ 'dashboard.status.normal' | translate }}</span>
+      </div>
+    </article>
+
+    <article class="tankiq-panel monitoring-card monitoring-card--secondary">
+      <h3>{{ 'monitoring.mock.title' | translate }}</h3>
+      <p>{{ 'monitoring.mock.description' | translate }}</p>
+      <div class="data-list">
+        <span>Sensor ID</span><strong>TNK-SJL-001</strong>
+        <span>{{ 'monitoring.mock.capacity' | translate }}</span><strong>5,000 L</strong>
+        <span>{{ 'monitoring.mock.updated' | translate }}</span><strong>3 min</strong>
+      </div>
+    </article>
+  </div>
+</section>

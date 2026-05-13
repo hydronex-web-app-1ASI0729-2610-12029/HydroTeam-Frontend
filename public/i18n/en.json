@@ -1,0 +1,159 @@
+{
+  "option": {
+    "home": "Home",
+    "about": "About",
+    "login": "Login"
+  },
+  "landing": {
+    "hero": {
+      "eyebrow": "Smart water management",
+      "title": "Smart Water Monitoring for Residential Buildings",
+      "subtitle": "Monitor cistern levels, anticipate shortages and keep residents informed with a clear web platform.",
+      "primaryAction": "Access platform",
+      "secondaryAction": "Learn more"
+    },
+    "problem": {
+      "eyebrow": "Why TankIQ",
+      "title": "Designed for buildings that depend on cisterns",
+      "cardOne": {
+        "title": "No real-time visibility",
+        "content": "Administrators usually check the cistern manually and react when the problem is already visible."
+      },
+      "cardTwo": {
+        "title": "Unplanned shortages",
+        "content": "Residents are affected when alerts arrive late and daily routines cannot be planned."
+      },
+      "cardThree": {
+        "title": "Limited transparency",
+        "content": "Water expenses and refill decisions are difficult to explain without clear records."
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "About the product",
+    "title": "About TankIQ",
+    "content": "TankIQ is a web application for smart water supply management in residential buildings that rely on cisterns.",
+    "mission": {
+      "title": "Mission",
+      "content": "Help administrators make informed decisions about water availability and reduce unnecessary refill costs."
+    },
+    "value": {
+      "title": "Value proposition",
+      "content": "A simple platform that combines monitoring, alerts and transparent information for administrators and residents."
+    }
+  },
+  "dashboard": {
+    "eyebrow": "Administrator view",
+    "title": "Dashboard Overview",
+    "description": "View key indicators and monitor the building's water availability.",
+    "metric": {
+      "currentLevel": "Current level",
+      "estimatedDays": "Estimated days",
+      "activeAlerts": "Active alerts",
+      "days": "days remaining",
+      "daysShort": "days",
+      "availableLiters": "liters available",
+      "averageConsumption": "Average consumption",
+      "lastRefill": "Last refill",
+      "april": "April"
+    },
+    "status": {
+      "normal": "Normal",
+      "noAlerts": "No active alerts"
+    },
+    "cistern": {
+      "title": "Cistern status",
+      "level": "Level",
+      "optimal": "Optimal status",
+      "sensorTemp": "Sensor temp.",
+      "signal": "IoT signal",
+      "excellent": "Excellent"
+    },
+    "action": {
+      "registerRefill": "Register refill"
+    },
+    "consumption": {
+      "title": "Daily consumption (liters)",
+      "month": "month",
+      "months": "months",
+      "average": "Daily average",
+      "peak": "Maximum peak",
+      "monthTotal": "Monthly total"
+    },
+    "alerts": {
+      "title": "Active alerts",
+      "viewAll": "View all",
+      "unusualConsumption": "Unusual consumption detected",
+      "unusualConsumptionDetail": "On Monday consumption was 18% higher than average · check for leaks",
+      "refillRegistered": "Refill registered successfully",
+      "twoHoursAgo": "2h ago",
+      "yesterday": "Yesterday"
+    }
+  },
+  "monitoring": {
+    "eyebrow": "Cistern monitoring",
+    "title": "Water Monitoring",
+    "description": "Track water levels and estimated availability from a simple visual interface.",
+    "currentStatus": "Current cistern status",
+    "currentStatusDescription": "The cistern level is within the normal range. This screen is ready for sensor or json-server data integration.",
+    "mock": {
+      "title": "Mock sensor data",
+      "description": "Temporary values prepared for json-server integration and later backend connection.",
+      "capacity": "Capacity",
+      "updated": "Updated"
+    }
+  },
+  "alerts": {
+    "eyebrow": "Risk management",
+    "title": "Alerts & Notifications",
+    "description": "Review alerts related to critical levels, unusual consumption and supply events.",
+    "level": {
+      "low": "Low level",
+      "resolved": "Resolved"
+    },
+    "sample": {
+      "lowTitle": "Cistern approaching warning threshold",
+      "lowDescription": "The system can notify the administrator before the cistern reaches a critical level.",
+      "resolvedTitle": "Refill registered successfully",
+      "resolvedDescription": "This placeholder confirms how resolved events will appear in the alert history."
+    }
+  },
+  "iam": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Access the TankIQ platform",
+      "email": "Email",
+      "password": "Password",
+      "action": "Sign in",
+      "language": "Select platform language"
+    }
+  },
+  "underConstruction": {
+    "title": "Feature under construction",
+    "description": "This module is connected to the application routes and will be implemented by the assigned feature team."
+  },
+  "page-not-found": {
+    "title": "Page not found",
+    "content": "The path <strong>{{ invalid_path }}</strong> is not valid.",
+    "go-home": "Go Home"
+  },
+  "footer": {
+    "description": "Smart cistern monitoring for residential buildings.",
+    "rights": "All rights reserved."
+  },
+  "dashboardLayout": {
+    "title": "Dashboard",
+    "subtitle": "Edificio Los Pinos · SJL · Updated 3 min ago",
+    "nav": {
+      "home": "Home",
+      "alerts": "Alerts",
+      "history": "History",
+      "reports": "Reports",
+      "settings": "Settings",
+      "profile": "Profile"
+    },
+    "user": {
+      "role": "Administrator"
+    }
+  }
+}

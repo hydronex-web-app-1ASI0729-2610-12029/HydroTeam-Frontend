@@ -1,0 +1,64 @@
+.login-page {
+  align-items: center;
+  background: linear-gradient(135deg, #e8f6fc 0%, #ffffff 100%);
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 32px;
+}
+
+.login-card {
+  border-radius: var(--tankiq-radius-lg);
+  box-shadow: var(--tankiq-shadow);
+  max-width: 520px;
+  width: 100%;
+}
+
+mat-card-header {
+  padding: 34px 34px 0;
+}
+
+mat-card-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+mat-card-subtitle {
+  font-size: 1.05rem;
+  margin-top: 6px;
+}
+
+mat-card-content {
+  display: grid;
+  gap: 18px;
+  padding: 30px 34px 36px;
+}
+
+.language-box {
+  background: var(--tankiq-light);
+  border: 1px solid var(--tankiq-border);
+  border-radius: 16px;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.language-box span {
+  color: var(--tankiq-dark);
+  font-weight: 900;
+}
+
+.language-box mat-button-toggle-group {
+  width: 100%;
+}
+
+.language-box mat-button-toggle {
+  flex: 1;
+  font-weight: 800;
+}
+
+button[mat-flat-button] {
+  border-radius: 999px;
+  min-height: 50px;
+}

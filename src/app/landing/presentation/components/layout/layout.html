@@ -1,0 +1,24 @@
+<mat-toolbar class="public-toolbar">
+  <mat-toolbar-row>
+    <a class="brand" routerLink="/home" aria-label="TankIQ Home">
+      <span class="brand__mark">IQ</span>
+      <span>TankIQ</span>
+    </a>
+
+    <div class="mat-spacer"></div>
+
+    <nav class="public-nav" aria-label="Main navigation">
+      @for (option of options(); track option.label) {
+        <a mat-button [routerLink]="option.link" routerLinkActive="active">{{ option.label | translate }}</a>
+      }
+    </nav>
+
+    <app-language-switcher />
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<main class="public-main">
+  <router-outlet />
+</main>
+
+<app-footer-content />

@@ -1,0 +1,27 @@
+<section class="alerts-page">
+  <header class="context-header">
+    <span class="section-eyebrow">{{ 'alerts.eyebrow' | translate }}</span>
+    <h2>{{ 'alerts.title' | translate }}</h2>
+    <p>{{ 'alerts.description' | translate }}</p>
+  </header>
+
+  <div class="alerts-list">
+    <article class="alert-card alert-card--warning">
+      <span class="alert-icon">⚠</span>
+      <div>
+        <strong>{{ 'alerts.sample.lowTitle' | translate }}</strong>
+        <p>{{ 'alerts.sample.lowDescription' | translate }}</p>
+      </div>
+      <small>{{ 'alerts.level.low' | translate }}</small>
+    </article>
+
+    <article class="alert-card alert-card--success">
+      <span class="alert-icon">✓</span>
+      <div>
+        <strong>{{ 'alerts.sample.resolvedTitle' | translate }}</strong>
+        <p>{{ 'alerts.sample.resolvedDescription' | translate }}</p>
+      </div>
+      <small>{{ 'alerts.level.resolved' | translate }}</small>
+    </article>
+  </div>
+</section>

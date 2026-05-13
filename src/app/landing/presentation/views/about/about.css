@@ -1,0 +1,33 @@
+.about-page {
+  min-height: 70vh;
+}
+
+.about-page h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin: 12px 0 16px;
+}
+
+.about-page > p {
+  color: var(--tankiq-medium);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 820px;
+}
+
+.about-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 32px;
+}
+
+.about-grid p {
+  color: var(--tankiq-medium);
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

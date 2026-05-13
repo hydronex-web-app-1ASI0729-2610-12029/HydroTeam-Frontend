@@ -1,0 +1,214 @@
+.dashboard-shell {
+  background: var(--tankiq-surface);
+  display: grid;
+  grid-template-columns: var(--tankiq-sidebar-width) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.dashboard-sidebar {
+  background: var(--tankiq-dark);
+  color: var(--tankiq-white);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.dashboard-brand {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  font-size: 1.65rem;
+  font-weight: 900;
+  gap: 16px;
+  height: 112px;
+  padding: 0 32px;
+}
+
+.dashboard-brand span span {
+  color: var(--tankiq-primary);
+}
+
+.dashboard-brand__mark {
+  align-items: center;
+  background: var(--tankiq-primary);
+  border-radius: 16px;
+  display: inline-flex;
+  height: 56px;
+  justify-content: center;
+  width: 56px;
+}
+
+.dashboard-sidebar__nav {
+  display: grid;
+  gap: 6px;
+  padding: 22px 0;
+}
+
+.dashboard-sidebar__link {
+  align-items: center;
+  border-left: 5px solid transparent;
+  color: rgba(255, 255, 255, 0.68);
+  display: flex;
+  font-size: 1.1rem;
+  font-weight: 800;
+  gap: 18px;
+  min-height: 64px;
+  padding: 0 28px 0 24px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.dashboard-sidebar__link:hover,
+.dashboard-sidebar__link.active {
+  background: rgba(41, 171, 226, 0.2);
+  border-left-color: var(--tankiq-primary);
+  color: var(--tankiq-white);
+}
+
+.dashboard-sidebar__icon {
+  color: var(--tankiq-primary);
+  font-size: 1.35rem;
+  text-align: center;
+  width: 28px;
+}
+
+.dashboard-user-card {
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 16px;
+  margin-top: auto;
+  padding: 28px 32px;
+}
+
+.dashboard-user-card__avatar,
+.profile-avatar {
+  align-items: center;
+  background: var(--tankiq-primary);
+  border-radius: 999px;
+  color: var(--tankiq-white);
+  display: inline-flex;
+  font-size: 1.1rem;
+  font-weight: 900;
+  height: 56px;
+  justify-content: center;
+  width: 56px;
+}
+
+.dashboard-user-card strong {
+  display: block;
+  font-size: 1.1rem;
+  line-height: 1.1;
+}
+
+.dashboard-user-card small {
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+.dashboard-main {
+  min-width: 0;
+  padding: 44px 56px;
+}
+
+.dashboard-topbar {
+  align-items: flex-start;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin: 0 auto 36px;
+  max-width: var(--tankiq-content-max);
+}
+
+.dashboard-topbar h1 {
+  color: var(--tankiq-dark);
+  font-size: clamp(2.3rem, 3.2vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  margin: 0 0 8px;
+}
+
+.dashboard-topbar p {
+  color: var(--tankiq-medium);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.dashboard-topbar__actions {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+}
+
+.notification-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--tankiq-medium);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  height: 56px;
+  justify-content: center;
+  position: relative;
+  width: 56px;
+}
+
+.notification-button span {
+  color: var(--tankiq-medium);
+  font-size: 1.4rem;
+}
+
+.notification-button strong {
+  align-items: center;
+  background: var(--tankiq-danger);
+  border-radius: 999px;
+  color: var(--tankiq-white);
+  display: inline-flex;
+  font-size: 0.85rem;
+  height: 24px;
+  justify-content: center;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 24px;
+}
+
+.dashboard-content {
+  display: grid;
+  gap: 28px;
+  margin: 0 auto;
+  max-width: var(--tankiq-content-max);
+}
+
+@media (max-width: 1000px) {
+  .dashboard-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sidebar {
+    min-height: auto;
+    position: static;
+  }
+
+  .dashboard-sidebar__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-user-card {
+    display: none;
+  }
+
+  .dashboard-main {
+    padding: 32px 20px;
+  }
+
+  .dashboard-topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

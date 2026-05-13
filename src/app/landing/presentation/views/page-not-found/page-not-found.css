@@ -1,0 +1,12 @@
+.not-found {
+  min-height: 60vh;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 2.5rem;
+}
+
+.not-found button {
+  margin-top: 20px;
+}

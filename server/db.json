@@ -1,0 +1,16 @@
+{
+  "dashboard": {
+    "currentLevel": 72,
+    "estimatedDays": 5,
+    "activeAlerts": 0,
+    "status": "NORMAL"
+  },
+  "water-level": [
+    { "id": 1, "levelPercent": 72, "recordedAt": "2026-05-13T08:00:00Z" },
+    { "id": 2, "levelPercent": 68, "recordedAt": "2026-05-13T12:00:00Z" }
+  ],
+  "alerts": [
+    { "id": 1, "type": "LOW", "message": "Cistern approaching warning threshold", "isResolved": false },
+    { "id": 2, "type": "REFILL", "message": "Refill registered successfully", "isResolved": true }
+  ]
+}

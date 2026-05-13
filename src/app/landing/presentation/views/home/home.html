@@ -1,0 +1,51 @@
+<section class="hero">
+  <div class="hero__content">
+    <span class="section-eyebrow">{{ 'landing.hero.eyebrow' | translate }}</span>
+    <h1>{{ 'landing.hero.title' | translate }}</h1>
+    <p>{{ 'landing.hero.subtitle' | translate }}</p>
+    <div class="hero__actions">
+      <a mat-flat-button color="primary" routerLink="/iam/login">{{ 'landing.hero.primaryAction' | translate }}</a>
+      <a mat-stroked-button routerLink="/about">{{ 'landing.hero.secondaryAction' | translate }}</a>
+    </div>
+  </div>
+
+  <div class="hero__preview tankiq-card">
+    <div class="preview-header">
+      <span>{{ 'dashboard.title' | translate }}</span>
+      <span class="status-pill status-pill--success">{{ 'dashboard.status.normal' | translate }}</span>
+    </div>
+    <div class="water-indicator">
+      <strong>72%</strong>
+      <span>{{ 'dashboard.metric.currentLevel' | translate }}</span>
+    </div>
+    <div class="preview-grid">
+      <div>
+        <strong>5</strong>
+        <span>{{ 'dashboard.metric.estimatedDays' | translate }}</span>
+      </div>
+      <div>
+        <strong>0</strong>
+        <span>{{ 'dashboard.metric.activeAlerts' | translate }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-with-spacing landing-section">
+  <span class="section-eyebrow">{{ 'landing.problem.eyebrow' | translate }}</span>
+  <h2>{{ 'landing.problem.title' | translate }}</h2>
+  <div class="landing-cards">
+    <article class="tankiq-card">
+      <h3>{{ 'landing.problem.cardOne.title' | translate }}</h3>
+      <p>{{ 'landing.problem.cardOne.content' | translate }}</p>
+    </article>
+    <article class="tankiq-card">
+      <h3>{{ 'landing.problem.cardTwo.title' | translate }}</h3>
+      <p>{{ 'landing.problem.cardTwo.content' | translate }}</p>
+    </article>
+    <article class="tankiq-card">
+      <h3>{{ 'landing.problem.cardThree.title' | translate }}</h3>
+      <p>{{ 'landing.problem.cardThree.content' | translate }}</p>
+    </article>
+  </div>
+</section>

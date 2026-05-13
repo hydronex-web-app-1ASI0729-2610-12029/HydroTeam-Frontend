@@ -1,0 +1,32 @@
+<section class="login-page">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>{{ 'iam.login.title' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'iam.login.subtitle' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="language-box">
+        <span>{{ 'iam.login.language' | translate }}</span>
+        <mat-button-toggle-group [value]="selectedLang" appearance="standard" aria-label="Login language">
+          <mat-button-toggle value="en" (click)="changeLanguage('en')">English</mat-button-toggle>
+          <mat-button-toggle value="es" (click)="changeLanguage('es')">Español</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'iam.login.email' | translate }}</mat-label>
+        <input matInput type="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'iam.login.password' | translate }}</mat-label>
+        <input matInput type="password" />
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="button" (click)="signIn()">
+        {{ 'iam.login.action' | translate }}
+      </button>
+    </mat-card-content>
+  </mat-card>
+</section>

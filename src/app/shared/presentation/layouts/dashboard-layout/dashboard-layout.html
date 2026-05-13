@@ -1,0 +1,49 @@
+<section class="dashboard-shell">
+  <aside class="dashboard-sidebar" aria-label="Dashboard navigation">
+    <a class="dashboard-brand" routerLink="/dashboard" aria-label="TankIQ dashboard">
+      <span class="dashboard-brand__mark">◆</span>
+      <span>Tank<span>IQ</span></span>
+    </a>
+
+    <nav class="dashboard-sidebar__nav">
+      @for (option of navigationOptions(); track option.label) {
+        <a
+          class="dashboard-sidebar__link"
+          [routerLink]="option.link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: option.exact }">
+          <span class="dashboard-sidebar__icon">{{ option.icon }}</span>
+          <span>{{ option.label | translate }}</span>
+        </a>
+      }
+    </nav>
+
+    <div class="dashboard-user-card">
+      <span class="dashboard-user-card__avatar">JR</span>
+      <div>
+        <strong>Jorge Rodriguez</strong>
+        <small>{{ 'dashboardLayout.user.role' | translate }}</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-topbar">
+      <div>
+        <h1>{{ 'dashboardLayout.title' | translate }}</h1>
+        <p>{{ 'dashboardLayout.subtitle' | translate }}</p>
+      </div>
+      <div class="dashboard-topbar__actions">
+        <button class="notification-button" type="button" aria-label="Notifications">
+          <span>●</span>
+          <strong>2</strong>
+        </button>
+        <span class="profile-avatar">JR</span>
+      </div>
+    </header>
+
+    <section class="dashboard-content">
+      <router-outlet />
+    </section>
+  </main>
+</section>

@@ -1,0 +1,79 @@
+.alerts-page {
+  display: grid;
+  gap: 24px;
+}
+
+.context-header h2 {
+  font-size: 1.8rem;
+  letter-spacing: -0.03em;
+  margin: 4px 0 8px;
+}
+
+.context-header p {
+  color: var(--tankiq-medium);
+  margin: 0;
+}
+
+.alerts-list {
+  display: grid;
+  gap: 14px;
+}
+
+.alert-card {
+  align-items: center;
+  background: var(--tankiq-white);
+  border-radius: 14px;
+  box-shadow: var(--tankiq-shadow);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 48px 1fr auto;
+  padding: 18px;
+}
+
+.alert-icon {
+  align-items: center;
+  border-radius: 12px;
+  color: var(--tankiq-white);
+  display: inline-flex;
+  font-weight: 900;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.alert-card strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.alert-card p,
+.alert-card small {
+  color: var(--tankiq-medium);
+  margin: 0;
+}
+
+.alert-card--warning {
+  background: rgba(251, 140, 0, 0.10);
+}
+
+.alert-card--warning .alert-icon {
+  background: var(--tankiq-warning);
+}
+
+.alert-card--success {
+  background: rgba(67, 160, 71, 0.10);
+}
+
+.alert-card--success .alert-icon {
+  background: var(--tankiq-success);
+}
+
+@media (max-width: 720px) {
+  .alert-card {
+    grid-template-columns: 48px 1fr;
+  }
+
+  .alert-card small {
+    grid-column: 2;
+  }
+}
