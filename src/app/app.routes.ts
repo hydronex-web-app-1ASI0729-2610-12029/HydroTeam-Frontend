@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { Home } from './landing/presentation/views/home/home';
 import { Layout } from './landing/presentation/components/layout/layout';
 import { DashboardLayout } from './shared/presentation/layouts/dashboard-layout/dashboard-layout';
-import { authGuard } from './iam/guards/auth.guard';
 
 const about = () => import('./landing/presentation/views/about/about').then((m) => m.About);
 const pageNotFound = () => import('./landing/presentation/views/page-not-found/page-not-found').then((m) => m.PageNotFound);
@@ -28,7 +27,6 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardLayout,
-    canActivate: [authGuard],
     children: [
       { path: '', loadChildren: dashboardRoutes },
       { path: 'monitoring', loadChildren: monitoringRoutes },
