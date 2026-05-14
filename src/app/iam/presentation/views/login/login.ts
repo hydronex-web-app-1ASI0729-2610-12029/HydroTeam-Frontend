@@ -11,6 +11,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AuthenticationStore } from '../../../application/authentication.store';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ import { AuthenticationStore } from '../../../application/authentication.store';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     TranslatePipe,
+    CommonModule
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',

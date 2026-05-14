@@ -6,7 +6,7 @@ import { DashboardLayout } from './shared/presentation/layouts/dashboard-layout/
 const about = () => import('./landing/presentation/views/about/about').then((m) => m.About);
 const pageNotFound = () => import('./landing/presentation/views/page-not-found/page-not-found').then((m) => m.PageNotFound);
 const placeholder = () => import('./shared/presentation/views/placeholder/placeholder').then((m) => m.Placeholder);
-const iamRoutes = () => import('./iam/iam.routes').then((m) => m.iamRoutes);
+const iamRoutes = () => import('./iam/presentation/iam.routes').then((m) => m.iamRoutes);
 const dashboardRoutes = () => import('./dashboard-overview/presentation/dashboard.routes').then((m) => m.dashboardRoutes);
 const monitoringRoutes = () => import('./water-monitoring/presentation/monitoring.routes').then((m) => m.monitoringRoutes);
 const alertsRoutes = () => import('./alerts-notifications/presentation/alerts.routes').then((m) => m.alertsRoutes);

@@ -1,6 +1,7 @@
 // src/app/iam/presentation/views/sign-up/sign-up.ts
 
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -49,6 +50,7 @@ function passwordMatchValidator(group: AbstractControl): ValidationErrors | null
     MatSelectModule,
     MatSnackBarModule,
     TranslatePipe,
+    CommonModule
   ],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',

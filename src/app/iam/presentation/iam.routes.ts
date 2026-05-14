@@ -2,8 +2,8 @@
 
 import { Routes } from '@angular/router';
 
-const login  = () => import('./presentation/views/login/login').then((m) => m.Login);
-const signUp = () => import('./presentation/views/sign-up/sign-up').then((m) => m.SignUp);
+const login  = () => import('./views/login/login').then((m) => m.Login);
+const signUp = () => import('./views/sign-up/sign-up').then((m) => m.SignUp);
 
 export const iamRoutes: Routes = [
   { path: '',        redirectTo: 'login', pathMatch: 'full' },
