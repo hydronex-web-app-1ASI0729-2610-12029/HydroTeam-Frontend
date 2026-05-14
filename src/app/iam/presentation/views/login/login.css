@@ -62,3 +62,34 @@ button[mat-flat-button] {
   border-radius: 999px;
   min-height: 50px;
 }
+
+mat-card-content form {
+  display: grid;
+  gap: 18px;
+}
+
+button[mat-flat-button] {
+  border-radius: 999px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sign-up-link {
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--tankiq-medium, #5a5a5a);
+  margin: 0;
+}
+
+.sign-up-link a {
+  color: #29ABE2;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sign-up-link a:hover {
+  text-decoration: underline;
+}
