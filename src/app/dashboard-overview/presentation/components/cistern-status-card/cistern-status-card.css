@@ -1,0 +1,95 @@
+.status-card {
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(17, 24, 39, 0.08);
+  height: 100%;
+}
+
+.status-card mat-card-header {
+  justify-content: center;
+  padding: 24px 24px 0;
+  text-align: center;
+}
+
+.status-card mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 850;
+}
+
+.status-card mat-card-content {
+  align-items: center;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  padding: 18px 28px 28px;
+}
+
+.level-ring {
+  --level: 72%;
+  background: conic-gradient(#43a047 var(--level), rgba(67, 160, 71, 0.16) 0);
+  border-radius: 999px;
+  display: grid;
+  height: 172px;
+  margin: 4px 0;
+  place-items: center;
+  width: 172px;
+}
+
+.level-ring__inner {
+  align-items: center;
+  background: white;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 128px;
+  justify-content: center;
+  width: 128px;
+}
+
+.level-ring strong {
+  color: #43a047;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+}
+
+.level-ring span {
+  color: #374151;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.status-chip {
+  --mdc-chip-elevated-container-color: #e8f5e9;
+  --mdc-chip-label-text-color: #2e7d32;
+  font-weight: 800;
+}
+
+.sensor-grid {
+  color: #374151;
+  display: grid;
+  font-size: 0.92rem;
+  gap: 8px;
+  justify-items: center;
+}
+
+.sensor-grid span {
+  align-items: center;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.sensor-grid mat-icon {
+  color: #29aee4;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+.refill-button {
+  --mdc-filled-button-container-color: #29aee4;
+  --mdc-filled-button-label-text-color: white;
+  border-radius: 12px;
+  min-height: 44px;
+  width: 100%;
+}
