@@ -84,5 +84,3 @@ export class AlertsStore {
     return fallback;
   }
 }
-  }
-}
