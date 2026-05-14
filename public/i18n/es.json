@@ -177,15 +177,47 @@
     }
   },
   "iam": {
-    "login": {
-      "title": "Iniciar sesión",
-      "subtitle": "Accede a la plataforma TankIQ",
-      "email": "Correo electrónico",
-      "password": "Contraseña",
-      "action": "Ingresar",
-      "language": "Selecciona el idioma de la plataforma"
-    }
+  "login": {
+    "title": "Bienvenido de nuevo",
+    "subtitle": "Inicia sesión en TankIQ",
+    "language": "Idioma",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "action": "Iniciar sesión",
+    "noAccount": "¿No tienes cuenta?",
+    "signUpLink": "Regístrate"
   },
+  "signUp": {
+    "title": "Crear cuenta",
+    "subtitle": "Únete a TankIQ hoy",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "role": "Rol",
+    "roleAdministrator": "Administrador",
+    "roleResident": "Residente",
+    "phoneNumber": "Número de teléfono",
+    "apartmentNumber": "Número de departamento",
+    "action": "Crear cuenta",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "signInLink": "Iniciar sesión",
+    "successMessage": "¡Cuenta creada exitosamente! Por favor inicia sesión."
+  },
+  "validation": {
+    "emailRequired": "El correo es requerido.",
+    "emailInvalid": "Ingresa un correo electrónico válido.",
+    "passwordRequired": "La contraseña es requerida.",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
+    "nameRequired": "El nombre completo es requerido.",
+    "nameMinLength": "El nombre debe tener al menos 2 caracteres.",
+    "roleRequired": "Por favor selecciona un rol.",
+    "phoneRequired": "El teléfono es requerido para administradores.",
+    "apartmentRequired": "El número de departamento es requerido para residentes.",
+    "confirmPasswordRequired": "Por favor confirma tu contraseña.",
+    "passwordMismatch": "Las contraseñas no coinciden."
+  }
+},
   "underConstruction": {
     "title": "Funcionalidad en construcción",
     "description": "Este módulo ya está conectado a las rutas de la aplicación y será implementado por el equipo responsable."

@@ -1,4 +1,6 @@
-.login-page {
+/* src/app/iam/presentation/views/sign-up/sign-up.css */
+
+.sign-up-page {
   align-items: center;
   background: linear-gradient(135deg, #e8f6fc 0%, #ffffff 100%);
   display: flex;
@@ -7,7 +9,7 @@
   padding: 32px;
 }
 
-.login-card {
+.sign-up-card {
   border-radius: var(--tankiq-radius-lg);
   box-shadow: var(--tankiq-shadow);
   max-width: 520px;
@@ -35,39 +37,33 @@ mat-card-content {
   padding: 30px 34px 36px;
 }
 
-.language-box {
-  background: var(--tankiq-light);
-  border: 1px solid var(--tankiq-border);
-  border-radius: 16px;
-  display: grid;
-  gap: 12px;
-  padding: 16px;
-}
-
-.language-box span {
-  color: var(--tankiq-dark);
-  font-weight: 900;
-}
-
-.language-box mat-button-toggle-group {
-  width: 100%;
-}
-
-.language-box mat-button-toggle {
-  flex: 1;
-  font-weight: 800;
-}
-
-button[mat-flat-button] {
-  border-radius: 999px;
-  min-height: 50px;
-}
-
 mat-card-content form {
   display: grid;
   gap: 18px;
 }
 
+/* Full-width fields */
+mat-form-field {
+  width: 100%;
+}
+
+/* Smooth entrance for conditional fields */
+.field-animate {
+  animation: fieldIn 0.2s ease;
+}
+
+@keyframes fieldIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Submit button */
 button[mat-flat-button] {
   border-radius: 999px;
   min-height: 50px;
@@ -77,19 +73,20 @@ button[mat-flat-button] {
   gap: 8px;
 }
 
-.sign-up-link {
+/* Sign-in redirect link */
+.sign-in-link {
   font-size: 0.875rem;
   text-align: center;
   color: var(--tankiq-medium, #5a5a5a);
   margin: 0;
 }
 
-.sign-up-link a {
+.sign-in-link a {
   color: #29ABE2;
   font-weight: 600;
   text-decoration: none;
 }
 
-.sign-up-link a:hover {
+.sign-in-link a:hover {
   text-decoration: underline;
 }
