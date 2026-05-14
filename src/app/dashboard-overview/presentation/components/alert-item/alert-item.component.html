@@ -1,0 +1,12 @@
+<div class="alert-item" [class.warning]="alert.severity === 'warning'" [class.critical]="alert.severity === 'critical'">
+  <div class="alert-icon">
+    <mat-icon>{{ alert.icon }}</mat-icon>
+  </div>
+
+  <div class="alert-content">
+    <strong>{{ alert.title }}</strong>
+    <p>{{ alert.message }}</p>
+  </div>
+
+  <span class="alert-time">{{ alert.time }}</span>
+</div>

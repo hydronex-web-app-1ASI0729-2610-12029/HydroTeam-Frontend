@@ -1,0 +1,36 @@
+<mat-card class="consumption-card">
+  <mat-card-header>
+    <mat-card-title>Consumption overview</mat-card-title>
+    <mat-card-subtitle>Water usage summary by period</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      @for (item of items; track item.period) {
+        <mat-tab [label]="item.period">
+          <div class="period-content">
+            <div class="summary-row">
+              <span>Average consumption</span>
+              <strong>{{ item.averageLiters }} L/day</strong>
+            </div>
+            <mat-progress-bar mode="determinate" [value]="65"></mat-progress-bar>
+
+            <div class="summary-row">
+              <span>Peak consumption</span>
+              <strong>{{ item.peakLiters }} L/day</strong>
+            </div>
+            <mat-progress-bar mode="determinate" [value]="82"></mat-progress-bar>
+
+            <div class="saving-box">
+              <mat-icon>eco</mat-icon>
+              <div>
+                <strong>{{ item.savedLiters }} L saved</strong>
+                <span>Estimated optimization compared to previous periods</span>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      }
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

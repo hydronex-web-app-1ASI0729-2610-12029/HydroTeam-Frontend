@@ -1,0 +1,21 @@
+@if (store.loading()) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<main class="dashboard-page">
+  <section class="metrics-grid">
+    @for (metric of store.metrics(); track metric.id) {
+      <app-metric-card [metric]="metric"></app-metric-card>
+    }
+  </section>
+
+  <section class="content-grid">
+    @if (store.cistern(); as cistern) {
+      <app-cistern-status-card [cistern]="cistern"></app-cistern-status-card>
+    }
+
+    <app-consumption-summary [items]="store.consumption()"></app-consumption-summary>
+
+    <app-active-alerts-card [alerts]="store.alerts()"></app-active-alerts-card>
+  </section>
+</main>

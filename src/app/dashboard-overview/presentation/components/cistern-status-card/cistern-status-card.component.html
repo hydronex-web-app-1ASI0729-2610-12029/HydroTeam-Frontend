@@ -1,0 +1,53 @@
+<mat-card class="status-card">
+  <mat-card-header>
+    <mat-card-title>Cistern status</mat-card-title>
+    <mat-card-subtitle>{{ cistern.lastUpdate }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="gauge-container">
+      <mat-progress-spinner
+        mode="determinate"
+        [value]="cistern.levelPercentage"
+        diameter="184">
+      </mat-progress-spinner>
+
+      <div class="center-text">
+        <h2>{{ cistern.levelPercentage }}%</h2>
+        <span>Level</span>
+      </div>
+    </div>
+
+    <mat-chip-set>
+      <mat-chip highlighted>
+        <mat-icon matChipAvatar>check_circle</mat-icon>
+        {{ cistern.statusLabel }}
+      </mat-chip>
+    </mat-chip-set>
+
+    <div class="info-grid">
+      <div>
+        <mat-icon>water_drop</mat-icon>
+        <strong>{{ cistern.availableLiters }} L</strong>
+        <span>available</span>
+      </div>
+      <div>
+        <mat-icon>sensors</mat-icon>
+        <strong>{{ cistern.signalStrength }}</strong>
+        <span>sensor</span>
+      </div>
+      <div>
+        <mat-icon>device_thermostat</mat-icon>
+        <strong>{{ cistern.sensorTemperature }}</strong>
+        <span>temperature</span>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <button mat-flat-button color="primary" class="full-action">
+      <mat-icon>add_circle</mat-icon>
+      Register refill
+    </button>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,48 @@
+.alert-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border-radius: 18px;
+  background: #f8fafc;
+}
+
+.alert-item + .alert-item {
+  margin-top: 12px;
+}
+
+.alert-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #e8f1ff;
+  color: #2563eb;
+}
+
+.warning .alert-icon {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.critical .alert-icon {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.alert-content strong {
+  font-size: 14px;
+}
+
+.alert-content p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.alert-time {
+  color: #94a3b8;
+  font-size: 12px;
+}

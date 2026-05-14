@@ -1,0 +1,72 @@
+:host {
+  display: block;
+}
+
+.status-card {
+  border-radius: 28px;
+  box-shadow: 0 16px 44px rgba(15, 43, 76, 0.10);
+  height: 100%;
+}
+
+.gauge-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 28px 0 18px;
+}
+
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.center-text h2 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.center-text span {
+  color: #64748b;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.info-grid div {
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-grid mat-icon {
+  color: #2563eb;
+}
+
+.info-grid strong {
+  font-size: 14px;
+}
+
+.info-grid span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.full-action {
+  width: 100%;
+  margin-top: 18px;
+  border-radius: 999px;
+}
