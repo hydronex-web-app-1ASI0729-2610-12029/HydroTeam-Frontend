@@ -21,7 +21,7 @@ import { CisternStatus } from '../../../domain/model/cistern-status.entity';
     MatProgressSpinnerModule
   ],
   templateUrl: './cistern-status-card.component.html',
-  styleUrls: ['./cistern-status-card.component.scss']
+  styleUrls: ['./cistern-status-card.component.css']
 })
 export class CisternStatusCardComponent {
   @Input({ required: true }) cistern!: CisternStatus;
