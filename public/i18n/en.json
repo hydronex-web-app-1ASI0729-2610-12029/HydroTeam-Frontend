@@ -119,15 +119,47 @@
     }
   },
   "iam": {
-    "login": {
-      "title": "Login",
-      "subtitle": "Access the TankIQ platform",
-      "email": "Email",
-      "password": "Password",
-      "action": "Sign in",
-      "language": "Select platform language"
-    }
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to TankIQ",
+    "language": "Language",
+    "email": "Email address",
+    "password": "Password",
+    "action": "Sign In",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign Up"
   },
+  "signUp": {
+    "title": "Create account",
+    "subtitle": "Join TankIQ today",
+    "name": "Full name",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "role": "Role",
+    "roleAdministrator": "Administrator",
+    "roleResident": "Resident",
+    "phoneNumber": "Phone number",
+    "apartmentNumber": "Apartment number",
+    "action": "Create Account",
+    "hasAccount": "Already have an account?",
+    "signInLink": "Sign In",
+    "successMessage": "Account created successfully! Please sign in."
+  },
+  "validation": {
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Enter a valid email address.",
+    "passwordRequired": "Password is required.",
+    "passwordMinLength": "Password must be at least 6 characters.",
+    "nameRequired": "Full name is required.",
+    "nameMinLength": "Name must be at least 2 characters.",
+    "roleRequired": "Please select a role.",
+    "phoneRequired": "Phone number is required for administrators.",
+    "apartmentRequired": "Apartment number is required for residents.",
+    "confirmPasswordRequired": "Please confirm your password.",
+    "passwordMismatch": "Passwords do not match."
+  }
+},
   "underConstruction": {
     "title": "Feature under construction",
     "description": "This module is connected to the application routes and will be implemented by the assigned feature team."
