@@ -1,0 +1,23 @@
+<mat-card class="alerts-card">
+  <mat-card-header>
+    <mat-card-title>Active alerts</mat-card-title>
+    <mat-card-subtitle>Latest system events</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    @for (alert of alerts; track alert.id) {
+      <app-alert-item [alert]="alert"></app-alert-item>
+    }
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+<button
+  mat-button
+  color="primary"
+  (click)="goToAlerts()">
+
+  View all
+
+</button>
+  </mat-card-actions>
+</mat-card>
