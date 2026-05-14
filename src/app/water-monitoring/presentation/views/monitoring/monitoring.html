@@ -5,24 +5,80 @@
     <p>{{ 'monitoring.description' | translate }}</p>
   </header>
 
-  <div class="monitoring-grid">
-    <article class="tankiq-panel monitoring-card">
-      <div class="tank-visual"><span>72%</span></div>
-      <div>
-        <h3>{{ 'monitoring.currentStatus' | translate }}</h3>
-        <p>{{ 'monitoring.currentStatusDescription' | translate }}</p>
-        <span class="status-pill status-pill--success">{{ 'dashboard.status.normal' | translate }}</span>
-      </div>
-    </article>
+  @if (store.loading()) {
+    <mat-spinner diameter="40" />
+  }
 
-    <article class="tankiq-panel monitoring-card monitoring-card--secondary">
-      <h3>{{ 'monitoring.mock.title' | translate }}</h3>
-      <p>{{ 'monitoring.mock.description' | translate }}</p>
-      <div class="data-list">
-        <span>Sensor ID</span><strong>TNK-SJL-001</strong>
-        <span>{{ 'monitoring.mock.capacity' | translate }}</span><strong>5,000 L</strong>
-        <span>{{ 'monitoring.mock.updated' | translate }}</span><strong>3 min</strong>
-      </div>
-    </article>
-  </div>
+  @if (store.error()) {
+    <p class="monitoring-error">{{ store.error() }}</p>
+  }
+
+  @if (!store.loading()) {
+    <div class="monitoring-grid">
+
+      <!-- Level gauge card -->
+      <article class="tankiq-card level-card">
+        <h3>{{ 'monitoring.currentStatus' | translate }}</h3>
+
+        <div class="level-ring-wrapper">
+          <div class="level-ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="50" class="ring-track" />
+              <circle
+                cx="60" cy="60" r="50"
+                class="ring-fill"
+                [style.stroke-dasharray]="314"
+                [style.stroke-dashoffset]="314 - (314 * store.currentLevelPercent() / 100)"
+                [class.ring-fill--low]="store.isLow()"
+                [class.ring-fill--critical]="store.isCritical()" />
+            </svg>
+            <div class="level-ring__label">
+              <strong>{{ store.currentLevelPercent() }}%</strong>
+              <small>{{ 'monitoring.currentStatus' | translate }}</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="level-status">
+          @if (store.isCritical()) {
+            <span class="status-pill status-pill--danger">⚠ Critical</span>
+          } @else if (store.isLow()) {
+            <span class="status-pill status-pill--warning">⚠ Low level</span>
+          } @else {
+            <span class="status-pill status-pill--success">● Normal</span>
+          }
+        </div>
+
+        <p class="level-desc">{{ 'monitoring.currentStatusDescription' | translate }}</p>
+      </article>
+
+      <!-- Readings list card -->
+      <article class="tankiq-card readings-card">
+        <h3>{{ 'monitoring.mock.title' | translate }}</h3>
+        <p class="readings-desc">{{ 'monitoring.mock.description' | translate }}</p>
+
+        <div class="readings-list">
+          @for (reading of store.waterLevels(); track reading.id) {
+            <div class="reading-row">
+              <div class="reading-bar-wrap">
+                <div
+                  class="reading-bar"
+                  [style.width.%]="reading.levelPercent"
+                  [class.reading-bar--low]="reading.isLow()"
+                  [class.reading-bar--critical]="reading.isCritical()">
+                </div>
+              </div>
+              <span class="reading-pct">{{ reading.levelPercent }}%</span>
+              <span class="reading-date">{{ reading.recordedAt | date:'dd/MM HH:mm' }}</span>
+            </div>
+          }
+
+          @if (store.waterLevels().length === 0) {
+            <p>{{ 'monitoring.mock.description' | translate }}</p>
+          }
+        </div>
+      </article>
+
+    </div>
+  }
 </section>
