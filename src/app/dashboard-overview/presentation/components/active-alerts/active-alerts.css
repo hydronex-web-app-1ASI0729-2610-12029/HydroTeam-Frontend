@@ -1,0 +1,27 @@
+.alerts-card {
+  border-radius: 22px;
+  box-shadow: 0 18px 42px rgba(17, 24, 39, 0.08);
+}
+
+.alerts-card mat-card-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 26px 0;
+}
+
+.alerts-card mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 850;
+}
+
+.alerts-card button {
+  color: #0298d2;
+  font-weight: 800;
+}
+
+.alerts-card mat-card-content {
+  display: grid;
+  gap: 12px;
+  padding: 22px 26px 26px;
+}
