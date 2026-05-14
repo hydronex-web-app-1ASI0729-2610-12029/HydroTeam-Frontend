@@ -11,19 +11,19 @@ const USER_KEY  = 'tankiq-user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationStore {
-  // ── Private signals ──────────────────────────────────────────────────────
+  // Private signals
   private readonly currentUserSignal = signal<User | null>(this.restoreUser());
   private readonly tokenSignal       = signal<string | null>(localStorage.getItem(TOKEN_KEY));
   private readonly loadingSignal     = signal<boolean>(false);
   private readonly errorSignal       = signal<string | null>(null);
 
-  // ── Public readonly signals ──────────────────────────────────────────────
+  // Public readonly signals
   readonly currentUser    = this.currentUserSignal.asReadonly();
   readonly token          = this.tokenSignal.asReadonly();
   readonly loading        = this.loadingSignal.asReadonly();
   readonly error          = this.errorSignal.asReadonly();
 
-  // ── Computed ─────────────────────────────────────────────────────────────
+  // Computed 
   readonly isAuthenticated = computed(() => !!this.tokenSignal());
   readonly isAdministrator = computed(() => this.currentUserSignal()?.role === UserRole.ADMINISTRATOR);
   readonly isResident      = computed(() => this.currentUserSignal()?.role === UserRole.RESIDENT);
@@ -33,7 +33,7 @@ export class AuthenticationStore {
     private readonly router: Router,
   ) {}
 
-  // ── Actions ──────────────────────────────────────────────────────────────
+  // ── Actions
 
   signIn(email: string, password: string): Promise<void> {
     this.loadingSignal.set(true);
@@ -106,7 +106,7 @@ export class AuthenticationStore {
     this.errorSignal.set(null);
   }
 
-  // ── Private helpers ───────────────────────────────────────────────────────
+  //  Private helpers 
 
   private restoreUser(): User | null {
     try {
