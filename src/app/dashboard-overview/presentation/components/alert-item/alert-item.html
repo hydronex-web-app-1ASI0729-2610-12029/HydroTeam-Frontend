@@ -1,0 +1,8 @@
+<div class="alert-item" [ngClass]="'alert-item--' + alert().tone">
+  <span class="alert-item__icon"><mat-icon>{{ alert().icon }}</mat-icon></span>
+  <div class="alert-item__content">
+    <strong>{{ alert().title }}</strong>
+    <p>{{ alert().description }}</p>
+  </div>
+  <small>{{ alert().time }}</small>
+</div>
