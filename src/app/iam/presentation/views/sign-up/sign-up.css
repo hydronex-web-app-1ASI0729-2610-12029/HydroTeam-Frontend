@@ -1,0 +1,92 @@
+/* src/app/iam/presentation/views/sign-up/sign-up.css */
+
+.sign-up-page {
+  align-items: center;
+  background: linear-gradient(135deg, #e8f6fc 0%, #ffffff 100%);
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 32px;
+}
+
+.sign-up-card {
+  border-radius: var(--tankiq-radius-lg);
+  box-shadow: var(--tankiq-shadow);
+  max-width: 520px;
+  width: 100%;
+}
+
+mat-card-header {
+  padding: 34px 34px 0;
+}
+
+mat-card-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+mat-card-subtitle {
+  font-size: 1.05rem;
+  margin-top: 6px;
+}
+
+mat-card-content {
+  display: grid;
+  gap: 18px;
+  padding: 30px 34px 36px;
+}
+
+mat-card-content form {
+  display: grid;
+  gap: 18px;
+}
+
+/* Full-width fields */
+mat-form-field {
+  width: 100%;
+}
+
+/* Smooth entrance for conditional fields */
+.field-animate {
+  animation: fieldIn 0.2s ease;
+}
+
+@keyframes fieldIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Submit button */
+button[mat-flat-button] {
+  border-radius: 999px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Sign-in redirect link */
+.sign-in-link {
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--tankiq-medium, #5a5a5a);
+  margin: 0;
+}
+
+.sign-in-link a {
+  color: #29ABE2;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sign-in-link a:hover {
+  text-decoration: underline;
+}

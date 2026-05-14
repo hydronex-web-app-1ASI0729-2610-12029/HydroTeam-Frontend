@@ -77,3 +77,11 @@
     grid-column: 2;
   }
 }
+
+.alert-card--critical {
+  background: rgba(229, 57, 53, 0.10);
+}
+.alert-card--critical .alert-icon {
+  background: #e53935;
+}
+ 

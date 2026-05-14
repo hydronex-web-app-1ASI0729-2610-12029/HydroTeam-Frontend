@@ -10,7 +10,12 @@
       "title": "Smart Water Monitoring for Residential Buildings",
       "subtitle": "Monitor cistern levels, anticipate shortages and keep residents informed with a clear web platform.",
       "primaryAction": "Access platform",
-      "secondaryAction": "Learn more"
+      "secondaryAction": "Learn more",
+      "trust": {
+        "sensor": "Connected sensor",
+        "alerts": "Real-time alerts",
+        "savings": "Estimated savings"
+      }
     },
     "problem": {
       "eyebrow": "Why TankIQ",
@@ -26,6 +31,59 @@
       "cardThree": {
         "title": "Limited transparency",
         "content": "Water expenses and refill decisions are difficult to explain without clear records."
+      }
+    },
+    "workflow": {
+      "eyebrow": "How it works",
+      "title": "Three steps to take control of the cistern",
+      "stepOne": {
+        "title": "Install the sensor",
+        "content": "Connect the device to the cistern to start recording the building's water level."
+      },
+      "stepTwo": {
+        "title": "Monitor live",
+        "content": "Review available level, estimated days and consumption from a simple administrator view."
+      },
+      "stepThree": {
+        "title": "Act before shortages",
+        "content": "Receive alerts when the level drops and communicate with residents earlier."
+      }
+    },
+    "savings": {
+      "eyebrow": "Savings and prevention",
+      "title": "Reduce emergency purchases and improve planning",
+      "subtitle": "TankIQ turns cistern data into clear decisions to avoid late refills, resident complaints and unsupported expenses.",
+      "metricOne": {
+        "value": "S/ 80 - 150",
+        "label": "Reference refill cost"
+      },
+      "metricTwo": {
+        "value": "2 - 6 times",
+        "label": "Refills per month"
+      },
+      "metricThree": {
+        "value": "Up to S/ 450",
+        "label": "Estimated monthly savings"
+      }
+    },
+    "plans": {
+      "eyebrow": "Plans",
+      "title": "Choose the right plan for your building",
+      "featured": "Most chosen",
+      "action": "Choose plan",
+      "basic": {
+        "name": "Basic plan",
+        "price": "S/ 49 / month",
+        "featureOne": "Real-time monitoring",
+        "featureTwo": "Automatic email alerts",
+        "featureThree": "Monthly consumption history"
+      },
+      "premium": {
+        "name": "Premium plan",
+        "price": "S/ 89 / month",
+        "featureOne": "All basic features",
+        "featureTwo": "WhatsApp and SMS alerts",
+        "featureThree": "PDF reports for meetings"
       }
     }
   },
@@ -119,15 +177,47 @@
     }
   },
   "iam": {
-    "login": {
-      "title": "Login",
-      "subtitle": "Access the TankIQ platform",
-      "email": "Email",
-      "password": "Password",
-      "action": "Sign in",
-      "language": "Select platform language"
-    }
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to TankIQ",
+    "language": "Language",
+    "email": "Email address",
+    "password": "Password",
+    "action": "Sign In",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign Up"
   },
+  "signUp": {
+    "title": "Create account",
+    "subtitle": "Join TankIQ today",
+    "name": "Full name",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "role": "Role",
+    "roleAdministrator": "Administrator",
+    "roleResident": "Resident",
+    "phoneNumber": "Phone number",
+    "apartmentNumber": "Apartment number",
+    "action": "Create Account",
+    "hasAccount": "Already have an account?",
+    "signInLink": "Sign In",
+    "successMessage": "Account created successfully! Please sign in."
+  },
+  "validation": {
+    "emailRequired": "Email is required.",
+    "emailInvalid": "Enter a valid email address.",
+    "passwordRequired": "Password is required.",
+    "passwordMinLength": "Password must be at least 6 characters.",
+    "nameRequired": "Full name is required.",
+    "nameMinLength": "Name must be at least 2 characters.",
+    "roleRequired": "Please select a role.",
+    "phoneRequired": "Phone number is required for administrators.",
+    "apartmentRequired": "Apartment number is required for residents.",
+    "confirmPasswordRequired": "Please confirm your password.",
+    "passwordMismatch": "Passwords do not match."
+  }
+},
   "underConstruction": {
     "title": "Feature under construction",
     "description": "This module is connected to the application routes and will be implemented by the assigned feature team."
@@ -155,5 +245,7 @@
     "user": {
       "role": "Administrator"
     }
+    
+    
   }
 }

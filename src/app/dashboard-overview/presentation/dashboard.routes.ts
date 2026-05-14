@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
-
-const dashboard = () => import('./views/dashboard/dashboard').then((m) => m.Dashboard);
+import { DashboardOverviewPageComponent } from './views/dashboard-overview-page/dashboard-overview-page.component';
 
 export const dashboardRoutes: Routes = [
-  { path: '', loadComponent: dashboard, title: 'TankIQ - Dashboard' },
+  {
+    path: '',
+    component: DashboardOverviewPageComponent
+  }
 ];

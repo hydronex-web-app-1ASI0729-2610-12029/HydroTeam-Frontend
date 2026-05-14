@@ -1,0 +1,39 @@
+.consumption-card {
+  border-radius: 28px;
+  box-shadow: 0 16px 44px rgba(15, 43, 76, 0.10);
+}
+
+.period-content {
+  padding: 20px 4px 4px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 18px 0 8px;
+  font-size: 14px;
+}
+
+.summary-row span {
+  color: #64748b;
+}
+
+.saving-box {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #ecfdf5;
+  color: #047857;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 22px;
+}
+
+.saving-box div {
+  display: flex;
+  flex-direction: column;
+}
+
+.saving-box span {
+  font-size: 12px;
+}

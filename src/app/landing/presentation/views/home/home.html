@@ -7,6 +7,11 @@
       <a mat-flat-button color="primary" routerLink="/iam/login">{{ 'landing.hero.primaryAction' | translate }}</a>
       <a mat-stroked-button routerLink="/about">{{ 'landing.hero.secondaryAction' | translate }}</a>
     </div>
+    <div class="hero__trust">
+      <span>{{ 'landing.hero.trust.sensor' | translate }}</span>
+      <span>{{ 'landing.hero.trust.alerts' | translate }}</span>
+      <span>{{ 'landing.hero.trust.savings' | translate }}</span>
+    </div>
   </div>
 
   <div class="hero__preview tankiq-card">
@@ -46,6 +51,80 @@
     <article class="tankiq-card">
       <h3>{{ 'landing.problem.cardThree.title' | translate }}</h3>
       <p>{{ 'landing.problem.cardThree.content' | translate }}</p>
+    </article>
+  </div>
+</section>
+
+<section class="workflow-section">
+  <div class="container-with-spacing landing-section">
+    <span class="section-eyebrow">{{ 'landing.workflow.eyebrow' | translate }}</span>
+    <h2>{{ 'landing.workflow.title' | translate }}</h2>
+    <div class="workflow-steps">
+      <article>
+        <span>1</span>
+        <h3>{{ 'landing.workflow.stepOne.title' | translate }}</h3>
+        <p>{{ 'landing.workflow.stepOne.content' | translate }}</p>
+      </article>
+      <article>
+        <span>2</span>
+        <h3>{{ 'landing.workflow.stepTwo.title' | translate }}</h3>
+        <p>{{ 'landing.workflow.stepTwo.content' | translate }}</p>
+      </article>
+      <article>
+        <span>3</span>
+        <h3>{{ 'landing.workflow.stepThree.title' | translate }}</h3>
+        <p>{{ 'landing.workflow.stepThree.content' | translate }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="savings-section">
+  <div class="savings-section__content">
+    <span class="section-eyebrow">{{ 'landing.savings.eyebrow' | translate }}</span>
+    <h2>{{ 'landing.savings.title' | translate }}</h2>
+    <p>{{ 'landing.savings.subtitle' | translate }}</p>
+  </div>
+  <div class="savings-metrics">
+    <article>
+      <strong>{{ 'landing.savings.metricOne.value' | translate }}</strong>
+      <span>{{ 'landing.savings.metricOne.label' | translate }}</span>
+    </article>
+    <article>
+      <strong>{{ 'landing.savings.metricTwo.value' | translate }}</strong>
+      <span>{{ 'landing.savings.metricTwo.label' | translate }}</span>
+    </article>
+    <article>
+      <strong>{{ 'landing.savings.metricThree.value' | translate }}</strong>
+      <span>{{ 'landing.savings.metricThree.label' | translate }}</span>
+    </article>
+  </div>
+</section>
+
+<section class="container-with-spacing landing-section plans-section">
+  <span class="section-eyebrow">{{ 'landing.plans.eyebrow' | translate }}</span>
+  <h2>{{ 'landing.plans.title' | translate }}</h2>
+  <div class="plan-grid">
+    <article class="tankiq-card plan-card">
+      <span>{{ 'landing.plans.basic.name' | translate }}</span>
+      <strong>{{ 'landing.plans.basic.price' | translate }}</strong>
+      <ul>
+        <li>{{ 'landing.plans.basic.featureOne' | translate }}</li>
+        <li>{{ 'landing.plans.basic.featureTwo' | translate }}</li>
+        <li>{{ 'landing.plans.basic.featureThree' | translate }}</li>
+      </ul>
+      <a mat-stroked-button routerLink="/iam/login">{{ 'landing.plans.action' | translate }}</a>
+    </article>
+    <article class="tankiq-card plan-card plan-card--featured">
+      <small>{{ 'landing.plans.featured' | translate }}</small>
+      <span>{{ 'landing.plans.premium.name' | translate }}</span>
+      <strong>{{ 'landing.plans.premium.price' | translate }}</strong>
+      <ul>
+        <li>{{ 'landing.plans.premium.featureOne' | translate }}</li>
+        <li>{{ 'landing.plans.premium.featureTwo' | translate }}</li>
+        <li>{{ 'landing.plans.premium.featureThree' | translate }}</li>
+      </ul>
+      <a mat-flat-button color="primary" routerLink="/iam/login">{{ 'landing.plans.action' | translate }}</a>
     </article>
   </div>
 </section>

@@ -5,24 +5,234 @@
     <p>{{ 'monitoring.description' | translate }}</p>
   </header>
 
-  <div class="monitoring-grid">
-    <article class="tankiq-panel monitoring-card">
-      <div class="tank-visual"><span>72%</span></div>
-      <div>
-        <h3>{{ 'monitoring.currentStatus' | translate }}</h3>
-        <p>{{ 'monitoring.currentStatusDescription' | translate }}</p>
-        <span class="status-pill status-pill--success">{{ 'dashboard.status.normal' | translate }}</span>
-      </div>
-    </article>
+  @if (store.loading()) {
+    <div class="loading-wrapper">
+      <mat-spinner diameter="40" />
+    </div>
+  }
 
-    <article class="tankiq-panel monitoring-card monitoring-card--secondary">
-      <h3>{{ 'monitoring.mock.title' | translate }}</h3>
-      <p>{{ 'monitoring.mock.description' | translate }}</p>
-      <div class="data-list">
-        <span>Sensor ID</span><strong>TNK-SJL-001</strong>
-        <span>{{ 'monitoring.mock.capacity' | translate }}</span><strong>5,000 L</strong>
-        <span>{{ 'monitoring.mock.updated' | translate }}</span><strong>3 min</strong>
-      </div>
-    </article>
-  </div>
+  @if (store.error()) {
+    <p class="monitoring-error">{{ store.error() }}</p>
+  }
+
+  @if (!store.loading() && !store.error()) {
+    <div class="metrics-row">
+      <article class="metric-tile">
+        <div class="metric-tile__icon metric-tile__icon--primary">
+          <mat-icon>water_drop</mat-icon>
+        </div>
+        <span class="metric-tile__label">{{ 'monitoring.metrics.currentLevel' | translate }}</span>
+        <strong class="metric-tile__value">{{ store.currentLevelPercent() }}%</strong>
+        <mat-progress-bar mode="determinate" [value]="store.currentLevelPercent()" />
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-tile__icon metric-tile__icon--success">
+          <mat-icon>show_chart</mat-icon>
+        </div>
+        <span class="metric-tile__label">{{ 'monitoring.metrics.average' | translate }}</span>
+        <strong class="metric-tile__value">{{ averageLevel() }}%</strong>
+        <mat-progress-bar mode="determinate" [value]="averageLevel()" />
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-tile__icon metric-tile__icon--warning">
+          <mat-icon>trending_down</mat-icon>
+        </div>
+        <span class="metric-tile__label">{{ 'monitoring.metrics.minimum' | translate }}</span>
+        <strong class="metric-tile__value">{{ minLevel() }}%</strong>
+        <mat-progress-bar mode="determinate" [value]="minLevel()" />
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-tile__icon metric-tile__icon--danger">
+          <mat-icon>sensors</mat-icon>
+        </div>
+        <span class="metric-tile__label">{{ 'monitoring.metrics.readings' | translate }}</span>
+        <strong class="metric-tile__value">{{ store.waterLevels().length }}</strong>
+        <mat-progress-bar mode="determinate" [value]="100" />
+      </article>
+    </div>
+
+    <div class="monitoring-grid">
+
+      <article class="tankiq-card level-card">
+        <h3>{{ 'monitoring.currentStatus' | translate }}</h3>
+
+        <div class="level-ring-wrapper">
+          <div class="level-ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="50" class="ring-track" />
+              <circle
+                cx="60" cy="60" r="50"
+                class="ring-fill"
+                [style.stroke-dasharray]="314"
+                [style.stroke-dashoffset]="314 - (314 * store.currentLevelPercent() / 100)"
+                [class.ring-fill--low]="store.isLow()"
+                [class.ring-fill--critical]="store.isCritical()" />
+            </svg>
+            <div class="level-ring__label">
+              <strong>{{ store.currentLevelPercent() }}%</strong>
+              <small>{{ 'monitoring.metrics.currentLevel' | translate }}</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="level-status">
+          @if (store.isCritical()) {
+            <span class="status-pill status-pill--danger">⚠ {{ 'monitoring.status.critical' | translate }}</span>
+          } @else if (store.isLow()) {
+            <span class="status-pill status-pill--warning">⚠ {{ 'monitoring.status.low' | translate }}</span>
+          } @else {
+            <span class="status-pill status-pill--success">● {{ 'monitoring.status.normal' | translate }}</span>
+          }
+        </div>
+
+        <p class="level-desc">{{ 'monitoring.currentStatusDescription' | translate }}</p>
+      </article>
+
+      <article class="tankiq-card chart-card">
+        <div class="chart-header">
+          <h3>{{ 'monitoring.chart.title' | translate }}</h3>
+          <div class="chart-actions">
+            <button mat-stroked-button (click)="toggleChartView()">
+              <mat-icon>{{ chartShowBars ? 'show_chart' : 'bar_chart' }}</mat-icon>
+              {{ chartShowBars ? ('monitoring.chart.line' | translate) : ('monitoring.chart.bar' | translate) }}
+            </button>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <svg
+            class="chart-svg"
+            [attr.viewBox]="'0 0 ' + chartWidth + ' ' + chartHeight"
+            preserveAspectRatio="xMidYMid meet">
+
+            @for (y of chartGridLines; track y) {
+              <line
+                [attr.x1]="chartPadding.left"
+                [attr.y1]="y.pos"
+                [attr.x2]="chartWidth - chartPadding.right"
+                [attr.y2]="y.pos"
+                class="chart-grid-line" />
+              <text
+                [attr.x]="chartPadding.left - 8"
+                [attr.y]="y.pos + 4"
+                class="chart-label-y">{{ y.label }}%</text>
+            }
+
+            <rect
+              [attr.x]="chartPadding.left"
+              [attr.y]="scaleY(20)"
+              [attr.width]="chartWidth - chartPadding.left - chartPadding.right"
+              [attr.height]="scaleY(0) - scaleY(20)"
+              class="chart-danger-zone" />
+            <text
+              [attr.x]="chartPadding.left + 4"
+              [attr.y]="scaleY(10)"
+              class="chart-danger-label">{{ 'monitoring.chart.criticalZone' | translate }}</text>
+
+            @if (chartShowBars) {
+              @for (point of chartPoints(); track point.x) {
+                <rect
+                  [attr.x]="point.x - barWidth / 2"
+                  [attr.y]="point.y"
+                  [attr.width]="barWidth"
+                  [attr.height]="scaleY(0) - point.y"
+                  [class]="'chart-bar ' + (point.value < 10 ? 'chart-bar--critical' : point.value < 20 ? 'chart-bar--low' : '')"
+                  [attr.rx]="3">
+                  <title>{{ point.label }}: {{ point.value }}%</title>
+                </rect>
+              }
+            } @else {
+              <polyline
+                [attr.points]="linePoints()"
+                class="chart-line" />
+              <polyline
+                [attr.points]="areaPoints()"
+                class="chart-area" />
+              @for (point of chartPoints(); track point.x) {
+                <circle
+                  [attr.cx]="point.x"
+                  [attr.cy]="point.y"
+                  r="4"
+                  [class]="'chart-dot ' + (point.value < 10 ? 'chart-dot--critical' : point.value < 20 ? 'chart-dot--low' : '')">
+                  <title>{{ point.label }}: {{ point.value }}%</title>
+                </circle>
+              }
+            }
+
+            <!-- X labels -->
+            @for (point of chartXLabels(); track point.x) {
+              <text
+                [attr.x]="point.x"
+                [attr.y]="chartHeight - 4"
+                class="chart-label-x">{{ point.label }}</text>
+            }
+          </svg>
+        </div>
+      </article>
+    </div>
+
+    <div class="readings-section">
+      <article class="tankiq-card readings-table-card">
+        <div class="readings-header">
+          <div>
+            <h3>{{ 'monitoring.readings.title' | translate }}</h3>
+            <p class="readings-subtitle">{{ 'monitoring.readings.subtitle' | translate }}</p>
+          </div>
+          <button mat-flat-button color="primary" (click)="generateReport()">
+            <mat-icon>download</mat-icon>
+            {{ 'monitoring.report.generate' | translate }}
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="readings-table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>{{ 'monitoring.readings.date' | translate }}</th>
+              <th>{{ 'monitoring.readings.level' | translate }}</th>
+              <th>{{ 'monitoring.readings.status' | translate }}</th>
+              <th>{{ 'monitoring.readings.bar' | translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+              @for (reading of store.waterLevels(); track reading.id) {
+                <tr>
+                  <td class="cell-id">{{ reading.id }}</td>
+                  <td>{{ reading.recordedAt | date:'dd/MM/yyyy HH:mm' }}</td>
+                  <td class="cell-level"><strong>{{ reading.levelPercent }}%</strong></td>
+                  <td>
+                    @if (reading.isCritical()) {
+                      <span class="status-badge status-badge--danger">{{ 'monitoring.status.critical' | translate }}</span>
+                    } @else if (reading.isLow()) {
+                      <span class="status-badge status-badge--warning">{{ 'monitoring.status.low' | translate }}</span>
+                    } @else {
+                      <span class="status-badge status-badge--success">{{ 'monitoring.status.normal' | translate }}</span>
+                    }
+                  </td>
+                  <td class="cell-bar">
+                    <div class="mini-bar-wrap">
+                      <div
+                        class="mini-bar"
+                        [style.width.%]="reading.levelPercent"
+                        [class.mini-bar--low]="reading.isLow()"
+                        [class.mini-bar--critical]="reading.isCritical()">
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        @if (store.waterLevels().length === 0) {
+          <p class="empty-msg">{{ 'monitoring.readings.empty' | translate }}</p>
+        }
+      </article>
+    </div>
+  }
 </section>

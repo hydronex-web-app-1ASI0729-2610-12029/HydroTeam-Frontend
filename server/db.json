@@ -6,11 +6,30 @@
     "status": "NORMAL"
   },
   "water-level": [
-    { "id": 1, "levelPercent": 72, "recordedAt": "2026-05-13T08:00:00Z" },
-    { "id": 2, "levelPercent": 68, "recordedAt": "2026-05-13T12:00:00Z" }
+    { "id": 1,  "levelPercent": 95, "recordedAt": "2026-05-08T06:00:00Z" },
+    { "id": 2,  "levelPercent": 91, "recordedAt": "2026-05-08T12:00:00Z" },
+    { "id": 3,  "levelPercent": 88, "recordedAt": "2026-05-08T18:00:00Z" },
+    { "id": 4,  "levelPercent": 85, "recordedAt": "2026-05-09T06:00:00Z" },
+    { "id": 5,  "levelPercent": 82, "recordedAt": "2026-05-09T12:00:00Z" },
+    { "id": 6,  "levelPercent": 78, "recordedAt": "2026-05-09T18:00:00Z" },
+    { "id": 7,  "levelPercent": 76, "recordedAt": "2026-05-10T06:00:00Z" },
+    { "id": 8,  "levelPercent": 72, "recordedAt": "2026-05-10T12:00:00Z" },
+    { "id": 9,  "levelPercent": 68, "recordedAt": "2026-05-10T18:00:00Z" },
+    { "id": 10, "levelPercent": 65, "recordedAt": "2026-05-11T06:00:00Z" },
+    { "id": 11, "levelPercent": 60, "recordedAt": "2026-05-11T12:00:00Z" },
+    { "id": 12, "levelPercent": 55, "recordedAt": "2026-05-11T18:00:00Z" },
+    { "id": 13, "levelPercent": 98, "recordedAt": "2026-05-12T06:00:00Z" },
+    { "id": 14, "levelPercent": 93, "recordedAt": "2026-05-12T12:00:00Z" },
+    { "id": 15, "levelPercent": 88, "recordedAt": "2026-05-12T18:00:00Z" },
+    { "id": 16, "levelPercent": 84, "recordedAt": "2026-05-13T06:00:00Z" },
+    { "id": 17, "levelPercent": 80, "recordedAt": "2026-05-13T12:00:00Z" },
+    { "id": 18, "levelPercent": 76, "recordedAt": "2026-05-13T18:00:00Z" },
+    { "id": 19, "levelPercent": 74, "recordedAt": "2026-05-14T06:00:00Z" },
+    { "id": 20, "levelPercent": 72, "recordedAt": "2026-05-14T12:00:00Z" }
   ],
   "alerts": [
-    { "id": 1, "type": "LOW", "message": "Cistern approaching warning threshold", "isResolved": false },
-    { "id": 2, "type": "REFILL", "message": "Refill registered successfully", "isResolved": true }
+    { "id": 1, "type": "LOW",    "message": "Cistern approaching warning threshold", "timestamp": "2026-05-11T17:30:00Z", "isResolved": false, "cisternId": 1 },
+    { "id": 2, "type": "LOW",    "message": "Refill registered successfully",        "timestamp": "2026-05-12T05:45:00Z", "isResolved": true,  "cisternId": 1 },
+    { "id": 3, "type": "CRITICAL","message": "Cistern below critical threshold",     "timestamp": "2026-05-11T16:00:00Z", "isResolved": true,  "cisternId": 1 }
   ]
 }

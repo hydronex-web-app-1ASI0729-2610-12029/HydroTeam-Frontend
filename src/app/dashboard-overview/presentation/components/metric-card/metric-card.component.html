@@ -1,0 +1,18 @@
+<mat-card class="metric-card">
+  <mat-card-content>
+    <div class="card-header">
+      <span class="icon-wrapper">
+        <mat-icon>{{ metric.icon }}</mat-icon>
+      </span>
+      <span class="trend" [class.down]="metric.trend === 'down'">
+        {{ metric.trend }} 
+      </span>
+    </div>
+
+    <p class="label">{{ metric.label }}</p>
+    <h2>{{ metric.value }}</h2>
+    <p class="detail">{{ metric.detail }}</p>
+
+    <mat-progress-bar mode="determinate" [value]="metric.progress"></mat-progress-bar>
+  </mat-card-content>
+</mat-card>
