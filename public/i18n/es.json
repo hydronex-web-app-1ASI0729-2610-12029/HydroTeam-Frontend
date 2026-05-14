@@ -10,7 +10,12 @@
       "title": "Monitoreo inteligente de agua para edificios residenciales",
       "subtitle": "Monitorea el nivel de la cisterna, anticipa desabastecimientos y mantén informados a los residentes desde una plataforma clara.",
       "primaryAction": "Acceder a la plataforma",
-      "secondaryAction": "Conocer más"
+      "secondaryAction": "Conocer más",
+      "trust": {
+        "sensor": "Sensor conectado",
+        "alerts": "Alertas en tiempo real",
+        "savings": "Ahorro estimado"
+      }
     },
     "problem": {
       "eyebrow": "Por qué TankIQ",
@@ -26,6 +31,59 @@
       "cardThree": {
         "title": "Poca transparencia",
         "content": "Los gastos de agua y las decisiones de recarga son difíciles de sustentar sin registros claros."
+      }
+    },
+    "workflow": {
+      "eyebrow": "Cómo funciona",
+      "title": "Tres pasos para tomar el control de la cisterna",
+      "stepOne": {
+        "title": "Instala el sensor",
+        "content": "Conecta el dispositivo a la cisterna para empezar a registrar el nivel de agua del edificio."
+      },
+      "stepTwo": {
+        "title": "Monitorea en vivo",
+        "content": "Revisa el nivel disponible, días estimados y consumo desde una vista simple para administradores."
+      },
+      "stepThree": {
+        "title": "Actúa antes del corte",
+        "content": "Recibe alertas cuando el nivel baja y comunica a los residentes con mayor anticipación."
+      }
+    },
+    "savings": {
+      "eyebrow": "Ahorro y prevención",
+      "title": "Reduce compras de emergencia y mejora la planificación",
+      "subtitle": "TankIQ convierte los datos de la cisterna en decisiones claras para evitar recargas tardías, quejas de residentes y gastos sin sustento.",
+      "metricOne": {
+        "value": "S/ 80 - 150",
+        "label": "Costo de recarga referencial"
+      },
+      "metricTwo": {
+        "value": "2 - 6 veces",
+        "label": "Recargas por mes"
+      },
+      "metricThree": {
+        "value": "Hasta S/ 450",
+        "label": "Ahorro mensual estimado"
+      }
+    },
+    "plans": {
+      "eyebrow": "Planes",
+      "title": "Elige el plan ideal para tu edificio",
+      "featured": "Más elegido",
+      "action": "Contratar plan",
+      "basic": {
+        "name": "Plan básico",
+        "price": "S/ 49 / mes",
+        "featureOne": "Monitoreo en tiempo real",
+        "featureTwo": "Alertas automáticas por correo",
+        "featureThree": "Historial de consumo mensual"
+      },
+      "premium": {
+        "name": "Plan premium",
+        "price": "S/ 89 / mes",
+        "featureOne": "Todas las funciones básicas",
+        "featureTwo": "Alertas por WhatsApp y SMS",
+        "featureThree": "Reportes PDF para juntas"
       }
     }
   },
