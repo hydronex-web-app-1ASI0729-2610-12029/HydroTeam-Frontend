@@ -17,9 +17,10 @@
           <mat-button-toggle value="es" (click)="changeLanguage('es')">Español</mat-button-toggle>
         </mat-button-toggle-group>
       </div>
-
+      <!--
       <form [formGroup]="form" (ngSubmit)="signIn()">
-
+      -->
+      <form [formGroup]="form">
         <mat-form-field appearance="outline">
           <mat-label>{{ 'iam.login.email' | translate }}</mat-label>
           <input matInput type="email" formControlName="email" autocomplete="email" />
@@ -54,13 +55,20 @@
             {{ 'iam.validation.passwordMinLength' | translate }}
           </mat-error>
         </mat-form-field>
-
+        <!--
         <button
           mat-flat-button
           color="primary"
           type="submit"
           [disabled]="authStore.loading()"
         >
+      -->
+        <button
+  mat-flat-button
+  color="primary"
+  type="button"
+  routerLink="/dashboard"
+>
           @if (authStore.loading()) {
             <mat-spinner diameter="22" />
           } @else {
