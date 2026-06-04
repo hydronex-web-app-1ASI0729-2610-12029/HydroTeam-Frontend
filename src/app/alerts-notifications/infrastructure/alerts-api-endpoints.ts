@@ -5,11 +5,14 @@ import { AlertAssembler } from './alert-assembler';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
+const baseUrl = environment.databaseProviderApiBaseUrl;
+const alertsPath = environment.databaseProviderAlertsEndpointPath;
+
 export class AlertsApiEndpoint extends BaseApiEndpoint<Alert, AlertResource, AlertsResponse, AlertAssembler> {
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformProviderApiBaseUrl}${environment.alertsEndpointPath}`,
+      `${baseUrl}${alertsPath}`,
       new AlertAssembler()
     );
   }

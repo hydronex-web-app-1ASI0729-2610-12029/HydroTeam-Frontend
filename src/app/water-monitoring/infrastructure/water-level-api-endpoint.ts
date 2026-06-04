@@ -5,6 +5,9 @@ import { WaterLevel } from '../domain/model/water-level.entity';
 import { WaterLevelResource, WaterLevelResponse } from './water-level-response';
 import { WaterLevelAssembler } from './water-level-assembler';
 
+const baseUrl = environment.databaseProviderApiBaseUrl;
+const waterPath = environment.databaseProviderWaterLevelReadingsEndpointPath;
+
 export class WaterLevelApiEndpoint extends BaseApiEndpoint<
   WaterLevel,
   WaterLevelResource,
@@ -14,7 +17,7 @@ export class WaterLevelApiEndpoint extends BaseApiEndpoint<
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformProviderApiBaseUrl}${environment.waterLevelEndpointPath}`,
+      `${baseUrl}${waterPath}`,
       new WaterLevelAssembler(),
     );
   }
