@@ -6,7 +6,7 @@ export enum UserRole {
 }
 
 export interface UserProps {
-  userId: string;
+  userId: number;
   name: string;
   email: string;
   password?: string;
@@ -16,7 +16,7 @@ export interface UserProps {
 }
 
 export class User {
-  readonly userId: string;
+  readonly userId: number;
   readonly name: string;
   readonly email: string;
   readonly password: string;
