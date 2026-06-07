@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "fe247e38-8218-4f06-9107-0f858f6f13aa",
+      "id": 1,
       "name": "Carlos Mendoza",
       "email": "carlos_mendoza@tankiq.com",
       "password_hash": "123456789",
@@ -9,7 +9,7 @@
       "created_at": "2026-01-15T08:30:00Z"
     },
     {
-      "id": "ee72fb07-2922-4aa4-bffa-afa0026fb116",
+      "id": 2,
       "name": "Ana Sofia Torres",
       "email": "ana_torres@condominio.pe",
       "password_hash": "123456789",
@@ -17,7 +17,7 @@
       "created_at": "2026-02-01T10:15:00Z"
     },
     {
-      "id": "2dd0442f-1dbe-4337-9710-ebae0cb734ad",
+      "id": 3,
       "name": "Jorge Luis Ramirez",
       "email": "jorge_ramirez@adminreside.com",
       "password_hash": "123456789",
@@ -25,7 +25,7 @@
       "created_at": "2026-02-20T14:22:00Z"
     },
     {
-      "id": "1519a035-42ec-400f-9b09-9db40134c0f9",
+      "id": 4,
       "name": "Elena Beltran",
       "email": "elena_beltran@outlook.com",
       "password_hash": "123456789",
@@ -33,7 +33,7 @@
       "created_at": "2026-03-05T09:00:00Z"
     },
     {
-      "id": "e5556d89-c6aa-441b-8def-05acf9056050",
+      "id": 5,
       "name": "Miguel Angel Farfan",
       "email": "mangel_farfan@gmail.com",
       "password_hash": "123456789",
@@ -43,35 +43,35 @@
   ],
   "buildings": [
     {
-      "id": "4d6d85cc-e327-42e4-b207-7e1706fb2f20",
+      "id": 1,
       "name": "Residencial Los Olivos",
       "address": "Av. Las Palmeras 1420",
       "district": "LOS_OLIVOS",
       "created_at": "2026-01-16T12:00:00Z"
     },
     {
-      "id": "a5f107fb-7718-4aa2-8b3c-0b407151ee74",
+      "id": 2,
       "name": "Condominio San Isidro Sky",
       "address": "Calle Las Flores 340",
       "district": "SAN_ISIDRO",
       "created_at": "2026-02-02T09:30:00Z"
     },
     {
-      "id": "6ac3402b-6ad6-4eb7-bcda-4ff356aa5601",
+      "id": 3,
       "name": "Torres del Sol Lince",
       "address": "Jr. Mariscal Miller 2105",
       "district": "LINCE",
       "created_at": "2026-02-22T11:00:00Z"
     },
     {
-      "id": "b39e1811-a4e7-4987-8411-7385e82eb55b",
+      "id": 4,
       "name": "Edificio Miraflores Park",
       "address": "Malecón de la Reserva 750",
       "district": "MIRAFLORES",
       "created_at": "2026-03-06T15:20:00Z"
     },
     {
-      "id": "ed8a9e00-171a-4b13-9107-0b7a823d378a",
+      "id": 5,
       "name": "Vista Verde Surco",
       "address": "Av. El Polo 120",
       "district": "SANTIAGO_DE_SURCO",
@@ -80,36 +80,36 @@
   ],
   "user_buildings": [
     {
-      "user_id": "fe247e38-8218-4f06-9107-0f858f6f13aa",
-      "building_id": "4d6d85cc-e327-42e4-b207-7e1706fb2f20",
+      "user_id": 1,
+      "building_id": 1,
       "role": "ADMIN",
       "apartment_number": "N/A",
       "associated_at": "2026-01-16T12:30:00Z"
     },
     {
-      "user_id": "ee72fb07-2922-4aa4-bffa-afa0026fb116",
-      "building_id": "a5f107fb-7718-4aa2-8b3c-0b407151ee74",
+      "user_id": 2,
+      "building_id": 2,
       "role": "ADMIN",
       "apartment_number": "N/A",
       "associated_at": "2026-02-02T10:00:00Z"
     },
     {
-      "user_id": "2dd0442f-1dbe-4337-9710-ebae0cb734ad",
-      "building_id": "6ac3402b-6ad6-4eb7-bcda-4ff356aa5601",
+      "user_id": 3,
+      "building_id": 3,
       "role": "ADMIN",
       "apartment_number": "N/A",
       "associated_at": "2026-02-22T11:30:00Z"
     },
     {
-      "user_id": "1519a035-42ec-400f-9b09-9db40134c0f9",
-      "building_id": "b39e1811-a4e7-4987-8411-7385e82eb55b",
+      "user_id": 4,
+      "building_id": 4,
       "role": "RESIDENT",
       "apartment_number": "Penthouse 1201",
       "associated_at": "2026-03-06T16:00:00Z"
     },
     {
-      "user_id": "e5556d89-c6aa-441b-8def-05acf9056050",
-      "building_id": "ed8a9e00-171a-4b13-9107-0b7a823d378a",
+      "user_id": 5,
+      "building_id": 5,
       "role": "RESIDENT",
       "apartment_number": "Apt 302",
       "associated_at": "2026-03-15T11:00:00Z"
@@ -117,323 +117,323 @@
   ],
   "cisterns": [
     {
-      "id": "3054a257-4887-4ccc-ab61-e1a7358fba83",
+      "id": 1,
       "capacity_liters": 15000.0,
       "current_level_percent": 78.5,
       "alert_threshold_percent": 20.0,
-      "building_id": "4d6d85cc-e327-42e4-b207-7e1706fb2f20"
+      "building_id": 1
     },
     {
-      "id": "d1eb19fb-12f8-476f-b46d-867ba6ef31b8",
+      "id": 2,
       "capacity_liters": 30000.0,
       "current_level_percent": 45.2,
       "alert_threshold_percent": 25.0,
-      "building_id": "a5f107fb-7718-4aa2-8b3c-0b407151ee74"
+      "building_id": 2
     },
     {
-      "id": "43790ab8-1019-4674-adcb-1e24df0beeed",
+      "id": 3,
       "capacity_liters": 12000.0,
       "current_level_percent": 18.0,
       "alert_threshold_percent": 20.0,
-      "building_id": "6ac3402b-6ad6-4eb7-bcda-4ff356aa5601"
+      "building_id": 3
     },
     {
-      "id": "aa84eb55-fa2c-4af5-ae5c-5fa47521ee59",
+      "id": 4,
       "capacity_liters": 25000.0,
       "current_level_percent": 92.1,
       "alert_threshold_percent": 15.0,
-      "building_id": "b39e1811-a4e7-4987-8411-7385e82eb55b"
+      "building_id": 4
     },
     {
-      "id": "730add4e-5822-4f60-b860-187e3accd371",
+      "id": 5,
       "capacity_liters": 18000.0,
       "current_level_percent": 61.3,
       "alert_threshold_percent": 20.0,
-      "building_id": "ed8a9e00-171a-4b13-9107-0b7a823d378a"
+      "building_id": 5
     }
   ],
   "sensors": [
     {
-      "id": "4fccc2f6-fd17-4b62-9045-aa66abb0e436",
+      "id": 1,
       "hardware_id": "SN-US-001",
       "type": "ULTRASONIC",
       "status": "ACTIVE",
       "last_sync_at": "2026-05-31T23:30:00Z",
-      "cistern_id": "3054a257-4887-4ccc-ab61-e1a7358fba83"
+      "cistern_id": 1
     },
     {
-      "id": "7e0f3ace-37e3-4085-86ee-4d1ccd3f1ec9",
+      "id": 2,
       "hardware_id": "SN-PR-002",
       "type": "PRESSURE",
       "status": "ACTIVE",
       "last_sync_at": "2026-05-31T23:32:00Z",
-      "cistern_id": "d1eb19fb-12f8-476f-b46d-867ba6ef31b8"
+      "cistern_id": 2
     },
     {
-      "id": "f20cc9d1-5e9d-478e-9fdf-bf41aa628ee1",
+      "id": 3,
       "hardware_id": "SN-US-003",
       "type": "ULTRASONIC",
       "status": "MAINTENANCE",
       "last_sync_at": "2026-05-31T18:12:00Z",
-      "cistern_id": "43790ab8-1019-4674-adcb-1e24df0beeed"
+      "cistern_id": 3
     },
     {
-      "id": "4b06457e-21b6-49a1-a87a-2aaaa45d9c82",
+      "id": 4,
       "hardware_id": "SN-US-004",
       "type": "ULTRASONIC",
       "status": "ACTIVE",
       "last_sync_at": "2026-05-31T23:28:00Z",
-      "cistern_id": "aa84eb55-fa2c-4af5-ae5c-5fa47521ee59"
+      "cistern_id": 4
     },
     {
-      "id": "67c8e2fb-c56c-4191-a33e-aabb6620f80c",
+      "id": 5,
       "hardware_id": "SN-PR-005",
       "type": "PRESSURE",
       "status": "OFFLINE",
       "last_sync_at": "2026-05-30T04:00:00Z",
-      "cistern_id": "730add4e-5822-4f60-b860-187e3accd371"
+      "cistern_id": 5
     }
   ],
   "water_level_readings": [
     {
-      "id": "00d05e5c-cfd0-43fb-b29c-a8a0c924869e",
+      "id": 1,
       "level_percent": 78.5,
       "volume_liters": 11775.0,
       "recorded_at": "2026-05-31T23:30:00Z",
-      "sensor_id": "4fccc2f6-fd17-4b62-9045-aa66abb0e436"
+      "sensor_id": 1
     },
     {
-      "id": "7c0e343f-f316-4833-9bb5-c5658d261ec9",
+      "id": 2,
       "level_percent": 45.2,
       "volume_liters": 13560.0,
       "recorded_at": "2026-05-31T23:32:00Z",
-      "sensor_id": "7e0f3ace-37e3-4085-86ee-4d1ccd3f1ec9"
+      "sensor_id": 2
     },
     {
-      "id": "4d05f457-742d-4c6e-971c-e79cde37f0f1",
+      "id": 3,
       "level_percent": 18.0,
       "volume_liters": 2160.0,
       "recorded_at": "2026-05-31T18:12:00Z",
-      "sensor_id": "f20cc9d1-5e9d-478e-9fdf-bf41aa628ee1"
+      "sensor_id": 3
     },
     {
-      "id": "c6c077ec-5289-48c9-820b-150ff902e7f1",
+      "id": 4,
       "level_percent": 92.1,
       "volume_liters": 23025.0,
       "recorded_at": "2026-05-31T23:28:00Z",
-      "sensor_id": "4b06457e-21b6-49a1-a87a-2aaaa45d9c82"
+      "sensor_id": 4
     },
     {
-      "id": "042244fb-d511-4997-8d4f-5e4cd7ae1d1c",
+      "id": 5,
       "level_percent": 61.3,
       "volume_liters": 11034.0,
       "recorded_at": "2026-05-30T04:00:00Z",
-      "sensor_id": "67c8e2fb-c56c-4191-a33e-aabb6620f80c"
+      "sensor_id": 5
     }
   ],
   "refills": [
     {
-      "id": "7898ebb2-ec8b-4ddc-be73-6c1c7c189721",
+      "id": 1,
       "refill_date": "2026-05-10T10:00:00Z",
       "liters": 5000.0,
       "cost_soles": 120.0,
       "supplier_name": "Agua Express Lima",
       "invoice_number": "FT-001-2941",
-      "building_id": "4d6d85cc-e327-42e4-b207-7e1706fb2f20",
-      "registered_by_user_id": "fe247e38-8218-4f06-9107-0f858f6f13aa"
+      "building_id": 1,
+      "registered_by_user_id": 1
     },
     {
-      "id": "a4f4eaa3-5b18-4c88-bc4b-7b4a9f777232",
+      "id": 2,
       "refill_date": "2026-05-15T14:30:00Z",
       "liters": 10000.0,
       "cost_soles": 240.0,
       "supplier_name": "HydroTrans S.A.C.",
       "invoice_number": "FT-005-8812",
-      "building_id": "a5f107fb-7718-4aa2-8b3c-0b407151ee74",
-      "registered_by_user_id": "ee72fb07-2922-4aa4-bffa-afa0026fb116"
+      "building_id": 2,
+      "registered_by_user_id": 2
     },
     {
-      "id": "fd8eb679-1aeb-424d-b18e-f811141c82b8",
+      "id": 3,
       "refill_date": "2026-05-28T08:15:00Z",
       "liters": 5000.0,
       "cost_soles": 130.0,
       "supplier_name": "Aquamax Peru",
       "invoice_number": "FT-012-0492",
-      "building_id": "6ac3402b-6ad6-4eb7-bcda-4ff356aa5601",
-      "registered_by_user_id": "2dd0442f-1dbe-4337-9710-ebae0cb734ad"
+      "building_id": 3,
+      "registered_by_user_id": 3
     },
     {
-      "id": "fe5f6d49-f53b-45d7-98b5-b47fd8f1c54c",
+      "id": 4,
       "refill_date": "2026-05-02T11:00:00Z",
       "liters": 8000.0,
       "cost_soles": 190.0,
       "supplier_name": "Agua Express Lima",
       "invoice_number": "FT-001-2810",
-      "building_id": "b39e1811-a4e7-4987-8411-7385e82eb55b",
-      "registered_by_user_id": "fe247e38-8218-4f06-9107-0f858f6f13aa"
+      "building_id": 4,
+      "registered_by_user_id": 1
     },
     {
-      "id": "15a84cad-2673-40bc-9518-a59c2e483772",
+      "id": 5,
       "refill_date": "2026-05-22T16:45:00Z",
       "liters": 6000.0,
       "cost_soles": 150.0,
       "supplier_name": "Surco Water Supply",
       "invoice_number": "FT-002-3341",
-      "building_id": "ed8a9e00-171a-4b13-9107-0b7a823d378a",
-      "registered_by_user_id": "ee72fb07-2922-4aa4-bffa-afa0026fb116"
+      "building_id": 5,
+      "registered_by_user_id": 2
     }
   ],
   "water_consumptions": [
     {
-      "id": "f774586e-1f1c-43e4-afeb-d0dc1307a15c",
+      "id": 1,
       "period_start": "2026-05-01",
       "period_end": "2026-05-15",
       "avg_daily_liters": 3200.0,
       "total_period_liters": 48000.0,
-      "building_id": "4d6d85cc-e327-42e4-b207-7e1706fb2f20"
+      "building_id": 1
     },
     {
-      "id": "22e51fb9-8dbb-470a-9fc4-7253c919a271",
+      "id": 2,
       "period_start": "2026-05-01",
       "period_end": "2026-05-15",
       "avg_daily_liters": 6800.0,
       "total_period_liters": 102000.0,
-      "building_id": "a5f107fb-7718-4aa2-8b3c-0b407151ee74"
+      "building_id": 2
     },
     {
-      "id": "ea129449-6b9a-47a0-85ad-ddcb79319332",
+      "id": 3,
       "period_start": "2026-05-01",
       "period_end": "2026-05-15",
       "avg_daily_liters": 2900.0,
       "total_period_liters": 43500.0,
-      "building_id": "6ac3402b-6ad6-4eb7-bcda-4ff356aa5601"
+      "building_id": 3
     },
     {
-      "id": "930b28ae-04c7-491f-997a-d412a93a3f58",
+      "id": 4,
       "period_start": "2026-05-01",
       "period_end": "2026-05-15",
       "avg_daily_liters": 5100.0,
       "total_period_liters": 76500.0,
-      "building_id": "b39e1811-a4e7-4987-8411-7385e82eb55b"
+      "building_id": 4
     },
     {
-      "id": "660412a5-f76e-4a7d-96e0-9391e7433b4c",
+      "id": 5,
       "period_start": "2026-05-01",
       "period_end": "2026-05-15",
       "avg_daily_liters": 4100.0,
       "total_period_liters": 61500.0,
-      "building_id": "ed8a9e00-171a-4b13-9107-0b7a823d378a"
+      "building_id": 5
     }
   ],
   "alerts": [
     {
-      "id": "0e764b54-1a43-4e17-8be8-19accd602aa6",
+      "id": 1,
       "type": "CRITICAL_LOW",
       "message": "Water level dropped below critical threshold (20%). Immediate action required.",
       "status": "RESOLVED",
       "triggered_at": "2026-05-28T07:45:00Z",
       "resolved_at": "2026-05-28T09:15:00Z",
-      "cistern_id": "43790ab8-1019-4674-adcb-1e24df0beeed"
+      "cistern_id": 3
     },
     {
-      "id": "111c7d0c-bc5a-45cd-b0c7-f484f180c46b",
+      "id": 2,
       "type": "SENSOR_OFFLINE",
       "message": "Telemetry sensor SN-PR-005 stopped emitting signal.",
       "status": "PENDING",
       "triggered_at": "2026-05-30T04:00:00Z",
       "resolved_at": null,
-      "cistern_id": "730add4e-5822-4f60-b860-187e3accd371"
+      "cistern_id": 5
     },
     {
-      "id": "0e01a408-b70c-4e05-a5a2-6a0e33146504",
+      "id": 3,
       "type": "HIGH_USAGE",
       "message": "Abnormal water consumption detected between 02:00 AM and 04:00 AM.",
       "status": "IN_PROGRESS",
       "triggered_at": "2026-05-31T04:15:00Z",
       "resolved_at": null,
-      "cistern_id": "d1eb19fb-12f8-476f-b46d-867ba6ef31b8"
+      "cistern_id": 2
     },
     {
-      "id": "1a9ed920-c8c7-499e-9bfa-ae7e0daf6d6c",
+      "id": 4,
       "type": "CRITICAL_LOW",
       "message": "Water tank nearing depletion reserve limit.",
       "status": "PENDING",
       "triggered_at": "2026-05-31T22:10:00Z",
       "resolved_at": null,
-      "cistern_id": "43790ab8-1019-4674-adcb-1e24df0beeed"
+      "cistern_id": 3
     },
     {
-      "id": "4614c677-bf3b-4d3d-8b7e-cacefab5e158",
+      "id": 5,
       "type": "SENSOR_OFFLINE",
       "message": "Sensor SN-US-003 reported temporary battery failure.",
       "status": "RESOLVED",
       "triggered_at": "2026-05-12T14:00:00Z",
       "resolved_at": "2026-05-12T15:30:00Z",
-      "cistern_id": "43790ab8-1019-4674-adcb-1e24df0beeed"
+      "cistern_id": 3
     }
   ],
   "reports": [
     {
-      "id": "374fd76f-85a6-4887-8575-2226e022322d",
+      "id": 1,
       "period_month": 4,
       "period_year": 2026,
       "total_cost_soles": 480.0,
       "total_water_liters": 20000.0,
       "generated_at": "2026-05-01T08:00:00Z",
-      "building_id": "4d6d85cc-e327-42e4-b207-7e1706fb2f20",
-      "generated_by_user_id": "fe247e38-8218-4f06-9107-0f858f6f13aa"
+      "building_id": 1,
+      "generated_by_user_id": 1
     },
     {
-      "id": "d49eca18-8ee4-4140-a717-64ce000c5ee9",
+      "id": 2,
       "period_month": 4,
       "period_year": 2026,
       "total_cost_soles": 960.0,
       "total_water_liters": 40000.0,
       "generated_at": "2026-05-01T08:30:00Z",
-      "building_id": "a5f107fb-7718-4aa2-8b3c-0b407151ee74",
-      "generated_by_user_id": "ee72fb07-2922-4aa4-bffa-afa0026fb116"
+      "building_id": 2,
+      "generated_by_user_id": 2
     },
     {
-      "id": "8deaea07-edc4-4f3a-917e-d825a3ef8689",
+      "id": 3,
       "period_month": 4,
       "period_year": 2026,
       "total_cost_soles": 390.0,
       "total_water_liters": 15000.0,
       "generated_at": "2026-05-01T09:00:00Z",
-      "building_id": "6ac3402b-6ad6-4eb7-bcda-4ff356aa5601",
-      "generated_by_user_id": "2dd0442f-1dbe-4337-9710-ebae0cb734ad"
+      "building_id": 3,
+      "generated_by_user_id": 3
     },
     {
-      "id": "7f35e593-29ef-4451-be4a-665dcecc772a",
+      "id": 4,
       "period_month": 4,
       "period_year": 2026,
       "total_cost_soles": 760.0,
       "total_water_liters": 32000.0,
-      "generated_at": "2026-05-02T10:15:00Z",
-      "building_id": "b39e1811-a4e7-4987-8411-7385e82eb55b",
-      "generated_by_user_id": "fe247e38-8218-4f06-9107-0f858f6f13aa"
+      "generated_at": "2026-02-02T10:15:00Z",
+      "building_id": 4,
+      "generated_by_user_id": 1
     },
     {
-      "id": "2439e0bf-eeca-4a3e-aa59-97d5e6f29c1e",
+      "id": 5,
       "period_month": 4,
       "period_year": 2026,
       "total_cost_soles": 600.0,
       "total_water_liters": 24000.0,
       "generated_at": "2026-05-03T11:45:00Z",
-      "building_id": "ed8a9e00-171a-4b13-9107-0b7a823d378a",
-      "generated_by_user_id": "ee72fb07-2922-4aa4-bffa-afa0026fb116"
+      "building_id": 5,
+      "generated_by_user_id": 2
     }
   ],
   "plans": [
     {
-      "id": "e5c2a11b-7a35-42df-b21a-63795b92cb01",
+      "id": 1,
       "name": "BASIC",
       "price_soles": 49.9,
       "features": "Real-time water level monitoring, critical low email alerts, monthly automated usage report.",
       "max_sensors": 1
     },
     {
-      "id": "c9b8d22e-8b46-53ef-c32b-748a6c03dc02",
+      "id": 2,
       "name": "PREMIUM",
       "price_soles": 99.9,
       "features": "Advanced predictive analytics, SMS & email alerts, multi-sensor support, continuous leak detection, dedicated support.",
@@ -442,44 +442,44 @@
   ],
   "subscriptions": [
     {
-      "id": "5e9aba51-8696-4085-970f-e9f0b93df12f",
+      "id": 1,
       "start_date": "2026-01-16",
       "end_date": "2027-01-16",
       "status": "ACTIVE",
-      "building_id": "4d6d85cc-e327-42e4-b207-7e1706fb2f20",
-      "plan_id": "e5c2a11b-7a35-42df-b21a-63795b92cb01"
+      "building_id": 1,
+      "plan_id": 1
     },
     {
-      "id": "a51bb7ed-674b-4cba-9f93-f4980a1de052",
+      "id": 2,
       "start_date": "2026-02-02",
       "end_date": "2027-02-02",
       "status": "ACTIVE",
-      "building_id": "a5f107fb-7718-4aa2-8b3c-0b407151ee74",
-      "plan_id": "c9b8d22e-8b46-53ef-c32b-748a6c03dc02"
+      "building_id": 2,
+      "plan_id": 2
     },
     {
-      "id": "a31a7b5c-5ba7-4d8e-bdf4-edfa62c63ea1",
+      "id": 3,
       "start_date": "2026-02-22",
       "end_date": "2026-05-22",
       "status": "EXPIRED",
-      "building_id": "6ac3402b-6ad6-4eb7-bcda-4ff356aa5601",
-      "plan_id": "e5c2a11b-7a35-42df-b21a-63795b92cb01"
+      "building_id": 3,
+      "plan_id": 1
     },
     {
-      "id": "4794779f-0657-44f9-9062-fed0b348944d",
+      "id": 4,
       "start_date": "2026-03-06",
       "end_date": "2027-03-06",
       "status": "ACTIVE",
-      "building_id": "b39e1811-a4e7-4987-8411-7385e82eb55b",
-      "plan_id": "c9b8d22e-8b46-53ef-c32b-748a6c03dc02"
+      "building_id": 4,
+      "plan_id": 2
     },
     {
-      "id": "e7f68909-a739-461a-a787-f0c03c31151b",
+      "id": 5,
       "start_date": "2026-03-15",
       "end_date": "2026-04-15",
       "status": "CANCELLED",
-      "building_id": "ed8a9e00-171a-4b13-9107-0b7a823d378a",
-      "plan_id": "e5c2a11b-7a35-42df-b21a-63795b92cb01"
+      "building_id": 5,
+      "plan_id": 1
     }
   ]
 }
