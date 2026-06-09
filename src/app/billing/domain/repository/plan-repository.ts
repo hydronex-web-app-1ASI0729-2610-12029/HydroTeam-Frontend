@@ -7,21 +7,20 @@ import { Plan } from "../model/plan.entity";
 export interface PlanRepository {
   /**
    * Retrieves all available subscriptions plans.
-   * @returns An observable emitting an array of Plan entities.
    */
-  planFindAll(): Observable<Plan[]>
+  getAllPlan(): Observable<Plan[]>
 
   /**
    * Finds a specific subscriptions plan by its unique number ID.
    * @param id - The ID of the plan.
    * @returns found plan if exists, in otherwise is null.
    */
-  planFindById(id: number): Observable<Plan | null>
+  getByIdPlan(id: number): Observable<Plan | null>
 
   /**
    * Finds a billing plan by name.
    * @param name - The name of the plan.
    * @returns found plan if exists, in otherwise is null.
    */
-  planFindByName(name: string): Observable<Plan | null>
+  getByNamePlan(name: string): Observable<Plan | null>
 }

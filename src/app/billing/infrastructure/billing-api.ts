@@ -24,32 +24,59 @@ export class BillingApi extends BaseApi implements PlanRepository, SubscriptionR
   }
 
   // Implements repository of plan
-  planFindAll(): Observable<Plan[]>{
+  /**
+   * Retrieves all available subscriptions plans.
+   */
+  getAllPlan(): Observable<Plan[]>{
     return this.plansEndpoint.getAll();
   }
 
-  planFindById(id: number): Observable<Plan|null>{
+  /**
+   * Finds a specific subscriptions plan by its unique number ID.
+   * @param id - The ID of the plan.
+   * @returns found plan if exists, in otherwise is null.
+   */
+  getByIdPlan(id: number): Observable<Plan|null>{
     return this.plansEndpoint.getById(id);
   }
 
-  planFindByName(name: string): Observable<Plan | null> {
+  /**
+   * Finds a billing plan by name.
+   * @param name - The name of the plan.
+   * @returns found plan if exists, in otherwise is null.
+   */
+  getByNamePlan(name: string): Observable<Plan | null> {
     return this.plansEndpoint.getAll().pipe(
       map(plans => plans.find(p => p.name.toLowerCase() === name.toLowerCase()) || null)
     );
   }
 
   // Implements repository of subscription
-  subscriptionFindAll(): Observable<Subscription[]>{
+  /**
+   * Retrieve all subscriptions.
+   */
+  getAllSubscription(): Observable<Subscription[]>{
     return this.subscriptionsEndpoint.getAll();
   }
 
-  subscriptionFindByBuildingId(buildingId: number): Observable<Subscription | null>{
+  /**
+   * Allows search a billing associated by building id.
+   * @param buildingId building id associated by user.
+   * @returns subscription linked by building id.
+   */
+  getByBuildingIdSubscription(buildingId: number): Observable<Subscription | null>{
     return this.subscriptionsEndpoint.getAll().pipe(
       map(subs => subs.find(s => s.buildingId === buildingId) || null)
     );
   }
 
-  subscriptionUpdate(id: number, subscription: Subscription): Observable<Subscription>{
+  /**
+   * Allows update billing when expired or something.
+   * @param id subscriptions id.
+   * @param subscription new billing entity.
+   * @returns subscription updated.
+   */
+  updateSubscription(id: number, subscription: Subscription): Observable<Subscription>{
     return this.subscriptionsEndpoint.update(subscription, id);
   }
 }
