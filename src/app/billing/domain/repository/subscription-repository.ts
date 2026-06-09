@@ -8,18 +8,18 @@ export interface SubscriptionRepository {
   /**
    * Retrieve all subscriptions.
    */
-  findAll(): Observable<Subscription[]>;
+  subscriptionFindAll(): Observable<Subscription[]>;
 
   /**
    * Allows search a billing associated by building id.
    * @param buildingId building id associated by user.
    */
-  findByBuildingId(buildingId: number) : Observable<Subscription | null>;
+  subscriptionFindByBuildingId(buildingId: number) : Observable<Subscription | null>;
 
   /**
    * Allows update billing when expired or something.
    * @param id subscriptions id.
    * @param subscription new billing entity.
    */
-  update(id: number, subscription: Subscription): Observable<Subscription>;
+  subscriptionUpdate(id: number, subscription: Subscription): Observable<Subscription>;
 }
