@@ -1,0 +1,47 @@
+<section class="alerts-page">
+  <header class="context-header">
+    <span class="section-eyebrow">{{ 'alerts.eyebrow' | translate }}</span>
+    <h2>{{ 'alerts.title' | translate }}</h2>
+    <p>{{ 'alerts.description' | translate }}</p>
+  </header>
+
+  @if (store.loading()) {
+    <mat-spinner diameter="40"/>
+  }
+
+  @if (store.error()) {
+    <p style="color: red;">{{ store.error() }}</p>
+  }
+
+  <div class="alerts-list">
+    @for (alert of store.alerts(); track alert.id) {
+      <article class="alert-card"
+               [class.alert-card--warning]="alert.type === 'LOW' && alert.status !== 'RESOLVED'"
+               [class.alert-card--critical]="alert.type === 'CRITICAL' && alert.status !== 'RESOLVED'"
+               [class.alert-card--success]="alert.status === 'RESOLVED'"
+        <span class="alert-icon">
+          @if (alert.status === 'RESOLVED') {
+            <mat-icon>check_circle</mat-icon>
+          } @else if (alert.type === 'CRITICAL') {
+            <mat-icon>error</mat-icon>
+          } @else if (alert.type === 'SENSOR_OFFLINE') {
+            <mat-icon>sensors_off</mat-icon>
+          } @else if (alert.type === 'HIGH_USAGE') {
+            <mat-icon>water_drop</mat-icon>
+          } @else {
+            <mat-icon>warning</mat-icon>
+          }
+        </span>
+        <div>
+          <strong>{{ alert.message }}</strong>
+          <p>{{ alert.triggeredAt | date:'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+        <small>{{ alert.status }}</small>
+      </article>
+    }
+
+    @if (store.alerts().length === 0 && !store.loading()) {
+      <p>{{ 'alerts.empty' | translate }}</p>
+    }
+  </div>
+</section>
