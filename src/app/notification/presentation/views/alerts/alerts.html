@@ -5,20 +5,46 @@
     <p>{{ 'alerts.description' | translate }}</p>
   </header>
 
+  @if (store.hasCriticalAlert()) {
+    <div class="critical-banner">
+      <mat-icon>error</mat-icon>
+      <span>{{ 'alerts.critical-banner' | translate }} ({{ store.criticalAlerts().length }})</span>
+    </div>
+  }
+
   @if (store.loading()) {
     <mat-spinner diameter="40"/>
   }
 
   @if (store.error()) {
-    <p style="color: red;">{{ store.error() }}</p>
+    <p class="error-msg">{{ store.error() }}</p>
   }
 
+  <div class="filters-row">
+    <select class="filter-select" (change)="onTypeFilter($event)">
+      <option value="">{{ 'alerts.filter.allTypes' | translate }}</option>
+      <option value="CRITICAL">{{ 'alerts.filter.critical' | translate }}</option>
+      <option value="LOW">{{ 'alerts.filter.low' | translate }}</option>
+      <option value="SENSOR_OFFLINE">{{ 'alerts.filter.sensorOffline' | translate }}</option>
+      <option value="HIGH_USAGE">{{ 'alerts.filter.highUsage' | translate }}</option>
+    </select>
+
+    <select class="filter-select" (change)="onStatusFilter($event)">
+      <option value="">{{ 'alerts.filter.allStatuses' | translate }}</option>
+      <option value="PENDING">{{ 'alerts.filter.pending' | translate }}</option>
+      <option value="IN_PROGRESS">{{ 'alerts.filter.inProgress' | translate }}</option>
+      <option value="RESOLVED">{{ 'alerts.filter.resolved' | translate }}</option>
+    </select>
+  </div>
+
   <div class="alerts-list">
-    @for (alert of store.alerts(); track alert.id) {
+    @for (alert of filteredAlerts(); track alert.id) {
       <article class="alert-card"
                [class.alert-card--warning]="alert.type === 'LOW' && alert.status !== 'RESOLVED'"
                [class.alert-card--critical]="alert.type === 'CRITICAL' && alert.status !== 'RESOLVED'"
-               [class.alert-card--success]="alert.status === 'RESOLVED'"
+               [class.alert-card--sensor]="alert.type === 'SENSOR_OFFLINE' && alert.status !== 'RESOLVED'"
+               [class.alert-card--usage]="alert.type === 'HIGH_USAGE' && alert.status !== 'RESOLVED'"
+               [class.alert-card--success]="alert.status === 'RESOLVED'">
         <span class="alert-icon">
           @if (alert.status === 'RESOLVED') {
             <mat-icon>check_circle</mat-icon>
@@ -40,8 +66,8 @@
       </article>
     }
 
-    @if (store.alerts().length === 0 && !store.loading()) {
-      <p>{{ 'alerts.empty' | translate }}</p>
+    @if (filteredAlerts().length === 0 && !store.loading()) {
+      <p class="empty-msg">{{ 'alerts.empty' | translate }}</p>
     }
   </div>
 </section>
