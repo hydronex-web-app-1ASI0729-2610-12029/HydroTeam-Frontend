@@ -37,7 +37,7 @@ export const routes: Routes = [
       { path: 'reports', loadComponent: placeholder, title: `${baseTitle} - Reports` },
       { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
       { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },
-      { path: 'refill', loadChildren: refillRoutes, title: `${baseTitle} - Refill` },
+      { path: 'refill-management', loadChildren: refillRoutes, title: `${baseTitle} - Refill` },
     ],
   },
   { path: 'monitoring', redirectTo: 'dashboard/monitoring', pathMatch: 'full' },
