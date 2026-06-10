@@ -1,5 +1,5 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,7 @@ import { WaterMonitoringStore } from '../../../application/water-monitoring.stor
   standalone: true,
   imports: [
     DatePipe,
+    DecimalPipe,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatButtonModule,
@@ -24,30 +25,24 @@ import { WaterMonitoringStore } from '../../../application/water-monitoring.stor
 export class Monitoring {
   protected readonly store = inject(WaterMonitoringStore);
 
-  chartWidth = 700;
-  chartHeight = 300;
-  chartPadding = { top: 20, right: 20, bottom: 32, left: 48 };
+  readonly chartWidth = 700;
+  readonly chartHeight = 300;
+  readonly chartPadding = { top: 20, right: 20, bottom: 32, left: 48 };
   chartShowBars = false;
-  barWidth = 14;
+  readonly barWidth = 14;
 
-  chartGridLines = [0, 20, 40, 60, 80, 100].map(v => ({
+  readonly chartGridLines = [0, 20, 40, 60, 80, 100].map(v => ({
     label: v,
     pos: this.scaleY(v),
   }));
 
-  averageLevel = computed(() => {
+  readonly averageLevel = computed(() => {
     const levels = this.store.waterLevels();
     if (!levels.length) return 0;
     return Math.round(levels.reduce((sum, l) => sum + l.levelPercent, 0) / levels.length);
   });
 
-  minLevel = computed(() => {
-    const levels = this.store.waterLevels();
-    if (!levels.length) return 0;
-    return Math.min(...levels.map(l => l.levelPercent));
-  });
-
-  chartPoints = computed(() => {
+  readonly chartPoints = computed(() => {
     const levels = this.store.waterLevels();
     if (!levels.length) return [];
     const usable = this.chartWidth - this.chartPadding.left - this.chartPadding.right;
@@ -56,22 +51,24 @@ export class Monitoring {
       x: this.chartPadding.left + i * step,
       y: this.scaleY(l.levelPercent),
       value: l.levelPercent,
-      label: new Date(l.recordedAt).toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }),
+      label: new Date(l.recordedAt).toLocaleDateString('es-PE', {
+        day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
+      }),
     }));
   });
 
-  chartXLabels = computed(() => {
+  readonly chartXLabels = computed(() => {
     const points = this.chartPoints();
     if (points.length <= 8) return points;
     const step = Math.ceil(points.length / 7);
     return points.filter((_, i) => i % step === 0 || i === points.length - 1);
   });
 
-  linePoints = computed(() =>
+  readonly linePoints = computed(() =>
     this.chartPoints().map(p => `${p.x},${p.y}`).join(' ')
   );
 
-  areaPoints = computed(() => {
+  readonly areaPoints = computed(() => {
     const pts = this.chartPoints();
     if (!pts.length) return '';
     const bottom = this.scaleY(0);
@@ -92,28 +89,34 @@ export class Monitoring {
 
   generateReport(): void {
     const levels = this.store.waterLevels();
+    const cisterns = this.store.cisterns();
+    const projected = this.store.projectedDays();
     const avg = this.averageLevel();
-    const min = this.minLevel();
-    const max = levels.length ? Math.max(...levels.map(l => l.levelPercent)) : 0;
 
-    const header = 'ID,Fecha,Nivel (%),Estado\n';
+    const header = 'ID,Sensor ID,Fecha,Nivel (%),Volumen (L),Estado\n';
     const rows = levels.map(l => {
       const status = l.isCritical() ? 'CRITICO' : l.isLow() ? 'BAJO' : 'NORMAL';
-      return `${l.id},${l.recordedAt},${l.levelPercent},${status}`;
+      return `${l.id},${l.sensorId},${l.recordedAt},${l.levelPercent},${l.volumeLiters},${status}`;
     }).join('\n');
+
+    const cisternInfo = cisterns.map(c =>
+      `Cisterna ${c.id},Capacidad: ${c.capacityLiters}L,Actual: ${c.currentVolumeLiters}L (${c.currentLevelPercent}%),Umbral: ${c.alertThresholdPercent}%`
+    ).join('\n');
 
     const summary = [
       '', '',
       'RESUMEN',
       `Total lecturas,${levels.length}`,
-      `Promedio,${avg}%`,
-      `Minimo,${min}%`,
-      `Maximo,${max}%`,
+      `Promedio nivel,${avg}%`,
+      `Volumen actual total,${this.store.totalCurrentLiters()}L`,
+      `Dias proyectados,${projected ?? 'N/A'}`,
       `Generado,${new Date().toISOString()}`,
+      '', 'CISTERNAS',
+      cisternInfo,
     ].join('\n');
 
     const csv = header + rows + summary;
-    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
