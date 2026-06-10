@@ -1,0 +1,66 @@
+<section class="summary-page">
+  @if (store.loading()) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">Refill Management</span>
+      <h1>Monthly refill costs</h1>
+      <p>Quick financial overview based on refill records.</p>
+    </div>
+
+    <button mat-stroked-button color="primary" routerLink="/dashboard/refill-management">
+      <mat-icon>arrow_back</mat-icon>
+      Back to history
+    </button>
+  </div>
+
+  <section class="cost-grid">
+    <mat-card class="cost-card highlight">
+      <mat-card-content>
+        <mat-icon>payments</mat-icon>
+        <span>Current month cost</span>
+        <strong>S/ {{ currentMonthCost() | number:'1.2-2' }}</strong>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="cost-card">
+      <mat-card-content>
+        <mat-icon>local_shipping</mat-icon>
+        <span>Current month refills</span>
+        <strong>{{ currentMonthRefills().length }}</strong>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="cost-card">
+      <mat-card-content>
+        <mat-icon>analytics</mat-icon>
+        <span>Average refill cost</span>
+        <strong>S/ {{ averageCost() | number:'1.2-2' }}</strong>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="cost-card">
+      <mat-card-content>
+        <mat-icon>water_drop</mat-icon>
+        <span>Total liters managed</span>
+        <strong>{{ totalLiters() | number }} L</strong>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <mat-card class="insight-card">
+    <mat-card-header>
+      <mat-card-title>Cost insight</mat-card-title>
+      <mat-card-subtitle>Financial information for building administration</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>
+        This section supports US26 by showing the monthly cost generated from refill records.
+        The current version uses data loaded from the refill endpoint and prepares the structure for future reporting features.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>

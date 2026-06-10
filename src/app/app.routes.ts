@@ -11,6 +11,8 @@ const dashboardRoutes = () => import('./dashboard-overview/presentation/dashboar
 const monitoringRoutes = () => import('./water-monitoring/presentation/monitoring.routes').then((m) => m.monitoringRoutes);
 const alertsRoutes = () => import('./alerts-notifications/presentation/alerts.routes').then((m) => m.alertsRoutes);
 
+const refillRoutes = () => import('./refill-management/presentation/refill-management.routes').then((m) => m.refillManagementRoutes);
+
 const baseTitle = 'TankIQ';
 
 export const routes: Routes = [
@@ -35,6 +37,7 @@ export const routes: Routes = [
       { path: 'reports', loadComponent: placeholder, title: `${baseTitle} - Reports` },
       { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
       { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },
+      { path: 'refill', loadChildren: refillRoutes, title: `${baseTitle} - Refill` },
     ],
   },
   { path: 'monitoring', redirectTo: 'dashboard/monitoring', pathMatch: 'full' },
