@@ -5,11 +5,11 @@ import {SubscriptionStatus} from '../domain/model/subscription-status.enum';
  * Representing a billing from the API.
  */
 export interface SubscriptionResource extends BaseResource {
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
   status: SubscriptionStatus;
-  buildingId: number;
-  planId: number;
+  building_id: number;
+  plan_id: number;
 }
 
 /**

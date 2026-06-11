@@ -77,6 +77,6 @@ export class BillingApi extends BaseApi implements PlanRepository, SubscriptionR
    * @returns subscription updated.
    */
   updateSubscription(id: number, subscription: Subscription): Observable<Subscription>{
-    return this.subscriptionsEndpoint.update(subscription, id);
+      return this.subscriptionsEndpoint.update(subscription, id);
   }
 }

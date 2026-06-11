@@ -11,11 +11,11 @@ export class SubscriptionAssembler implements BaseAssembler<Subscription, Subscr
   toEntityFromResource(resource: SubscriptionResource): Subscription {
     return new Subscription({
       id: resource.id,
-      startDate: resource.startDate,
-      endDate: resource.endDate,
+      startDate: resource.start_date,
+      endDate: resource.end_date,
       status: resource.status,
-      buildingId: resource.buildingId,
-      planId: resource.planId
+      buildingId: resource.building_id,
+      planId: resource.plan_id
     });
   }
 
@@ -26,11 +26,11 @@ export class SubscriptionAssembler implements BaseAssembler<Subscription, Subscr
   toResourceFromEntity(entity: Subscription): SubscriptionResource {
     return {
       id: entity.id,
-      startDate: entity.startDate,
-      endDate: entity.endDate,
+      start_date: entity.startDate,
+      end_date: entity.endDate,
       status: entity.status,
-      buildingId: entity.buildingId,
-      planId: entity.planId
+      building_id: entity.buildingId,
+      plan_id: entity.planId
     };
   }
 

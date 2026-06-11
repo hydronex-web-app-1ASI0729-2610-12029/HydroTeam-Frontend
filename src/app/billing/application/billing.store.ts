@@ -117,10 +117,14 @@ export class BillingStore {
     }
     this.loadingSignal.set(true);
 
-    const updateSubscription = {
-      ...currentSub,
+    const updateSubscription = new Subscription({
+      id: currentSub.id,
+      startDate: currentSub.startDate,
+      endDate: currentSub.endDate,
+      status: currentSub.status,
+      buildingId: currentSub.buildingId,
       planId: targetPlan.id
-    } as Subscription;
+    });
 
     this.billingApi.updateSubscription(subscriptionId, updateSubscription).subscribe({
       next: (persistedSub) => {
