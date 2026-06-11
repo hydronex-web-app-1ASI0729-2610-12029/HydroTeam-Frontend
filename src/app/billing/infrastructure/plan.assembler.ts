@@ -12,9 +12,9 @@ export class PlanAssembler implements BaseAssembler<Plan, PlanResource, PlanResp
     return new Plan({
       id: resource.id,
       name: resource.name,
-      price: resource.price,
+      price: resource.price_soles,
       features: resource.features,
-      maxSensors: resource.maxSensors,
+      maxSensors: resource.max_sensors,
     });
   }
 
@@ -26,9 +26,9 @@ export class PlanAssembler implements BaseAssembler<Plan, PlanResource, PlanResp
     return {
       id: entity.id,
       name: entity.name,
-      price: entity.price,
+      price_soles: entity.price,
       features: entity.features,
-      maxSensors: entity.maxSensors,
+      max_sensors: entity.maxSensors,
     };
   }
 

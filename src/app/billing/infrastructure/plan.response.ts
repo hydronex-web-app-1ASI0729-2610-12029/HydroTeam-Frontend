@@ -5,9 +5,9 @@ import {BaseResource, BaseResponse} from '../../shared/infrastructure/base-respo
  */
 export interface PlanResource extends BaseResource {
   name: string;
-  price: number;
+  price_soles: number;
   features: string;
-  maxSensors: number;
+  max_sensors: number;
 }
 
 /**
