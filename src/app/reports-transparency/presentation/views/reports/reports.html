@@ -1,0 +1,104 @@
+﻿<section class="reports-page">
+  <header class="reports-header">
+    <div>
+      <span class="section-eyebrow">Reportes</span>
+      <h2>Reportes mensuales</h2>
+      <p>Genera y descarga reportes para la junta de propietarios.</p>
+    </div>
+
+    <div class="reports-header__actions">
+      <label class="period-select">
+        <mat-icon>calendar_today</mat-icon>
+        <select
+          [value]="selectedPeriodValue()"
+          (change)="updatePeriod($any($event.target).value)"
+          aria-label="Periodo del reporte">
+          @for (option of periodOptions(); track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+
+      <button mat-flat-button color="primary" type="button">
+        <mat-icon>picture_as_pdf</mat-icon>
+        Generar reporte
+      </button>
+    </div>
+  </header>
+
+  <section class="report-cards" aria-label="Reportes recientes">
+    @for (report of store.recentReports(); track report.id) {
+      <article class="report-card">
+        <div class="report-card__icon">
+          <mat-icon>picture_as_pdf</mat-icon>
+        </div>
+
+        <div>
+          <h3>Reporte {{ formatPeriod(report) }}</h3>
+          <p>
+            {{ report.refillCount }} recargas ·
+            {{ report.totalLiters | number }} L ·
+            S/. {{ report.totalCostSoles | number:'1.0-0' }}
+          </p>
+        </div>
+
+        <div class="report-card__meter" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="report-card__actions">
+          <button mat-flat-button color="primary" type="button">
+            <mat-icon>download</mat-icon>
+            Descargar
+          </button>
+          <button mat-stroked-button color="primary" type="button">
+            <mat-icon>share</mat-icon>
+            Compartir
+          </button>
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="reports-table-card" aria-label="Historial de reportes">
+    <div class="table-wrapper">
+      <table class="reports-table">
+        <thead>
+          <tr>
+            <th>Periodo</th>
+            <th>Recargas</th>
+            <th>Litros totales</th>
+            <th>Gasto S/.</th>
+            <th>Generado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (report of store.reports(); track report.id) {
+            <tr>
+              <td class="period-cell">{{ formatPeriod(report) }}</td>
+              <td>{{ report.refillCount }}</td>
+              <td>{{ report.totalLiters | number }} L</td>
+              <td>S/. {{ report.totalCostSoles | number:'1.0-0' }}</td>
+              <td>{{ report.generatedAt | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <div class="table-actions">
+                  <button type="button" aria-label="Ver reporte">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                  <button type="button" aria-label="Descargar reporte">
+                    <mat-icon>download</mat-icon>
+                  </button>
+                  <button type="button" aria-label="Compartir reporte">
+                    <mat-icon>share</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>
