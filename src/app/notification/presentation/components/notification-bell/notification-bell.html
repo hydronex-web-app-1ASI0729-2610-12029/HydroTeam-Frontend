@@ -1,0 +1,51 @@
+<div class="bell-wrapper">
+  <button class="bell-btn" (click)="togglePanel()" aria-label="Notifications">
+    <mat-icon>notifications</mat-icon>
+    @if (unreadCount() > 0) {
+      <span class="bell-badge">{{ unreadCount() }}</span>
+    }
+  </button>
+
+  @if (isPanelOpen()) {
+    <div class="bell-backdrop" (click)="closePanel()"></div>
+    <div class="bell-panel">
+      <header class="panel-header">
+        <span>{{ 'notifications.title' | translate }}</span>
+        <button class="panel-close" (click)="closePanel()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </header>
+
+      <div class="panel-list">
+        @for (alert of activeAlerts(); track alert.id) {
+          <div class="panel-item"
+               [class.panel-item--read]="readIds().has(alert.id)"
+               (click)="markAsRead(alert.id)">
+            <span class="panel-icon">
+              @if (alert.type === 'CRITICAL') {
+                <mat-icon class="icon-critical">error</mat-icon>
+              } @else if (alert.type === 'SENSOR_OFFLINE') {
+                <mat-icon class="icon-sensor">sensors_off</mat-icon>
+              } @else if (alert.type === 'HIGH_USAGE') {
+                <mat-icon class="icon-usage">water_drop</mat-icon>
+              } @else {
+                <mat-icon class="icon-warning">warning</mat-icon>
+              }
+            </span>
+            <div class="panel-content">
+              <strong>{{ alert.message }}</strong>
+              <small>{{ alert.triggeredAt | date:'dd/MM/yyyy HH:mm' }}</small>
+            </div>
+            @if (!readIds().has(alert.id)) {
+              <span class="unread-dot"></span>
+            }
+          </div>
+        }
+
+        @if (activeAlerts().length === 0) {
+          <p class="panel-empty">{{ 'notifications.empty' | translate }}</p>
+        }
+      </div>
+    </div>
+  }
+</div>
