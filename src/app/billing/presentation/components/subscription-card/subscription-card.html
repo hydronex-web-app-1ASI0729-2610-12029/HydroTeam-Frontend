@@ -1,0 +1,13 @@
+<div class="status-container" [class.expired]="isExpired()">
+  <div class="status-info">
+    <span class="label">Current State:</span>
+    <span class="badge" [class.badge-active]="!isExpired()" [class.badge-expired]="isExpired()">
+      {{ subscription().status | titlecase }}
+    </span>
+  </div>
+
+  <div class="plan-info">
+    <strong>{{ planName() }}</strong>
+    <span class="expiry-date">Vence: {{ subscription().endDate | date:'dd/MM/yyyy' }}</span>
+  </div>
+</div>

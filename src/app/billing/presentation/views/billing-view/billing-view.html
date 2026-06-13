@@ -1,0 +1,104 @@
+<div class="billing-container">
+
+  @if (errorMessage()) {
+    <div class="error-banner">
+      <p>{{ errorMessage() }}</p>
+    </div>
+  }
+
+  @if (invoice(); as data) {
+
+    <div class="invoice-card">
+      <div class="invoice-header">
+        <h2>Transaction Successful!</h2>
+        <p>Digital Subscription Receipt</p>
+      </div>
+
+      <div class="invoice-body">
+        <div class="invoice-row">
+          <span class="row-label">ID:</span>
+          <span class="row-value">{{ data.buildingId }}</span>
+        </div>
+
+        <div class="invoice-row">
+          <span class="row-label">Plan:</span>
+          <span class="row-value plan-highlight">{{ data.planName }}</span>
+        </div>
+
+        <div class="invoice-row">
+          <span class="row-label">Amount: </span>
+          <span class="row-value price-highlight">S/. {{ data.price | number:'1.2-2' }}</span>
+        </div>
+
+        <div class="invoice-row">
+          <span class="row-label">Payment Date:</span>
+          <span class="row-value">{{ data.purchaseDate }}</span>
+        </div>
+
+        <div class="invoice-row expiry-row">
+          <span class="row-label">Next Renewal:</span>
+          <span class="row-value"><strong>{{ data.expiryDate }}</strong></span>
+        </div>
+      </div>
+
+      <div class="invoice-footer">
+        <button (click)="onConfirmUpgrade()" class="btn-primary-action">
+          Confirm and Return to Panel
+        </button>
+        <button (click)="onCancelUpgrade()" class="btn-cancel-action">
+          Cancel changes
+        </button>
+      </div>
+    </div>
+
+  } @else {
+
+    <header class="billing-header">
+      <div class="header-titles">
+        <h1>Subscription Plans</h1>
+        <p class="subtitle">Select your favorite plan.</p>
+      </div>
+    </header>
+
+    @if (isLoading() && plans().length === 0) {
+      <div class="loading-wrapper">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+      </div>
+    } @else {
+
+      <div class="plans-grid">
+        @for (planItem of plans(); track planItem.id) {
+          <app-plan-card
+            [plan]="planItem"
+            [isCurrentPlan]="currentSubscription()?.planId === planItem.id"
+            [disabled]="isLoading()"
+            (planSelected)="onUpgradePlan($event)">
+          </app-plan-card>
+        } @empty {
+          <div class="empty-catalog">
+            <p>Error to loading plans</p>
+          </div>
+        }
+      </div>
+
+      <div class="subscription-status-zone">
+        <div class="zone-divider"></div>
+        <h2 class="zone-title">Count State</h2>
+
+        @if (currentSubscription(); as sub) {
+          <app-subscription-card
+            [subscription]="sub"
+            [planName]="currentPlanName()">
+          </app-subscription-card>
+        } @else {
+          <div class="no-subscription-alert">
+            <div class="alert-text">
+              <p>Select a Plan to Nº {{ currentBuildingId }}.</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>
