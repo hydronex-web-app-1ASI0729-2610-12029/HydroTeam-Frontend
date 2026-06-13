@@ -1,6 +1,7 @@
 // src/app/iam/infrastructure/iam-api-endpoints.ts
 
+import { environment } from '../../../environments/environment';
+
 export const IAM_API_ENDPOINTS = {
-  SIGN_IN: '/api/v1/authentication/sign-in',
-  SIGN_UP: '/api/v1/authentication/sign-up',
-} as const;
+  USERS: `${environment.databaseProviderApiBaseUrl}${environment.databaseProviderUsersEndpointPath}`,
+};

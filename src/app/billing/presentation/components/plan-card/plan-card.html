@@ -1,0 +1,43 @@
+<div class="plan-card" [class.is-current]="isCurrentPlan()">
+
+  @if (isCurrentPlan()) {
+    <div class="current-badge">Active Plan</div>
+  }
+
+  <div class="card-header">
+    <h3 class="plan-name">{{ plan().name }}</h3>
+    <p class="plan-description">{{ plan().features }}</p>
+  </div>
+
+  <div class="card-body">
+    <div class="price-box">
+      <span class="currency">S/.</span>
+      <span class="price-amount">{{ plan().price }}</span>
+      <span class="period">/month</span>
+    </div>
+
+    <ul class="amenities-list">
+      <li>
+        <span class="spec-highlight">Max. Sensors: {{ plan().maxSensors }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-footer">
+    <button
+      [disabled]="isCurrentPlan() || disabled()"
+      (click)="onSelect()"
+      class="action-button">
+
+      @if (isCurrentPlan()) {
+        <span>Your Plan</span>
+      } @else if (disabled()) {
+        <span>Process...</span>
+      } @else {
+        <span>Select</span>
+      }
+
+    </button>
+  </div>
+
+</div>
