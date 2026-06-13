@@ -1,7 +1,9 @@
-﻿export type ReportStatus = 'generated' | 'shared';
+import { BaseEntity } from '../../../shared/domain/model/base-entity';
 
-export interface Report {
-  id: string;
+export type ReportStatus = 'generated' | 'shared';
+
+export interface Report extends BaseEntity {
+  id: number;
   generatedAt: string;
   periodMonth: number;
   periodYear: number;
@@ -9,4 +11,6 @@ export interface Report {
   totalLiters: number;
   totalCostSoles: number;
   status: ReportStatus;
+  buildingId?: number;
+  generatedByUserId?: number;
 }

@@ -177,47 +177,47 @@
     }
   },
   "iam": {
-  "login": {
-    "title": "Bienvenido de nuevo",
-    "subtitle": "Inicia sesión en TankIQ",
-    "language": "Idioma",
-    "email": "Correo electrónico",
-    "password": "Contraseña",
-    "action": "Iniciar sesión",
-    "noAccount": "¿No tienes cuenta?",
-    "signUpLink": "Regístrate"
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión en TankIQ",
+      "language": "Idioma",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "action": "Iniciar sesión",
+      "noAccount": "¿No tienes cuenta?",
+      "signUpLink": "Regístrate"
+    },
+    "signUp": {
+      "title": "Crear cuenta",
+      "subtitle": "Únete a TankIQ hoy",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "role": "Rol",
+      "roleAdministrator": "Administrador",
+      "roleResident": "Residente",
+      "phoneNumber": "Número de teléfono",
+      "apartmentNumber": "Número de departamento",
+      "action": "Crear cuenta",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "signInLink": "Iniciar sesión",
+      "successMessage": "¡Cuenta creada exitosamente! Por favor inicia sesión."
+    },
+    "validation": {
+      "emailRequired": "El correo es requerido.",
+      "emailInvalid": "Ingresa un correo electrónico válido.",
+      "passwordRequired": "La contraseña es requerida.",
+      "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
+      "nameRequired": "El nombre completo es requerido.",
+      "nameMinLength": "El nombre debe tener al menos 2 caracteres.",
+      "roleRequired": "Por favor selecciona un rol.",
+      "phoneRequired": "El teléfono es requerido para administradores.",
+      "apartmentRequired": "El número de departamento es requerido para residentes.",
+      "confirmPasswordRequired": "Por favor confirma tu contraseña.",
+      "passwordMismatch": "Las contraseñas no coinciden."
+    }
   },
-  "signUp": {
-    "title": "Crear cuenta",
-    "subtitle": "Únete a TankIQ hoy",
-    "name": "Nombre completo",
-    "email": "Correo electrónico",
-    "password": "Contraseña",
-    "confirmPassword": "Confirmar contraseña",
-    "role": "Rol",
-    "roleAdministrator": "Administrador",
-    "roleResident": "Residente",
-    "phoneNumber": "Número de teléfono",
-    "apartmentNumber": "Número de departamento",
-    "action": "Crear cuenta",
-    "hasAccount": "¿Ya tienes cuenta?",
-    "signInLink": "Iniciar sesión",
-    "successMessage": "¡Cuenta creada exitosamente! Por favor inicia sesión."
-  },
-  "validation": {
-    "emailRequired": "El correo es requerido.",
-    "emailInvalid": "Ingresa un correo electrónico válido.",
-    "passwordRequired": "La contraseña es requerida.",
-    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
-    "nameRequired": "El nombre completo es requerido.",
-    "nameMinLength": "El nombre debe tener al menos 2 caracteres.",
-    "roleRequired": "Por favor selecciona un rol.",
-    "phoneRequired": "El teléfono es requerido para administradores.",
-    "apartmentRequired": "El número de departamento es requerido para residentes.",
-    "confirmPasswordRequired": "Por favor confirma tu contraseña.",
-    "passwordMismatch": "Las contraseñas no coinciden."
-  }
-},
   "underConstruction": {
     "title": "Funcionalidad en construcción",
     "description": "Este módulo ya está conectado a las rutas de la aplicación y será implementado por el equipo responsable."
@@ -244,6 +244,68 @@
     },
     "user": {
       "role": "Administrador"
+    }
+  },
+  "reports": {
+    "eyebrow": "Transparencia",
+    "title": "Reportes mensuales",
+    "description": "Genera y descarga reportes para la junta de propietarios.",
+    "periodLabel": "Periodo del reporte",
+    "recentLabel": "Reportes recientes",
+    "historyLabel": "Historial de reportes",
+    "months": {
+      "1": "Enero",
+      "2": "Febrero",
+      "3": "Marzo",
+      "4": "Abril",
+      "5": "Mayo",
+      "6": "Junio",
+      "7": "Julio",
+      "8": "Agosto",
+      "9": "Septiembre",
+      "10": "Octubre",
+      "11": "Noviembre",
+      "12": "Diciembre"
+    },
+    "actions": {
+      "generate": "Generar reporte",
+      "download": "Descargar",
+      "share": "Compartir",
+      "view": "Ver reporte"
+    },
+    "card": {
+      "title": "Reporte",
+      "refills": "recargas"
+    },
+    "table": {
+      "period": "Periodo",
+      "refills": "Recargas",
+      "totalLiters": "Litros totales",
+      "cost": "Gasto S/.",
+      "generated": "Generado",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "status": {
+      "generated": "Generado",
+      "shared": "Compartido"
+    },
+    "empty": {
+      "title": "Aun no hay reportes",
+      "description": "Cuando se generen reportes mensuales, apareceran en esta seccion.",
+      "filtered": "No se encontraron reportes para el periodo seleccionado."
+    },
+    "loading": {
+      "title": "Cargando reportes",
+      "description": "Estamos recuperando el historial de reportes mas reciente."
+    },
+    "feedback": {
+      "alreadyGenerated": "El reporte de este periodo ya esta generado y listo para descargar.",
+      "notEnoughData": "No hay datos suficientes de consumo y recargas para generar este reporte.",
+      "generated": "El reporte fue generado y agregado al historial.",
+      "shared": "El reporte fue marcado como compartido con los propietarios.",
+      "preview": "La vista previa del reporte esta lista en la tabla del historial.",
+      "demoData": "Mostrando reportes de demostracion mientras el servicio remoto no esta disponible."
     }
   }
 }

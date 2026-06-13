@@ -1,9 +1,9 @@
 ﻿<section class="reports-page">
   <header class="reports-header">
     <div>
-      <span class="section-eyebrow">Reportes</span>
-      <h2>Reportes mensuales</h2>
-      <p>Genera y descarga reportes para la junta de propietarios.</p>
+      <span class="section-eyebrow">{{ 'reports.eyebrow' | translate }}</span>
+      <h2>{{ 'reports.title' | translate }}</h2>
+      <p>{{ 'reports.description' | translate }}</p>
     </div>
 
     <div class="reports-header__actions">
@@ -12,93 +12,123 @@
         <select
           [value]="selectedPeriodValue()"
           (change)="updatePeriod($any($event.target).value)"
-          aria-label="Periodo del reporte">
+          [attr.aria-label]="'reports.periodLabel' | translate">
           @for (option of periodOptions(); track option.value) {
             <option [value]="option.value">{{ option.label }}</option>
           }
         </select>
       </label>
 
-      <button mat-flat-button color="primary" type="button">
+      <button mat-flat-button color="primary" type="button" (click)="generateReport()">
         <mat-icon>picture_as_pdf</mat-icon>
-        Generar reporte
+        {{ 'reports.actions.generate' | translate }}
       </button>
     </div>
   </header>
 
-  <section class="report-cards" aria-label="Reportes recientes">
-    @for (report of store.recentReports(); track report.id) {
-      <article class="report-card">
-        <div class="report-card__icon">
-          <mat-icon>picture_as_pdf</mat-icon>
-        </div>
+  @if (store.feedback(); as feedback) {
+    <p class="reports-feedback">{{ feedback | translate }}</p>
+  }
 
-        <div>
-          <h3>Reporte {{ formatPeriod(report) }}</h3>
-          <p>
-            {{ report.refillCount }} recargas ·
-            {{ report.totalLiters | number }} L ·
-            S/. {{ report.totalCostSoles | number:'1.0-0' }}
-          </p>
-        </div>
+  @if (store.loading()) {
+    <article class="reports-empty">
+      <mat-icon>hourglass_empty</mat-icon>
+      <h3>{{ 'reports.loading.title' | translate }}</h3>
+      <p>{{ 'reports.loading.description' | translate }}</p>
+    </article>
+  } @else if (store.reports().length === 0) {
+    <article class="reports-empty">
+      <mat-icon>description</mat-icon>
+      <h3>{{ 'reports.empty.title' | translate }}</h3>
+      <p>{{ 'reports.empty.description' | translate }}</p>
+    </article>
+  } @else {
+    <section class="report-cards" [attr.aria-label]="'reports.recentLabel' | translate">
+      @for (report of store.recentReports(); track report.id) {
+        <article class="report-card">
+          <div class="report-card__icon">
+            <mat-icon>picture_as_pdf</mat-icon>
+          </div>
 
-        <div class="report-card__meter" aria-hidden="true">
-          <span></span>
-          <span></span>
-        </div>
+          <div>
+            <h3>{{ 'reports.card.title' | translate }} {{ formatPeriod(report) }}</h3>
+            <p>
+              {{ report.refillCount }} {{ 'reports.card.refills' | translate }} ·
+              {{ report.totalLiters | number }} L ·
+              S/. {{ report.totalCostSoles | number:'1.0-0' }}
+            </p>
+          </div>
 
-        <div class="report-card__actions">
-          <button mat-flat-button color="primary" type="button">
-            <mat-icon>download</mat-icon>
-            Descargar
-          </button>
-          <button mat-stroked-button color="primary" type="button">
-            <mat-icon>share</mat-icon>
-            Compartir
-          </button>
-        </div>
-      </article>
-    }
-  </section>
+          <div class="report-card__meter" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </div>
 
-  <section class="reports-table-card" aria-label="Historial de reportes">
-    <div class="table-wrapper">
-      <table class="reports-table">
-        <thead>
-          <tr>
-            <th>Periodo</th>
-            <th>Recargas</th>
-            <th>Litros totales</th>
-            <th>Gasto S/.</th>
-            <th>Generado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (report of store.reports(); track report.id) {
+          <div class="report-card__actions">
+            <button mat-flat-button color="primary" type="button" (click)="downloadReport(report)">
+              <mat-icon>download</mat-icon>
+              {{ 'reports.actions.download' | translate }}
+            </button>
+            <button mat-stroked-button color="primary" type="button" (click)="shareReport(report)">
+              <mat-icon>share</mat-icon>
+              {{ 'reports.actions.share' | translate }}
+            </button>
+          </div>
+        </article>
+      }
+    </section>
+
+    <section class="reports-table-card" [attr.aria-label]="'reports.historyLabel' | translate">
+      <div class="table-wrapper">
+        <table class="reports-table">
+          <thead>
             <tr>
-              <td class="period-cell">{{ formatPeriod(report) }}</td>
-              <td>{{ report.refillCount }}</td>
-              <td>{{ report.totalLiters | number }} L</td>
-              <td>S/. {{ report.totalCostSoles | number:'1.0-0' }}</td>
-              <td>{{ report.generatedAt | date:'dd/MM/yyyy' }}</td>
-              <td>
-                <div class="table-actions">
-                  <button type="button" aria-label="Ver reporte">
-                    <mat-icon>visibility</mat-icon>
-                  </button>
-                  <button type="button" aria-label="Descargar reporte">
-                    <mat-icon>download</mat-icon>
-                  </button>
-                  <button type="button" aria-label="Compartir reporte">
-                    <mat-icon>share</mat-icon>
-                  </button>
-                </div>
-              </td>
+              <th>{{ 'reports.table.period' | translate }}</th>
+              <th>{{ 'reports.table.refills' | translate }}</th>
+              <th>{{ 'reports.table.totalLiters' | translate }}</th>
+              <th>{{ 'reports.table.cost' | translate }}</th>
+              <th>{{ 'reports.table.generated' | translate }}</th>
+              <th>{{ 'reports.table.status' | translate }}</th>
+              <th>{{ 'reports.table.actions' | translate }}</th>
             </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  </section>
+          </thead>
+          <tbody>
+            @for (report of store.filteredReports(); track report.id) {
+              <tr>
+                <td class="period-cell">{{ formatPeriod(report) }}</td>
+                <td>{{ report.refillCount }}</td>
+                <td>{{ report.totalLiters | number }} L</td>
+                <td>S/. {{ report.totalCostSoles | number:'1.0-0' }}</td>
+                <td>{{ report.generatedAt | date:'dd/MM/yyyy' }}</td>
+                <td>
+                  <span class="status-badge" [class.status-badge--shared]="report.status === 'shared'">
+                    {{ ('reports.status.' + report.status) | translate }}
+                  </span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <button type="button" [attr.aria-label]="'reports.actions.view' | translate" (click)="viewReport(report)">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                    <button type="button" [attr.aria-label]="'reports.actions.download' | translate" (click)="downloadReport(report)">
+                      <mat-icon>download</mat-icon>
+                    </button>
+                    <button type="button" [attr.aria-label]="'reports.actions.share' | translate" (click)="shareReport(report)">
+                      <mat-icon>share</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td class="reports-table__empty" colspan="7">
+                  {{ 'reports.empty.filtered' | translate }}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
 </section>
