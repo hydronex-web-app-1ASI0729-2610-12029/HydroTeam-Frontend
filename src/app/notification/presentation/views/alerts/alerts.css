@@ -1,0 +1,144 @@
+.alerts-page {
+  display: grid;
+  gap: 24px;
+}
+
+.context-header h2 {
+  font-size: 1.8rem;
+  letter-spacing: -0.03em;
+  margin: 4px 0 8px;
+}
+
+.context-header p {
+  color: var(--tankiq-medium);
+  margin: 0;
+}
+
+.critical-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(229, 57, 53, 0.12);
+  border-left: 4px solid #e53935;
+  border-radius: 10px;
+  color: #c62828;
+  font-weight: 600;
+  padding: 14px 18px;
+}
+
+.filters-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-select {
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  padding: 8px 12px;
+  background: var(--tankiq-white);
+  color: var(--tankiq-dark);
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  border-color: var(--tankiq-primary, #29ABE2);
+  outline: none;
+}
+
+.alerts-list {
+  display: grid;
+  gap: 14px;
+}
+
+.alert-card {
+  align-items: center;
+  background: var(--tankiq-white);
+  border-radius: 14px;
+  box-shadow: var(--tankiq-shadow);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 48px 1fr auto;
+  padding: 18px;
+}
+
+.alert-icon {
+  align-items: center;
+  border-radius: 12px;
+  color: var(--tankiq-white);
+  display: inline-flex;
+  font-weight: 900;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.alert-card strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.alert-card p,
+.alert-card small {
+  color: var(--tankiq-medium);
+  margin: 0;
+}
+
+.alert-card--warning {
+  background: rgba(251, 140, 0, 0.10);
+}
+.alert-card--warning .alert-icon {
+  background: var(--tankiq-warning);
+}
+
+.alert-card--critical {
+  background: rgba(229, 57, 53, 0.10);
+}
+.alert-card--critical .alert-icon {
+  background: #e53935;
+}
+
+.alert-card--sensor {
+  background: rgba(103, 58, 183, 0.10);
+}
+.alert-card--sensor .alert-icon {
+  background: #673ab7;
+}
+
+.alert-card--usage {
+  background: rgba(2, 136, 209, 0.10);
+}
+.alert-card--usage .alert-icon {
+  background: #0288d1;
+}
+
+.alert-card--success {
+  background: rgba(67, 160, 71, 0.10);
+}
+.alert-card--success .alert-icon {
+  background: var(--tankiq-success);
+}
+
+.error-msg {
+  color: #e53935;
+  font-size: 0.875rem;
+}
+
+.empty-msg {
+  color: var(--tankiq-medium);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 720px) {
+  .alert-card {
+    grid-template-columns: 48px 1fr;
+  }
+  .alert-card small {
+    grid-column: 2;
+  }
+  .filters-row {
+    flex-direction: column;
+  }
+}
