@@ -12,6 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class DashboardLayout {
   protected readonly navigationOptions = signal([
     { link: '/dashboard', icon: '▦', label: 'dashboardLayout.nav.home', exact: true },
+    { link: '/dashboard/monitoring', icon: '◉', label: 'dashboardLayout.nav.monitoring', exact: false },
     { link: '/dashboard/alerts', icon: '●', label: 'dashboardLayout.nav.alerts', exact: false },
     { link: '/dashboard/history', icon: '↻', label: 'dashboardLayout.nav.history', exact: false },
     { link: '/dashboard/reports', icon: '▣', label: 'dashboardLayout.nav.reports', exact: false },

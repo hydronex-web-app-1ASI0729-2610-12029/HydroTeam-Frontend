@@ -151,14 +151,37 @@
   "monitoring": {
     "eyebrow": "Monitoreo de cisterna",
     "title": "Monitoreo de agua",
-    "description": "Supervisa niveles de agua y disponibilidad estimada desde una interfaz visual simple.",
+    "description": "Supervisa niveles, días proyectados y lecturas de sensores desde una interfaz visual en tiempo real.",
     "currentStatus": "Estado actual de la cisterna",
-    "currentStatusDescription": "El nivel de la cisterna se encuentra dentro del rango normal. Esta vista está lista para integrar datos del sensor o json-server.",
-    "mock": {
-      "title": "Datos mock del sensor",
-      "description": "Valores temporales preparados para integrar json-server y luego conectar con backend.",
-      "capacity": "Capacidad",
-      "updated": "Actualizado"
+    "currentStatusDescription": "El nivel de la cisterna se encuentra dentro del rango normal.",
+    "metrics": {
+      "currentLevel": "Nivel actual",
+      "projectedDays": "Días proyectados",
+      "totalVolume": "Volumen total",
+      "readings": "Lecturas del sensor"
+    },
+    "status": {
+      "normal": "Normal",
+      "low": "Bajo",
+      "critical": "Crítico"
+    },
+    "chart": {
+      "title": "Historial de nivel",
+      "line": "Línea",
+      "bar": "Barras",
+      "criticalZone": "Zona crítica"
+    },
+    "readings": {
+      "title": "Lecturas del sensor",
+      "subtitle": "Datos históricos de todos los sensores conectados.",
+      "date": "Fecha",
+      "level": "Nivel (%)",
+      "status": "Estado",
+      "bar": "Gráfico",
+      "empty": "No hay lecturas disponibles."
+    },
+    "report": {
+      "generate": "Descargar reporte"
     }
   },
   "alerts": {
@@ -236,6 +259,7 @@
     "subtitle": "Edificio Los Pinos · SJL · Actualizado hace 3 min",
     "nav": {
       "home": "Inicio",
+      "monitoring": "Monitoreo",
       "alerts": "Alertas",
       "history": "Historial",
       "reports": "Reportes",

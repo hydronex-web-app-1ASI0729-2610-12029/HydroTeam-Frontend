@@ -19,6 +19,49 @@
   color: var(--tankiq-danger);
 }
 
+.alert-banner {
+  align-items: flex-start;
+  background: rgba(229, 57, 53, 0.08);
+  border: 1.5px solid var(--tankiq-danger);
+  border-radius: var(--tankiq-radius);
+  color: var(--tankiq-danger);
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+}
+
+.alert-banner__icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.alert-banner div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.9rem;
+}
+
+.alert-banner strong {
+  font-weight: 800;
+}
+
+.metric-tile--alert {
+  border-color: var(--tankiq-danger);
+  background: rgba(229, 57, 53, 0.04);
+}
+
+.cell-sensor {
+  color: var(--tankiq-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.cell-volume {
+  font-variant-numeric: tabular-nums;
+}
+
 .loading-wrapper {
   display: flex;
   justify-content: center;
