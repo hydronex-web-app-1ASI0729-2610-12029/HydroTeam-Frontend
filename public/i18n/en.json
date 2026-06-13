@@ -151,14 +151,37 @@
   "monitoring": {
     "eyebrow": "Cistern monitoring",
     "title": "Water Monitoring",
-    "description": "Track water levels and estimated availability from a simple visual interface.",
+    "description": "Track water levels, projected days and sensor readings from a real-time visual interface.",
     "currentStatus": "Current cistern status",
-    "currentStatusDescription": "The cistern level is within the normal range. This screen is ready for sensor or json-server data integration.",
-    "mock": {
-      "title": "Mock sensor data",
-      "description": "Temporary values prepared for json-server integration and later backend connection.",
-      "capacity": "Capacity",
-      "updated": "Updated"
+    "currentStatusDescription": "The cistern level is within the normal range.",
+    "metrics": {
+      "currentLevel": "Current level",
+      "projectedDays": "Projected days",
+      "totalVolume": "Total volume",
+      "readings": "Sensor readings"
+    },
+    "status": {
+      "normal": "Normal",
+      "low": "Low",
+      "critical": "Critical"
+    },
+    "chart": {
+      "title": "Level history",
+      "line": "Line chart",
+      "bar": "Bar chart",
+      "criticalZone": "Critical zone"
+    },
+    "readings": {
+      "title": "Sensor readings",
+      "subtitle": "Historical data from all connected sensors.",
+      "date": "Date",
+      "level": "Level (%)",
+      "status": "Status",
+      "bar": "Graph",
+      "empty": "No readings available."
+    },
+    "report": {
+      "generate": "Download report"
     }
   },
   "alerts": {
@@ -236,6 +259,7 @@
     "subtitle": "Edificio Los Pinos · SJL · Updated 3 min ago",
     "nav": {
       "home": "Home",
+      "monitoring": "Monitoring",
       "alerts": "Alerts",
       "history": "History",
       "reports": "Reports",

@@ -16,6 +16,17 @@
   }
 
   @if (!store.loading() && !store.error()) {
+
+    @if (store.isLowOnDays()) {
+      <div class="alert-banner" role="alert">
+        <span class="alert-banner__icon">⚠</span>
+        <div>
+          <strong>Alerta: agua insuficiente</strong>
+          <span>La duración estimada del tanque es de <strong>{{ store.projectedDays() }} días</strong>. Se recomienda recargar la cisterna a la brevedad.</span>
+        </div>
+      </div>
+    }
+
     <div class="metrics-row">
       <article class="metric-tile">
         <div class="metric-tile__icon metric-tile__icon--primary">
@@ -26,22 +37,31 @@
         <mat-progress-bar mode="determinate" [value]="store.currentLevelPercent()" />
       </article>
 
-      <article class="metric-tile">
-        <div class="metric-tile__icon metric-tile__icon--success">
-          <mat-icon>show_chart</mat-icon>
+      <article class="metric-tile" [class.metric-tile--alert]="store.isLowOnDays()">
+        <div class="metric-tile__icon" [class]="store.isLowOnDays() ? 'metric-tile__icon--danger' : 'metric-tile__icon--success'">
+          <mat-icon>schedule</mat-icon>
         </div>
-        <span class="metric-tile__label">{{ 'monitoring.metrics.average' | translate }}</span>
-        <strong class="metric-tile__value">{{ averageLevel() }}%</strong>
-        <mat-progress-bar mode="determinate" [value]="averageLevel()" />
+        <span class="metric-tile__label">{{ 'monitoring.metrics.projectedDays' | translate }}</span>
+        <strong class="metric-tile__value">
+          @if (store.projectedDays() !== null) {
+            {{ store.projectedDays() }} días
+          } @else {
+            —
+          }
+        </strong>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="store.projectedDays() !== null ? (store.projectedDays()! / 30) * 100 : 0"
+          [color]="store.isLowOnDays() ? 'warn' : 'primary'" />
       </article>
 
       <article class="metric-tile">
         <div class="metric-tile__icon metric-tile__icon--warning">
-          <mat-icon>trending_down</mat-icon>
+          <mat-icon>water</mat-icon>
         </div>
-        <span class="metric-tile__label">{{ 'monitoring.metrics.minimum' | translate }}</span>
-        <strong class="metric-tile__value">{{ minLevel() }}%</strong>
-        <mat-progress-bar mode="determinate" [value]="minLevel()" />
+        <span class="metric-tile__label">{{ 'monitoring.metrics.totalVolume' | translate }}</span>
+        <strong class="metric-tile__value">{{ store.totalCurrentLiters() | number:'1.0-0' }} L</strong>
+        <mat-progress-bar mode="determinate" [value]="store.currentLevelPercent()" />
       </article>
 
       <article class="metric-tile">
@@ -73,7 +93,7 @@
             </svg>
             <div class="level-ring__label">
               <strong>{{ store.currentLevelPercent() }}%</strong>
-              <small>{{ 'monitoring.metrics.currentLevel' | translate }}</small>
+              <small>{{ store.totalCurrentLiters() | number:'1.0-0' }} L</small>
             </div>
           </div>
         </div>
@@ -88,7 +108,12 @@
           }
         </div>
 
-        <p class="level-desc">{{ 'monitoring.currentStatusDescription' | translate }}</p>
+        @if (store.projectedDays() !== null) {
+          <p class="level-desc">
+            Proyección: <strong>{{ store.projectedDays() }} días</strong> de agua restantes
+            (consumo promedio {{ store.totalCurrentLiters() !== 0 ? (store.totalCurrentLiters() / (store.projectedDays()! || 1) | number:'1.0-0') : '—' }} L/día)
+          </p>
+        }
       </article>
 
       <article class="tankiq-card chart-card">
@@ -145,12 +170,8 @@
                 </rect>
               }
             } @else {
-              <polyline
-                [attr.points]="linePoints()"
-                class="chart-line" />
-              <polyline
-                [attr.points]="areaPoints()"
-                class="chart-area" />
+              <polyline [attr.points]="linePoints()" class="chart-line" />
+              <polyline [attr.points]="areaPoints()" class="chart-area" />
               @for (point of chartPoints(); track point.x) {
                 <circle
                   [attr.cx]="point.x"
@@ -162,7 +183,6 @@
               }
             }
 
-            <!-- X labels -->
             @for (point of chartXLabels(); track point.x) {
               <text
                 [attr.x]="point.x"
@@ -192,8 +212,10 @@
             <thead>
             <tr>
               <th>#</th>
+              <th>Sensor</th>
               <th>{{ 'monitoring.readings.date' | translate }}</th>
               <th>{{ 'monitoring.readings.level' | translate }}</th>
+              <th>Volumen (L)</th>
               <th>{{ 'monitoring.readings.status' | translate }}</th>
               <th>{{ 'monitoring.readings.bar' | translate }}</th>
             </tr>
@@ -202,8 +224,10 @@
               @for (reading of store.waterLevels(); track reading.id) {
                 <tr>
                   <td class="cell-id">{{ reading.id }}</td>
+                  <td class="cell-sensor">SN-{{ reading.sensorId }}</td>
                   <td>{{ reading.recordedAt | date:'dd/MM/yyyy HH:mm' }}</td>
                   <td class="cell-level"><strong>{{ reading.levelPercent }}%</strong></td>
+                  <td class="cell-volume">{{ reading.volumeLiters | number:'1.0-0' }} L</td>
                   <td>
                     @if (reading.isCritical()) {
                       <span class="status-badge status-badge--danger">{{ 'monitoring.status.critical' | translate }}</span>

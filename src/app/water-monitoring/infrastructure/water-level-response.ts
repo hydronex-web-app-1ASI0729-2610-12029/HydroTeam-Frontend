@@ -2,10 +2,12 @@ import { BaseResource, BaseResponse } from '../../shared/infrastructure/base-res
 
 export interface WaterLevelResource extends BaseResource {
   id: number;
-  levelPercent: number;
-  recordedAt: string;
+  level_percent: number;
+  volume_liters: number;
+  recorded_at: string;
+  sensor_id: number;
 }
 
 export interface WaterLevelResponse extends BaseResponse {
-  waterLevels: WaterLevelResource[];
+  water_level_readings: WaterLevelResource[];
 }

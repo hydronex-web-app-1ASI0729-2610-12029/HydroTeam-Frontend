@@ -8,20 +8,24 @@ export class WaterLevelAssembler
   toEntityFromResource(resource: WaterLevelResource): WaterLevel {
     return new WaterLevel({
       id: resource.id,
-      levelPercent: resource.levelPercent,
-      recordedAt: resource.recordedAt,
+      levelPercent: resource.level_percent,
+      volumeLiters: resource.volume_liters,
+      recordedAt: resource.recorded_at,
+      sensorId: resource.sensor_id,
     });
   }
 
   toResourceFromEntity(entity: WaterLevel): WaterLevelResource {
     return {
       id: entity.id,
-      levelPercent: entity.levelPercent,
-      recordedAt: entity.recordedAt,
+      level_percent: entity.levelPercent,
+      volume_liters: entity.volumeLiters,
+      recorded_at: entity.recordedAt,
+      sensor_id: entity.sensorId,
     } as WaterLevelResource;
   }
 
   toEntitiesFromResponse(response: WaterLevelResponse): WaterLevel[] {
-    return response.waterLevels.map((r) => this.toEntityFromResource(r));
+    return response.water_level_readings.map((r) => this.toEntityFromResource(r));
   }
 }
