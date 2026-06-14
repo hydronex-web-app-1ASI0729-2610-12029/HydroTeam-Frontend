@@ -1,6 +1,8 @@
+import { WaterConsumption } from '../domain/model/water-consumption.entity';
 import { computed, Injectable, signal } from '@angular/core';
 import { Report } from '../domain/model/report.entity';
 import { ReportsApi } from '../infrastructure/reports-api';
+
 
 const DEMO_REPORTS: Report[] = [
   {
@@ -42,6 +44,8 @@ export interface ReportPeriod {
 
 @Injectable({ providedIn: 'root' })
 export class ReportsStore {
+  private readonly waterConsumptionsSignal = signal<WaterConsumption[]>([]);
+  readonly waterConsumptions = this.waterConsumptionsSignal.asReadonly();
   private readonly reportsSignal = signal<Report[]>(DEMO_REPORTS);
   private readonly selectedMonthSignal = signal<number>(4);
   private readonly selectedYearSignal = signal<number>(2026);
@@ -110,6 +114,12 @@ export class ReportsStore {
         this.feedbackSignal.set('reports.feedback.demoData');
         this.loadingSignal.set(false);
       },
+    });
+
+    // NUEVO: cargar consumos de agua
+    this.reportsApi.getWaterConsumptions().subscribe({
+      next: (consumptions) => this.waterConsumptionsSignal.set(consumptions),
+      error: () => this.waterConsumptionsSignal.set([]),
     });
   }
 
