@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 import { Home } from './landing/presentation/views/home/home';
 import { Layout } from './landing/presentation/components/layout/layout';
 import { DashboardLayout } from './shared/presentation/layouts/dashboard-layout/dashboard-layout';
@@ -11,6 +11,7 @@ const dashboardRoutes = () => import('./dashboard-overview/presentation/dashboar
 const monitoringRoutes = () => import('./water-monitoring/presentation/monitoring.routes').then((m) => m.monitoringRoutes);
 const alertsRoutes = () => import('./alerts-notifications/presentation/alerts.routes').then((m) => m.alertsRoutes);
 const notificationRoutes = () => import('./notification/presentation/alerts.routes').then((m) => m.alertsRoutes);
+const reportsRoutes = () => import('./reports-transparency/presentation/reports.routes').then((m) => m.reportsRoutes);
 
 const baseTitle = 'TankIQ';
 
@@ -33,7 +34,7 @@ export const routes: Routes = [
       { path: 'monitoring', loadChildren: monitoringRoutes },
       { path: 'alerts', loadChildren: alertsRoutes },
       { path: 'history', loadComponent: placeholder, title: `${baseTitle} - History` },
-      { path: 'reports', loadComponent: placeholder, title: `${baseTitle} - Reports` },
+      { path: 'reports', loadChildren: reportsRoutes },
       { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
       { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },
     ],
@@ -42,3 +43,5 @@ export const routes: Routes = [
   { path: 'alerts', redirectTo: 'dashboard/alerts', pathMatch: 'full' },
   { path: '**', loadComponent: pageNotFound, title: `${baseTitle} - Page Not Found` },
 ];
+
+
