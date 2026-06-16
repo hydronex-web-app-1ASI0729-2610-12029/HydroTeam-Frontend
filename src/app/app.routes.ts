@@ -19,15 +19,7 @@ const refillRoutes = () => import('./refill-management/presentation/refill-manag
 const baseTitle = 'TankIQ';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: Layout,
-    children: [
-      { path: '', component: Home, title: `${baseTitle} - Home` },
-      { path: 'home', redirectTo: '', pathMatch: 'full' },
-      { path: 'about', loadComponent: about, title: `${baseTitle} - About` },
-    ],
-  },
+  { path: '', redirectTo: 'iam', pathMatch: 'full' },
   { path: 'iam', loadChildren: iamRoutes },
   {
     path: 'dashboard',
@@ -36,12 +28,13 @@ export const routes: Routes = [
       { path: '', loadChildren: dashboardRoutes },
       { path: 'monitoring', loadChildren: monitoringRoutes },
       { path: 'alerts', loadChildren: alertsRoutes },
-      { path: 'history', loadComponent: placeholder, title: `${baseTitle} - History` },
       { path: 'reports', loadChildren: reportsRoutes },
-      { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
-      { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },
       { path: 'refill-management', loadChildren: refillRoutes, title: `${baseTitle} - Refill` },
       { path: 'billing', loadChildren: billingRoutes, title: `${baseTitle} - Billing` },
+      //TODO: Routes to do later
+      { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
+      { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },
+      { path: 'history', loadComponent: placeholder, title: `${baseTitle} - History` },
     ],
   },
   { path: 'monitoring', redirectTo: 'dashboard/monitoring', pathMatch: 'full' },
