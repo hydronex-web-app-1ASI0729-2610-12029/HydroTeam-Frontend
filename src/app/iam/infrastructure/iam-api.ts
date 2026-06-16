@@ -3,8 +3,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { UserRole } from '../domain/user.entity';
+import { UserBuildingResponse } from './user-building-response';
 import { AuthenticationResponse } from './authentication-response';
 import { IAM_API_ENDPOINTS } from './iam-api-endpoints';
 
@@ -19,17 +20,30 @@ export class IamApi {
         if (!match) {
           return throwError(() => ({ error: { message: 'Invalid email or password.' } }));
         }
-        const response: AuthenticationResponse = {
-          token: `fake-jwt-token-${match.id}-${Date.now()}`,
-          user: {
-            userId: match.id,
-            name: match.name,
-            email: match.email,
-            role: UserRole.ADMINISTRATOR,
-            phoneNumber: match.phone_number,
-          },
-        };
-        return [response];
+        return this.http.get<UserBuildingResponse[]>(
+          `${IAM_API_ENDPOINTS.USER_BUILDINGS}?user_id=${match.id}`
+        ).pipe(
+          map(userBuildings => {
+            const userBuilding = userBuildings[0];
+            const role = userBuilding?.role === 'ADMIN'
+              ? UserRole.ADMINISTRATOR
+              : UserRole.RESIDENT;
+
+            const response: AuthenticationResponse = {
+              token: `fake-jwt-token-${match.id}-${Date.now()}`,
+              user: {
+                userId: match.id,
+                name: match.name,
+                email: match.email,
+                role: role,
+                phoneNumber: match.phone_number,
+                buildingId: userBuilding?.building_id ?? null,
+                apartmentNumber: userBuilding?.apartment_number ?? '',
+              },
+            };
+            return response;
+          })
+        );
       })
     );
   }

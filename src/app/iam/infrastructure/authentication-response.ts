@@ -10,6 +10,7 @@ export interface AuthenticationResponse {
     email: string;
     role: UserRole;
     phoneNumber?: string;
+    buildingId?: number | null;
     apartmentNumber?: string;
   };
 }
