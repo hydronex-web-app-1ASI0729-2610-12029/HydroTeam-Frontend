@@ -17,7 +17,7 @@ export class NotificationBell {
 
   readonly isPanelOpen = signal<boolean>(false);
 
-  private readonly readIds = signal<Set<number>>(new Set());
+  protected readonly readIds = signal<Set<number>>(new Set());
 
   readonly unreadCount = computed(() =>
     this.store.alerts().filter(a =>

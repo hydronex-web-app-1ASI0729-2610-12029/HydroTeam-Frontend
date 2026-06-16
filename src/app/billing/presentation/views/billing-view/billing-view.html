@@ -94,7 +94,19 @@
         } @else {
           <div class="no-subscription-alert">
             <div class="alert-text">
-              <p>Select a Plan to Nº {{ currentBuildingId }}.</p>
+
+              @if (currentBuildingId()) {
+                <p>Select a Plan to Nº {{ currentBuildingId() }}.</p>
+              } @else if (currentUser()) {
+                <p class="error-text" style="color: #d32f2f; font-weight: bold; background: #ffebee; padding: 10px; border-radius: 4px; border: 1px solid #ef9a9a;">
+                  [IAM Error]: user with id -> {{ currentUser()?.userId }} is authenticated, but IAM context failed in the implementation of builderId.
+                </p>
+              } @else {
+                <p class="error-text" style="color: #757575; font-style: italic;">
+                  Anonymous User: Error in IAM context to authenticated.
+                </p>
+              }
+
             </div>
           </div>
         }
