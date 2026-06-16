@@ -12,6 +12,7 @@ const monitoringRoutes = () => import('./water-monitoring/presentation/monitorin
 const alertsRoutes = () => import('./alerts-notifications/presentation/alerts.routes').then((m) => m.alertsRoutes);
 const notificationRoutes = () => import('./notification/presentation/alerts.routes').then((m) => m.alertsRoutes);
 const reportsRoutes = () => import('./reports-transparency/presentation/reports.routes').then((m) => m.reportsRoutes);
+const billingRoutes = () => import('./billing/presentation/billing.routes').then((m) => m.billingRoutes);
 
 const refillRoutes = () => import('./refill-management/presentation/refill-management.routes').then((m) => m.refillManagementRoutes);
 
@@ -40,6 +41,7 @@ export const routes: Routes = [
       { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
       { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },
       { path: 'refill-management', loadChildren: refillRoutes, title: `${baseTitle} - Refill` },
+      { path: 'billing', loadChildren: billingRoutes, title: `${baseTitle} - Billing` },
     ],
   },
   { path: 'monitoring', redirectTo: 'dashboard/monitoring', pathMatch: 'full' },

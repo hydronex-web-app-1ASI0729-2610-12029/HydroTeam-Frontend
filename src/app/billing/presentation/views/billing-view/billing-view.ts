@@ -4,6 +4,7 @@ import {Plan} from '../../../domain/model/plan.entity';
 import {PlanCard} from '../../components/plan-card/plan-card';
 import {DecimalPipe} from '@angular/common';
 import {SubscriptionCard} from '../../components/subscription-card/subscription-card';
+import {AuthenticationStore} from '../../../../iam/application/authentication.store';
 
 @Component({
   selector: 'app-billing-view',
@@ -16,12 +17,28 @@ import {SubscriptionCard} from '../../components/subscription-card/subscription-
   styleUrl: './billing-view.css',
 })
 export class BillingView {
-  // inject service billing Store
+  // inject service billing Store and authentication
   private readonly billingStore = inject(BillingStore);
+  private readonly authStore = inject(AuthenticationStore);
 
-  ///TODO: Delete this when testing end.
-  readonly currentBuildingId = 1;
-  ///===============================
+  // to check if the iam context is working
+  readonly currentUser = this.authStore.currentUser;
+
+  // get currentUsers buildingId.
+  readonly currentBuildingId = computed(() => {
+    const user = this.authStore.currentUser();
+    if (!user) { return null; }
+    try {
+      const rawUser = localStorage.getItem('tankiq-user');
+      if (rawUser) {
+        const parsed = JSON.parse(rawUser);
+        return parsed.buildingId ? Number(parsed.buildingId) : null;
+      }
+    } catch (e) {
+      console.error(`Error parsing billing id ${e}`);
+    }
+    return null;
+  });
 
   // Signals from billing store
   readonly plans = this.billingStore.plans;
@@ -32,8 +49,10 @@ export class BillingView {
   readonly selectedPlanForUpgrade = signal<Plan | null>(null);
 
   readonly currentSubscription = computed(() => {
-    return this.billingStore.subscriptions().find(s => s.buildingId === this.currentBuildingId);
-  });
+    const buildingId = this.currentBuildingId();
+    if (!buildingId) { return null; }
+    return this.billingStore.subscriptions().find(s => s.buildingId === buildingId);
+  })
 
   readonly currentPlanName = computed(() => {
     const sub = this.currentSubscription();
@@ -48,6 +67,8 @@ export class BillingView {
     const expirationDate = new Date();
     expirationDate.setMonth(today.getMonth() + 1);
 
+    const buildingId = this.currentBuildingId();
+
     if (!activeSub) {
       alert('Building Id do not have a subscription');
       return;
@@ -60,7 +81,7 @@ export class BillingView {
       price: selectedPlan.price,
       purchaseDate: today.toLocaleDateString('es-PE'),
       expiryDate: expirationDate.toLocaleDateString('es-PE'),
-      buildingId: this.currentBuildingId
+      buildingId: buildingId
     });
   }
 
