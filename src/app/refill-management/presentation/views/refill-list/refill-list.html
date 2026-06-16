@@ -1,0 +1,117 @@
+<section class="refill-page">
+  @if (store.loading()) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">Refill Management</span>
+      <h1>Water refill history</h1>
+      <p>Register, review and manage cistern refill records.</p>
+    </div>
+
+    <div class="header-actions">
+      <button mat-stroked-button color="primary" routerLink="/dashboard/refill-management/cost-summary">
+        <mat-icon>payments</mat-icon>
+        Monthly costs
+      </button>
+
+      <button mat-flat-button color="primary" routerLink="/dashboard/refill-management/new">
+        <mat-icon>add</mat-icon>
+        New refill
+      </button>
+    </div>
+  </div>
+
+  <section class="summary-grid">
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <mat-icon>local_shipping</mat-icon>
+        <span>Total refills</span>
+        <strong>{{ totalRefills() }}</strong>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <mat-icon>water_drop</mat-icon>
+        <span>Total liters</span>
+        <strong>{{ totalLiters() | number }} L</strong>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <mat-icon>paid</mat-icon>
+        <span>Total cost</span>
+        <strong>S/ {{ totalCostSoles() | number:'1.2-2' }}</strong>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <mat-card class="table-card">
+    <mat-card-header>
+      <mat-card-title>Refills</mat-card-title>
+      <mat-card-subtitle>Records from the refill management context</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource" matSort class="refill-table">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let refill">{{ refill.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="refillDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+          <td mat-cell *matCellDef="let refill">{{ refill.refillDate | date:'mediumDate' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="liters">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Liters</th>
+          <td mat-cell *matCellDef="let refill">{{ refill.liters | number }} L</td>
+        </ng-container>
+
+        <ng-container matColumnDef="costSoles">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+          <td mat-cell *matCellDef="let refill">S/ {{ refill.costSoles | number:'1.2-2' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="supplierName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</th>
+          <td mat-cell *matCellDef="let refill">
+            <mat-chip>{{ refill.supplierName }}</mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="invoiceNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice</th>
+          <td mat-cell *matCellDef="let refill">{{ refill.invoiceNumber }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="buildingId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Building</th>
+          <td mat-cell *matCellDef="let refill">#{{ refill.buildingId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let refill">
+            <button mat-icon-button color="primary" matTooltip="Edit refill" (click)="goToEdit(refill)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" matTooltip="Delete refill" (click)="deleteRefill(refill)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let refill; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</section>

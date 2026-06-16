@@ -13,6 +13,8 @@ const alertsRoutes = () => import('./alerts-notifications/presentation/alerts.ro
 const notificationRoutes = () => import('./notification/presentation/alerts.routes').then((m) => m.alertsRoutes);
 const reportsRoutes = () => import('./reports-transparency/presentation/reports.routes').then((m) => m.reportsRoutes);
 
+const refillRoutes = () => import('./refill-management/presentation/refill-management.routes').then((m) => m.refillManagementRoutes);
+
 const baseTitle = 'TankIQ';
 
 export const routes: Routes = [
@@ -37,6 +39,7 @@ export const routes: Routes = [
       { path: 'reports', loadChildren: reportsRoutes },
       { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
       { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },
+      { path: 'refill-management', loadChildren: refillRoutes, title: `${baseTitle} - Refill` },
     ],
   },
   { path: 'monitoring', redirectTo: 'dashboard/monitoring', pathMatch: 'full' },
