@@ -4,6 +4,7 @@ import { forkJoin, retry } from 'rxjs';
 import { WaterLevel } from '../domain/model/water-level.entity';
 import { Cistern } from '../domain/model/cistern.entity';
 import { WaterConsumption } from '../domain/model/water-consumption.entity';
+import { Sensor } from '../domain/model/sensor.entity';
 import { WaterMonitoringApi } from '../infrastructure/water-monitoring-api';
 
 @Injectable({ providedIn: 'root' })
@@ -11,11 +12,13 @@ export class WaterMonitoringStore {
   private readonly waterLevelsSignal = signal<WaterLevel[]>([]);
   private readonly cisternsSignal = signal<Cistern[]>([]);
   private readonly consumptionsSignal = signal<WaterConsumption[]>([]);
+  private readonly sensorsSignal = signal<Sensor[]>([]);
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
 
   readonly waterLevels = this.waterLevelsSignal.asReadonly();
   readonly cisterns = this.cisternsSignal.asReadonly();
+  readonly sensors = this.sensorsSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
 
@@ -71,13 +74,15 @@ export class WaterMonitoringStore {
       readings: this.waterMonitoringApi.getWaterLevels(),
       cisterns: this.waterMonitoringApi.getCisterns(),
       consumptions: this.waterMonitoringApi.getWaterConsumptions(),
+      sensors: this.waterMonitoringApi.getSensors(),
     })
       .pipe(takeUntilDestroyed(), retry(2))
       .subscribe({
-        next: ({ readings, cisterns, consumptions }) => {
+        next: ({ readings, cisterns, consumptions, sensors }) => {
           this.waterLevelsSignal.set(readings);
           this.cisternsSignal.set(cisterns);
           this.consumptionsSignal.set(consumptions);
+          this.sensorsSignal.set(sensors);
           this.loadingSignal.set(false);
         },
         error: (err) => {

@@ -8,7 +8,10 @@ export class WaterConsumptionAssembler
   toEntityFromResource(resource: WaterConsumptionResource): WaterConsumption {
     return new WaterConsumption({
       id: resource.id,
+      periodStart: resource.period_start,
+      periodEnd: resource.period_end,
       avgDailyLiters: resource.avg_daily_liters,
+      totalPeriodLiters: resource.total_period_liters,
       buildingId: resource.building_id,
     });
   }
@@ -16,7 +19,10 @@ export class WaterConsumptionAssembler
   toResourceFromEntity(entity: WaterConsumption): WaterConsumptionResource {
     return {
       id: entity.id,
+      period_start: entity.periodStart,
+      period_end: entity.periodEnd,
       avg_daily_liters: entity.avgDailyLiters,
+      total_period_liters: entity.totalPeriodLiters,
       building_id: entity.buildingId,
     } as WaterConsumptionResource;
   }
