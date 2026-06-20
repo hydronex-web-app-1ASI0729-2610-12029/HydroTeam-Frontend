@@ -1,41 +1,9 @@
-import { WaterConsumption } from '../domain/model/water-consumption.entity';
 import { computed, Injectable, signal } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { Report } from '../domain/model/report.entity';
 import { ReportsApi } from '../infrastructure/reports-api';
-
-
-const DEMO_REPORTS: Report[] = [
-  {
-    id: 1,
-    generatedAt: '2026-04-30T18:00:00',
-    periodMonth: 4,
-    periodYear: 2026,
-    refillCount: 3,
-    totalLiters: 15000,
-    totalCostSoles: 285,
-    status: 'generated',
-  },
-  {
-    id: 2,
-    generatedAt: '2026-03-31T18:00:00',
-    periodMonth: 3,
-    periodYear: 2026,
-    refillCount: 4,
-    totalLiters: 20000,
-    totalCostSoles: 390,
-    status: 'shared',
-  },
-  {
-    id: 3,
-    generatedAt: '2026-02-28T18:00:00',
-    periodMonth: 2,
-    periodYear: 2026,
-    refillCount: 2,
-    totalLiters: 10000,
-    totalCostSoles: 190,
-    status: 'generated',
-  },
-];
+import { AuthenticationStore } from '../../iam/application/authentication.store';
+import { ReportRefillResource } from '../infrastructure/reports-response';
 
 export interface ReportPeriod {
   month: number;
@@ -44,11 +12,12 @@ export interface ReportPeriod {
 
 @Injectable({ providedIn: 'root' })
 export class ReportsStore {
-  private readonly waterConsumptionsSignal = signal<WaterConsumption[]>([]);
-  readonly waterConsumptions = this.waterConsumptionsSignal.asReadonly();
-  private readonly reportsSignal = signal<Report[]>(DEMO_REPORTS);
-  private readonly selectedMonthSignal = signal<number>(4);
-  private readonly selectedYearSignal = signal<number>(2026);
+  private readonly buildingId = 1;
+  private readonly currentDate = new Date();
+  private readonly refillsSignal = signal<ReportRefillResource[]>([]);
+  private readonly reportsSignal = signal<Report[]>([]);
+  private readonly selectedMonthSignal = signal<number>(this.currentDate.getMonth() + 1);
+  private readonly selectedYearSignal = signal<number>(this.currentDate.getFullYear());
   private readonly feedbackSignal = signal<string | null>(null);
   private readonly loadingSignal = signal<boolean>(false);
 
@@ -90,8 +59,6 @@ export class ReportsStore {
     ),
   );
 
-  readonly recentReports = computed(() => this.sortedReports().slice(0, 3));
-
   readonly selectedPeriodReport = computed(() =>
     this.sortedReports().find(
       (report) =>
@@ -100,26 +67,38 @@ export class ReportsStore {
     ) ?? null,
   );
 
-  constructor(private readonly reportsApi: ReportsApi) {}
+  readonly selectedPeriodRefillCount = computed(
+    () => this.calculateRefillTotals(this.selectedMonthSignal(), this.selectedYearSignal()).count,
+  );
+
+  readonly canGenerateReport = computed(
+    () =>
+      !this.loadingSignal() &&
+      !this.selectedPeriodReport() &&
+      this.selectedPeriodRefillCount() > 0,
+  );
+
+  constructor(
+    private readonly reportsApi: ReportsApi,
+    private readonly authenticationStore: AuthenticationStore,
+  ) {}
 
   loadReports(): void {
     this.loadingSignal.set(true);
-    this.reportsApi.getReports().subscribe({
-      next: (reports) => {
-        this.reportsSignal.set(reports.length > 0 ? this.sortReports(reports) : DEMO_REPORTS);
+    forkJoin({
+      reports: this.reportsApi.getReports(this.buildingId),
+      refills: this.reportsApi.getRefills(),
+    }).subscribe({
+      next: ({ reports, refills }) => {
+        this.refillsSignal.set(refills);
+        this.reportsSignal.set(this.sortReports(reports.map((report) => this.enrichReport(report))));
         this.loadingSignal.set(false);
       },
       error: () => {
-        this.reportsSignal.set(DEMO_REPORTS);
+        this.reportsSignal.set([]);
         this.feedbackSignal.set('reports.feedback.demoData');
         this.loadingSignal.set(false);
       },
-    });
-
-    // NUEVO: cargar consumos de agua
-    this.reportsApi.getWaterConsumptions().subscribe({
-      next: (consumptions) => this.waterConsumptionsSignal.set(consumptions),
-      error: () => this.waterConsumptionsSignal.set([]),
     });
   }
 
@@ -137,15 +116,35 @@ export class ReportsStore {
       return existingReport;
     }
 
-    if (!this.hasEnoughDataForSelectedPeriod()) {
+    if (this.selectedPeriodRefillCount() === 0) {
       this.feedbackSignal.set('reports.feedback.notEnoughData');
       return null;
     }
 
-    const generatedReport = this.createGeneratedReport();
-    this.reportsSignal.update((reports) => this.sortReports([generatedReport, ...reports]));
-    this.feedbackSignal.set('reports.feedback.generated');
-    return generatedReport;
+    const draft = this.createGeneratedReport();
+    this.loadingSignal.set(true);
+    this.reportsApi.createReport({
+      periodMonth: draft.periodMonth,
+      periodYear: draft.periodYear,
+      totalCostSoles: draft.totalCostSoles,
+      totalWaterLiters: draft.totalLiters,
+      generatedAt: draft.generatedAt,
+      buildingId: draft.buildingId ?? this.buildingId,
+      generatedByUserId: draft.generatedByUserId ?? 1,
+    }).subscribe({
+      next: (generatedReport) => {
+        this.reportsSignal.update((reports) =>
+          this.sortReports([this.enrichReport(generatedReport), ...reports]),
+        );
+        this.feedbackSignal.set('reports.feedback.generated');
+        this.loadingSignal.set(false);
+      },
+      error: () => {
+        this.feedbackSignal.set('reports.feedback.generateError');
+        this.loadingSignal.set(false);
+      },
+    });
+    return null;
   }
 
   markAsShared(id: number): void {
@@ -186,27 +185,50 @@ export class ReportsStore {
   private createGeneratedReport(): Report {
     const month = this.selectedMonthSignal();
     const year = this.selectedYearSignal();
+    const totals = this.calculateRefillTotals(month, year);
+    const currentUserId = this.authenticationStore.currentUser()?.userId ?? 1;
 
     return {
-      id: this.nextReportId(),
+      id: 0,
       generatedAt: new Date().toISOString(),
       periodMonth: month,
       periodYear: year,
-      refillCount: 3,
-      totalLiters: 18000,
-      totalCostSoles: 360,
+      refillCount: totals.count,
+      totalLiters: totals.liters,
+      totalCostSoles: totals.costSoles,
       status: 'generated',
-      buildingId: 1,
-      generatedByUserId: 1,
+      buildingId: this.buildingId,
+      generatedByUserId: currentUserId,
     };
   }
 
-  private hasEnoughDataForSelectedPeriod(): boolean {
-    return this.toPeriodKey(this.selectedMonthSignal(), this.selectedYearSignal()) === '2026-05';
+  private enrichReport(report: Report): Report {
+    const totals = this.calculateRefillTotals(report.periodMonth, report.periodYear);
+    return {
+      ...report,
+      refillCount: totals.count,
+      totalLiters: totals.liters,
+      totalCostSoles: totals.costSoles,
+    };
   }
 
-  private nextReportId(): number {
-    return Math.max(0, ...this.reportsSignal().map((report) => report.id)) + 1;
+  private calculateRefillTotals(month: number, year: number) {
+    const refills = this.refillsSignal().filter((refill) => {
+      const dateValue = refill.refillDate ?? refill.refill_date;
+      const buildingId = refill.buildingId ?? refill.building_id;
+      if (!dateValue || buildingId !== this.buildingId) return false;
+      const date = new Date(dateValue);
+      return date.getMonth() + 1 === month && date.getFullYear() === year;
+    });
+
+    return {
+      count: refills.length,
+      liters: refills.reduce((total, refill) => total + Number(refill.liters || 0), 0),
+      costSoles: refills.reduce(
+        (total, refill) => total + Number(refill.costSoles ?? refill.cost_soles ?? 0),
+        0,
+      ),
+    };
   }
 
   private toPeriodKey(month: number, year: number): string {

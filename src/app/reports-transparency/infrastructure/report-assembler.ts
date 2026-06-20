@@ -44,7 +44,7 @@ export class ReportAssembler implements BaseAssembler<Report, ReportResource, Re
   }
 
   private estimateRefillCount(totalLiters: number): number {
-    return Math.max(1, Math.round(totalLiters / 5000));
+    return totalLiters > 0 ? Math.max(1, Math.round(totalLiters / 5000)) : 0;
   }
 
   private toStatus(status: string | undefined): ReportStatus {

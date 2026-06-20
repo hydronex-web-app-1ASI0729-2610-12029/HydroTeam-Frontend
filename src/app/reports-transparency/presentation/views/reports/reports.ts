@@ -1,7 +1,9 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnInit, computed, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ReportPeriod, ReportsStore } from '../../../application/reports.store';
 import { Report } from '../../../domain/model/report.entity';
@@ -9,7 +11,7 @@ import { Report } from '../../../domain/model/report.entity';
 @Component({
   selector: 'app-reports',
   standalone: true,
-  imports: [DatePipe, DecimalPipe, MatButtonModule, MatIconModule, TranslatePipe],
+  imports: [DatePipe, DecimalPipe, FormsModule, MatButtonModule, MatIconModule, RouterLink, TranslatePipe],
   templateUrl: './reports.html',
   styleUrl: './reports.css',
 })

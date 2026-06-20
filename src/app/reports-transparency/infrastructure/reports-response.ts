@@ -26,3 +26,24 @@ export interface ReportResource extends BaseResource {
 export interface ReportsResponse extends BaseResponse {
   reports: ReportResource[];
 }
+
+export interface CreateReportResource {
+  periodMonth: number;
+  periodYear: number;
+  totalCostSoles: number;
+  totalWaterLiters: number;
+  generatedAt: string;
+  buildingId: number;
+  generatedByUserId: number;
+}
+
+export interface ReportRefillResource {
+  id: number;
+  refill_date?: string;
+  refillDate?: string;
+  liters: number;
+  cost_soles?: number;
+  costSoles?: number;
+  building_id?: number;
+  buildingId?: number;
+}

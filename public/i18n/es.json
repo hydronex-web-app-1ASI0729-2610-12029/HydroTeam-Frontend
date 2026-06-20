@@ -276,7 +276,15 @@
     "description": "Genera y descarga reportes para la junta de propietarios.",
     "periodLabel": "Periodo del reporte",
     "recentLabel": "Reportes recientes",
+    "selectedLabel": "Reporte del periodo seleccionado",
     "historyLabel": "Historial de reportes",
+    "help": {
+      "title": "¿Cómo genero un nuevo reporte?",
+      "noRefills": "1. Ve a Refill Management en el menú lateral. 2. Pulsa Registrar recarga y selecciona una fecha de este mes. 3. Regresa a Reportes y pulsa Generar reporte.",
+      "ready": "Este mes ya tiene recargas registradas. Pulsa Generar reporte para crear el resumen mensual.",
+      "alreadyGenerated": "Este mes ya tiene un reporte. Para crear otro, selecciona un mes diferente y registra su recarga desde Refill Management en el menú lateral.",
+      "action": "Ir a registrar una recarga"
+    },
     "months": {
       "1": "Enero",
       "2": "Febrero",
@@ -293,6 +301,8 @@
     },
     "actions": {
       "generate": "Generar reporte",
+      "generated": "Reporte generado",
+      "noRefills": "Sin recargas",
       "download": "Descargar",
       "share": "Compartir",
       "view": "Ver reporte"
@@ -317,7 +327,10 @@
     "empty": {
       "title": "Aun no hay reportes",
       "description": "Cuando se generen reportes mensuales, apareceran en esta seccion.",
-      "filtered": "No se encontraron reportes para el periodo seleccionado."
+      "filtered": "No se encontraron reportes para el periodo seleccionado.",
+      "filteredTitle": "Aun no hay reporte para este periodo",
+      "noRefills": "Registra al menos una recarga en este mes antes de generar el reporte.",
+      "readyToGenerate": "Ya hay recargas disponibles. Puedes generar el reporte."
     },
     "loading": {
       "title": "Cargando reportes",
@@ -329,7 +342,8 @@
       "generated": "El reporte fue generado y agregado al historial.",
       "shared": "El reporte fue marcado como compartido con los propietarios.",
       "preview": "La vista previa del reporte esta lista en la tabla del historial.",
-      "demoData": "Mostrando reportes de demostracion mientras el servicio remoto no esta disponible."
+      "demoData": "No se pudieron cargar los reportes desde el servidor.",
+      "generateError": "No se pudo generar el reporte en el servidor."
     }
   }
 }

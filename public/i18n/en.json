@@ -276,7 +276,15 @@
     "description": "Generate and download reports for the owners meeting.",
     "periodLabel": "Report period",
     "recentLabel": "Recent reports",
+    "selectedLabel": "Selected period report",
     "historyLabel": "Report history",
+    "help": {
+      "title": "How do I generate a new report?",
+      "noRefills": "1. Open Refill Management from the side menu. 2. Click Register refill and choose a date in this month. 3. Return to Reports and click Generate report.",
+      "ready": "This month already has registered refills. Click Generate report to create the monthly summary.",
+      "alreadyGenerated": "This month already has a report. To create another one, select a different month and register its refill from Refill Management in the side menu.",
+      "action": "Register a refill"
+    },
     "months": {
       "1": "January",
       "2": "February",
@@ -293,6 +301,8 @@
     },
     "actions": {
       "generate": "Generate report",
+      "generated": "Report generated",
+      "noRefills": "No refills",
       "download": "Download",
       "share": "Share",
       "view": "View report"
@@ -317,7 +327,10 @@
     "empty": {
       "title": "No reports yet",
       "description": "Monthly reports will appear in this section once they are generated.",
-      "filtered": "No reports were found for the selected period."
+      "filtered": "No reports were found for the selected period.",
+      "filteredTitle": "There is no report for this period yet",
+      "noRefills": "Register at least one refill in this month before generating the report.",
+      "readyToGenerate": "Refill data is available. You can generate the report."
     },
     "loading": {
       "title": "Loading reports",
@@ -329,7 +342,8 @@
       "generated": "The report was generated and added to the history.",
       "shared": "The report was marked as shared with the owners.",
       "preview": "Report preview is ready in the history table.",
-      "demoData": "Showing demo reports while the remote service is unavailable."
+      "demoData": "Reports could not be loaded from the server.",
+      "generateError": "The report could not be generated on the server."
     }
   }
 }

@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  databaseProviderApiBaseUrl: 'https://fakeapi-opensource.onrender.com/api/v1',
+  databaseProviderApiBaseUrl: 'http://localhost:8080/api/v1',
   databaseProviderUsersEndpointPath: '/users',
   databaseProviderBuildingsEndpointPath: '/buildings',
   databaseProviderUserBuildingsEndpointPath: '/user_buildings',
