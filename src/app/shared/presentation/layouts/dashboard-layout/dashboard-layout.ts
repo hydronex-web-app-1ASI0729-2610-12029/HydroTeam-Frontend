@@ -11,7 +11,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class DashboardLayout {
   protected readonly navigationOptions = signal([
-    { link: '/dashboard', icon: '▦', label: 'dashboardLayout.nav.home', exact: true },
+    //{ link: '/dashboard', icon: '▦', label: 'dashboardLayout.nav.home', exact: true },
     { link: '/dashboard/monitoring', icon: '📊', label: 'dashboardLayout.nav.monitoring', exact: false },
     { link: '/dashboard/alerts', icon: '⚠️', label: 'dashboardLayout.nav.alerts', exact: false },
     { link: '/dashboard/reports', icon: '📄', label: 'dashboardLayout.nav.reports', exact: false },
@@ -19,8 +19,8 @@ export class DashboardLayout {
     { link: '/dashboard/refill-management', icon: '🔄', label: 'Refill Management', exact: false },
     { link: '/dashboard/billing', icon: '⎔', label: 'Subscriptions', exact: false },
     //TODO: Routes to do later
-    { link: '/dashboard/history', icon: '📝', label: 'dashboardLayout.nav.history', exact: false },
-    { link: '/dashboard/settings', icon: '⚙', label: 'dashboardLayout.nav.settings', exact: false },
-    { link: '/dashboard/profile', icon: '👤', label: 'dashboardLayout.nav.profile', exact: false }
+    //{ link: '/dashboard/history', icon: '📝', label: 'dashboardLayout.nav.history', exact: false },
+    //{ link: '/dashboard/settings', icon: '⚙', label: 'dashboardLayout.nav.settings', exact: false },
+    //{ link: '/dashboard/profile', icon: '👤', label: 'dashboardLayout.nav.profile', exact: false }
   ]);
 }
