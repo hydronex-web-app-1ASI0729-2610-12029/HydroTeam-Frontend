@@ -78,7 +78,7 @@ export class BillingView {
 
     this.invoice.set({
       planName: selectedPlan.name,
-      price: selectedPlan.price,
+      price: selectedPlan.priceSoles,
       purchaseDate: today.toLocaleDateString('es-PE'),
       expiryDate: expirationDate.toLocaleDateString('es-PE'),
       buildingId: buildingId
