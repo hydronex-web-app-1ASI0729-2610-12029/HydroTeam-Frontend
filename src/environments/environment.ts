@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  databaseProviderApiBaseUrl: 'https://fakeapi-opensource.onrender.com/api/v1',
+  databaseProviderApiBaseUrl: 'https://hydroteam-backend.onrender.com/api/v1',
   databaseProviderUsersEndpointPath: '/users',
   databaseProviderBuildingsEndpointPath: '/buildings',
   databaseProviderUserBuildingsEndpointPath: '/user_buildings',

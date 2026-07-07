@@ -184,21 +184,39 @@
       "generate": "Descargar reporte"
     }
   },
-  "alerts": {
-    "eyebrow": "Gestión de riesgos",
-    "title": "Alertas y notificaciones",
-    "description": "Revisa alertas relacionadas con niveles críticos, consumo inusual y eventos del suministro.",
-    "level": {
-      "low": "Nivel bajo",
-      "resolved": "Resuelto"
-    },
-    "sample": {
-      "lowTitle": "La cisterna se acerca al umbral de advertencia",
-      "lowDescription": "El sistema puede notificar al administrador antes de que la cisterna llegue a un nivel crítico.",
-      "resolvedTitle": "Recarga registrada correctamente",
-      "resolvedDescription": "Este placeholder muestra cómo aparecerán los eventos resueltos en el historial de alertas."
-    }
+"alerts": {
+  "eyebrow": "Gestión de riesgos",
+  "title": "Alertas y notificaciones",
+  "description": "Revisa alertas relacionadas con niveles críticos, consumo inusual y eventos del suministro.",
+  "critical-banner": "Alertas críticas activas",
+  "empty": "No se encontraron alertas.",
+  "filter": {
+    "allTypes": "Todos los tipos",
+    "critical": "Crítica",
+    "low": "Baja",
+    "sensorOffline": "Sensor desconectado",
+    "highUsage": "Alto consumo",
+    "allStatuses": "Todos los estados",
+    "pending": "Pendiente",
+    "inProgress": "En progreso",
+    "resolved": "Resuelta"
   },
+  "level": {
+    "low": "Nivel bajo",
+    "resolved": "Resuelto",
+    "critical": "Crítica"
+  },
+  "sample": {
+    "lowTitle": "La cisterna se acerca al umbral de advertencia",
+    "lowDescription": "El sistema puede notificar al administrador antes de que la cisterna llegue a un nivel crítico.",
+    "resolvedTitle": "Recarga registrada correctamente",
+    "resolvedDescription": "Este placeholder muestra cómo aparecerán los eventos resueltos en el historial de alertas."
+  }
+},
+"notifications": {
+  "title": "Notificaciones",
+  "empty": "Sin nuevas notificaciones."
+},
   "iam": {
     "login": {
       "title": "Bienvenido de nuevo",

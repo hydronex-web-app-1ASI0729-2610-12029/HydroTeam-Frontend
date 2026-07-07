@@ -142,3 +142,81 @@
     flex-direction: column;
   }
 }
+
+.btn-create {
+  align-items: center;
+  background: var(--tankiq-primary, #29ABE2);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.875rem;
+  gap: 4px;
+  padding: 8px 14px;
+}
+
+.btn-resolve {
+  align-items: center;
+  background: var(--tankiq-success, #43A047);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  padding: 4px;
+}
+
+.btn-delete {
+  align-items: center;
+  background: #e53935;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  padding: 4px;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 8px 14px;
+}
+
+.create-form {
+  background: var(--tankiq-white);
+  border-radius: 14px;
+  box-shadow: var(--tankiq-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.form-input {
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  padding: 8px 12px;
+}
+
+.form-input:focus {
+  border-color: var(--tankiq-primary, #29ABE2);
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
