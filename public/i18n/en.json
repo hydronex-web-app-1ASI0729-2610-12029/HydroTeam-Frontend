@@ -208,7 +208,9 @@
       "password": "Password",
       "action": "Sign In",
       "noAccount": "Don't have an account?",
-      "signUpLink": "Sign Up"
+      "signUpLink": "Sign Up",
+      "signUpLink": "Sign Up",
+      "signInError": "Sign in failed. Please check your credentials."
     },
     "signUp": {
       "title": "Create account",
@@ -222,10 +224,12 @@
       "roleResident": "Resident",
       "phoneNumber": "Phone number",
       "apartmentNumber": "Apartment number",
+      "apartmentPlaceholder": "e.g. 4B",
       "action": "Create Account",
       "hasAccount": "Already have an account?",
       "signInLink": "Sign In",
-      "successMessage": "Account created successfully! Please sign in."
+      "successMessage": "Account created successfully! Please sign in.",
+      "signUpError": "Sign up failed. Please try again."
     },
     "validation": {
       "emailRequired": "Email is required.",
