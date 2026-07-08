@@ -13,6 +13,7 @@ export class UserAssembler {
         name: user.name,
         email: user.email,
         role: UserRole.ADMINISTRATOR,
+        buildingId: user.buildingId,
         phoneNumber: user.phoneNumber ?? '',
       });
     }
@@ -23,6 +24,7 @@ export class UserAssembler {
         name: user.name,
         email: user.email,
         role: UserRole.RESIDENT,
+        buildingId: user.buildingId,
         apartmentNumber: user.apartmentNumber ?? '',
       });
     }
@@ -32,6 +34,7 @@ export class UserAssembler {
       name: user.name,
       email: user.email,
       role: user.role,
+      buildingId: user.buildingId,
     });
   }
 }
