@@ -208,7 +208,8 @@
       "password": "Contraseña",
       "action": "Iniciar sesión",
       "noAccount": "¿No tienes cuenta?",
-      "signUpLink": "Regístrate"
+      "signUpLink": "Regístrate",
+      "signInError": "Error al iniciar sesión. Verifica tus credenciales."
     },
     "signUp": {
       "title": "Crear cuenta",
@@ -222,10 +223,12 @@
       "roleResident": "Residente",
       "phoneNumber": "Número de teléfono",
       "apartmentNumber": "Número de departamento",
+      "apartmentPlaceholder": "ej. 4B",
       "action": "Crear cuenta",
       "hasAccount": "¿Ya tienes cuenta?",
       "signInLink": "Iniciar sesión",
-      "successMessage": "¡Cuenta creada exitosamente! Por favor inicia sesión."
+      "successMessage": "¡Cuenta creada exitosamente! Por favor inicia sesión.",
+      "signUpError": "Error al crear la cuenta. Intenta de nuevo."
     },
     "validation": {
       "emailRequired": "El correo es requerido.",
