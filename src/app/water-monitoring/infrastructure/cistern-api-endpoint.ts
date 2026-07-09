@@ -5,9 +5,6 @@ import { Cistern } from '../domain/model/cistern.entity';
 import { CisternResource, CisternResponse } from './cistern-response';
 import { CisternAssembler } from './cistern-assembler';
 
-const baseUrl = environment.databaseProviderApiBaseUrl;
-const cisternPath = environment.databaseProviderCisternsEndpointPath;
-
 export class CisternApiEndpoint extends BaseApiEndpoint<
   Cistern,
   CisternResource,
@@ -15,6 +12,6 @@ export class CisternApiEndpoint extends BaseApiEndpoint<
   CisternAssembler
 > {
   constructor(http: HttpClient) {
-    super(http, `${baseUrl}${cisternPath}`, new CisternAssembler());
+    super(http, `${environment.monitoringApiBaseUrl}/cisterns`, new CisternAssembler());
   }
 }
