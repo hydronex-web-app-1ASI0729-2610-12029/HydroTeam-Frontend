@@ -2,35 +2,39 @@
 
 import { computed, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { User, UserRole } from '../domain/user.entity';
 import { IamApi } from '../infrastructure/iam-api';
 import { UserAssembler } from '../infrastructure/user-assembler';
 
 const TOKEN_KEY = 'tankiq-token';
-const USER_KEY  = 'tankiq-user';
+const USER_KEY = 'tankiq-user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationStore {
   // Private signals
   private readonly currentUserSignal = signal<User | null>(this.restoreUser());
-  private readonly tokenSignal       = signal<string | null>(localStorage.getItem(TOKEN_KEY));
-  private readonly loadingSignal     = signal<boolean>(false);
-  private readonly errorSignal       = signal<string | null>(null);
+  private readonly tokenSignal = signal<string | null>(localStorage.getItem(TOKEN_KEY));
+  private readonly loadingSignal = signal<boolean>(false);
+  private readonly errorSignal = signal<string | null>(null);
 
   // Public readonly signals
-  readonly currentUser    = this.currentUserSignal.asReadonly();
-  readonly token          = this.tokenSignal.asReadonly();
-  readonly loading        = this.loadingSignal.asReadonly();
-  readonly error          = this.errorSignal.asReadonly();
+  readonly currentUser = this.currentUserSignal.asReadonly();
+  readonly token = this.tokenSignal.asReadonly();
+  readonly loading = this.loadingSignal.asReadonly();
+  readonly error = this.errorSignal.asReadonly();
 
-  // Computed 
+  // Computed
   readonly isAuthenticated = computed(() => !!this.tokenSignal());
-  readonly isAdministrator = computed(() => this.currentUserSignal()?.role === UserRole.ADMINISTRATOR);
-  readonly isResident      = computed(() => this.currentUserSignal()?.role === UserRole.RESIDENT);
+  readonly isAdministrator = computed(
+    () => this.currentUserSignal()?.role === UserRole.ADMINISTRATOR,
+  );
+  readonly isResident = computed(() => this.currentUserSignal()?.role === UserRole.RESIDENT);
 
   constructor(
     private readonly iamApi: IamApi,
     private readonly router: Router,
+    private readonly translate: TranslateService,
   ) {}
 
   // ── Actions
@@ -55,7 +59,7 @@ export class AuthenticationStore {
           resolve();
         },
         error: (err) => {
-          const message = this.formatError(err, 'Sign in failed. Please check your credentials.');
+          const message = this.formatError(err, this.translate.instant('iam.login.signInError'));
           this.errorSignal.set(message);
           this.loadingSignal.set(false);
           reject(message);
@@ -82,7 +86,7 @@ export class AuthenticationStore {
           resolve();
         },
         error: (err) => {
-          const message = this.formatError(err, 'Sign up failed. Please try again.');
+          const message = this.formatError(err, this.translate.instant('iam.signUp.signUpError'));
           this.errorSignal.set(message);
           this.loadingSignal.set(false);
           reject(message);
@@ -106,7 +110,7 @@ export class AuthenticationStore {
     this.errorSignal.set(null);
   }
 
-  //  Private helpers 
+  //  Private helpers
 
   private restoreUser(): User | null {
     try {
