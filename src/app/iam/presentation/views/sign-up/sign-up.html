@@ -69,7 +69,7 @@
         @if (selectedRole === UserRole.RESIDENT) {
           <mat-form-field appearance="outline" class="field-animate">
             <mat-label>{{ 'iam.signUp.apartmentNumber' | translate }}</mat-label>
-            <input matInput formControlName="apartmentNumber" placeholder="e.g. 4B" />
+            <input matInput formControlName="apartmentNumber" [placeholder]="'iam.signUp.apartmentPlaceholder' | translate" />
             <mat-icon matPrefix>apartment</mat-icon>
             <mat-error *ngIf="apartmentNumberCtrl?.hasError('required')">
               {{ 'iam.validation.apartmentRequired' | translate }}

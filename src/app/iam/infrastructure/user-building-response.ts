@@ -1,9 +1,10 @@
 // src/app/iam/infrastructure/user-building-response.ts
 
 export interface UserBuildingResponse {
-  user_id: number;
-  building_id: number;
+  id: number;
+  userId: number;
+  buildingId: number;
   role: string;
-  apartment_number: string;
-  associated_at: string;
+  apartmentNumber: string;
+  associatedAt: string;
 }
