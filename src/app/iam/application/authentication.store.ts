@@ -55,7 +55,8 @@ export class AuthenticationStore {
           localStorage.setItem(USER_KEY, JSON.stringify(response.user));
 
           this.loadingSignal.set(false);
-          this.router.navigate(['/dashboard']);
+          //this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/monitoring']);
           resolve();
         },
         error: (err) => {

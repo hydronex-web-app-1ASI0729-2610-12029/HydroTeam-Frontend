@@ -276,7 +276,7 @@
     "rights": "All rights reserved."
   },
   "dashboardLayout": {
-    "title": "Dashboard",
+    "title": "Welcome",
     "subtitle": "Edificio Los Pinos · SJL · Updated 3 min ago",
     "nav": {
       "home": "Home",
@@ -285,7 +285,8 @@
       "history": "History",
       "reports": "Reports",
       "settings": "Settings",
-      "profile": "Profile"
+      "profile": "Profile",
+      "refill": "Refill"
     },
     "user": {
       "role": "Administrator",
@@ -352,6 +353,6 @@
       "shared": "The report was marked as shared with the owners.",
       "preview": "Report preview is ready in the history table.",
       "demoData": "Showing demo reports while the remote service is unavailable."
-    }
+  }
   }
 }

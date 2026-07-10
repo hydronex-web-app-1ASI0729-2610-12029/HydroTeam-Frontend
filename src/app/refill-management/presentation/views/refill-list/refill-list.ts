@@ -14,6 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { RefillManagementStore } from '../../../application/refill-management.store';
 import { Refill } from '../../../domain/model/refill.entity';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-refill-list',
@@ -29,7 +30,8 @@ import { Refill } from '../../../domain/model/refill.entity';
     MatProgressBarModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    TranslatePipe
   ],
   providers: [RefillManagementStore],
   templateUrl: './refill-list.html',

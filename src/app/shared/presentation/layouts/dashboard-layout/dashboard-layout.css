@@ -212,3 +212,24 @@
     flex-direction: column;
   }
 }
+
+
+
+.dashboard-user-card__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-user-card__info strong,
+.dashboard-user-card__info small {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-logout-button {
+  align-self: flex-start;
+  margin-top: 10px;
+}
