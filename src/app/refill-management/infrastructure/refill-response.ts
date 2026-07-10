@@ -1,12 +1,18 @@
 export interface RefillResource {
   id: number;
-  refill_date: string;
+  //refill_date: string;
+  refillDate: string;
   liters: number;
-  cost_soles: number;
-  supplier_name: string;
-  invoice_number: string;
-  building_id: number;
-  registered_by_user_id: number;
+  //cost_soles: number;
+  costSoles: number;
+  //supplier_name: string;
+  supplierName: string;
+  //invoice_number: string;
+  invoiceNumber: string;
+  //building_id: number;
+  buildingId: number;
+  //registered_by_user_id: number;
+  registeredByUserId: number;
 }
 
 export interface RefillsResponse {
@@ -14,22 +20,22 @@ export interface RefillsResponse {
 }
 
 export interface CreateRefillResource {
-  refill_date: string;
+  refillDate: string;
   liters: number;
-  cost_soles: number;
-  supplier_name: string;
-  invoice_number: string;
-  building_id: number;
-  registered_by_user_id: number;
+  costSoles: number;
+  supplierName: string;
+  invoiceNumber: string;
+  buildingId: number;
+  registeredByUserId: number;
 }
 
 export interface UpdateRefillResource {
   id: number;
-  refill_date: string;
+  refillDate: string;
   liters: number;
-  cost_soles: number;
-  supplier_name: string;
-  invoice_number: string;
-  building_id: number;
-  registered_by_user_id: number;
+  costSoles: number;
+  supplierName: string;
+  invoiceNumber: string;
+  buildingId: number;
+  registeredByUserId: number;
 }

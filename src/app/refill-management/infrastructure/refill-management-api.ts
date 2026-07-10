@@ -36,53 +36,53 @@ export class RefillManagementApi {
     return [
       {
         id: 1,
-        refill_date: '2026-05-10T10:00:00Z',
+        refillDate: '2026-05-10T10:00:00Z',
         liters: 5000,
-        cost_soles: 120,
-        supplier_name: 'Agua Express Lima',
-        invoice_number: 'FT-001-2941',
-        building_id: 1,
-        registered_by_user_id: 1
+        costSoles: 120,
+        supplierName: 'Agua Express Lima',
+        invoiceNumber: 'FT-001-2941',
+        buildingId: 1,
+        registeredByUserId: 1
       },
       {
         id: 2,
-        refill_date: '2026-05-15T14:30:00Z',
+        refillDate: '2026-05-15T14:30:00Z',
         liters: 10000,
-        cost_soles: 240,
-        supplier_name: 'HydroTrans S.A.C.',
-        invoice_number: 'FT-005-8812',
-        building_id: 2,
-        registered_by_user_id: 2
+        costSoles: 240,
+        supplierName: 'HydroTrans S.A.C.',
+        invoiceNumber: 'FT-005-8812',
+        buildingId: 2,
+        registeredByUserId: 2
       },
       {
         id: 3,
-        refill_date: '2026-05-28T08:15:00Z',
+        refillDate: '2026-05-28T08:15:00Z',
         liters: 5000,
-        cost_soles: 130,
-        supplier_name: 'Aquamax Peru',
-        invoice_number: 'FT-012-0492',
-        building_id: 3,
-        registered_by_user_id: 3
+        costSoles: 130,
+        supplierName: 'Aquamax Peru',
+        invoiceNumber: 'FT-012-0492',
+        buildingId: 3,
+        registeredByUserId: 3
       },
       {
         id: 4,
-        refill_date: '2026-05-02T11:00:00Z',
+        refillDate: '2026-05-02T11:00:00Z',
         liters: 8000,
-        cost_soles: 190,
-        supplier_name: 'Agua Express Lima',
-        invoice_number: 'FT-001-2810',
-        building_id: 4,
-        registered_by_user_id: 1
+        costSoles: 190,
+        supplierName: 'Agua Express Lima',
+        invoiceNumber: 'FT-001-2810',
+        buildingId: 4,
+        registeredByUserId: 1
       },
       {
         id: 5,
-        refill_date: '2026-05-22T16:45:00Z',
+        refillDate: '2026-05-22T16:45:00Z',
         liters: 6000,
-        cost_soles: 150,
-        supplier_name: 'Surco Water Supply',
-        invoice_number: 'FT-002-3341',
-        building_id: 5,
-        registered_by_user_id: 2
+        costSoles: 150,
+        supplierName: 'Surco Water Supply',
+        invoiceNumber: 'FT-002-3341',
+        buildingId: 5,
+        registeredByUserId: 2
       }
     ];
   }

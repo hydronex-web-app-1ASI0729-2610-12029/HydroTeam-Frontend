@@ -33,6 +33,7 @@ export const routes: Routes = [
       { path: 'reports', loadChildren: reportsRoutes },
       { path: 'refill-management', loadChildren: refillRoutes, title: `${baseTitle} - Refill` },
       { path: 'billing', loadChildren: billingRoutes, title: `${baseTitle} - Billing` },
+      { path: 'notifications', loadChildren: notificationRoutes },
       //TODO: Routes to do later
       { path: 'settings', loadComponent: placeholder, title: `${baseTitle} - Settings` },
       { path: 'profile', loadComponent: placeholder, title: `${baseTitle} - Profile` },

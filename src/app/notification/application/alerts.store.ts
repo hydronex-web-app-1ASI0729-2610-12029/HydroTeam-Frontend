@@ -30,7 +30,7 @@ export class AlertsStore {
     this.loadAlerts();
   }
 
-private loadAlerts(): void {
+  private loadAlerts(): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     this.alertsApi.getAlerts().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
@@ -41,6 +41,29 @@ private loadAlerts(): void {
       },
       error: (error: unknown) => {
         this.errorSignal.set(this.formatError(error, 'Failed to load alerts'));
+        this.loadingSignal.set(false);
+      }
+    });
+  }
+
+  createAlert(type: AlertType, message: string, cisternId: string): void {
+    const newAlert = new Alert({
+      id: 0,
+      type,
+      message,
+      status: AlertStatus.pending,
+      triggeredAt: new Date().toISOString(),
+      resolvedAt: null,
+      cisternId
+    });
+    this.loadingSignal.set(true);
+    this.alertsApi.createAlert(newAlert).pipe(retry(2)).subscribe({
+      next: (created) => {
+        this.alertsSignal.update(alerts => [...alerts, created]);
+        this.loadingSignal.set(false);
+      },
+      error: (error: unknown) => {
+        this.errorSignal.set(this.formatError(error, 'Failed to create alert'));
         this.loadingSignal.set(false);
       }
     });

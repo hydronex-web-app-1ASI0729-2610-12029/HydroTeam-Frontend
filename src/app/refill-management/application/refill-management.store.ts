@@ -54,10 +54,12 @@ export class RefillManagementStore {
         const refills = RefillAssembler.toEntitiesFromResponse(response);
         this._refills.set(refills);
         this._loading.set(false);
+        console.log('Refills loaded:', refills);
       },
       error: () => {
         this._error.set('No se pudieron cargar las recargas.');
         this._loading.set(false);
+        console.log('Error loading refills:', this._error());
       }
     });
   }

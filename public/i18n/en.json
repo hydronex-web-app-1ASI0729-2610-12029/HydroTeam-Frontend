@@ -184,21 +184,39 @@
       "generate": "Download report"
     }
   },
-  "alerts": {
-    "eyebrow": "Risk management",
-    "title": "Alerts & Notifications",
-    "description": "Review alerts related to critical levels, unusual consumption and supply events.",
-    "level": {
-      "low": "Low level",
-      "resolved": "Resolved"
-    },
-    "sample": {
-      "lowTitle": "Cistern approaching warning threshold",
-      "lowDescription": "The system can notify the administrator before the cistern reaches a critical level.",
-      "resolvedTitle": "Refill registered successfully",
-      "resolvedDescription": "This placeholder confirms how resolved events will appear in the alert history."
-    }
+"alerts": {
+  "eyebrow": "Risk management",
+  "title": "Alerts & Notifications",
+  "description": "Review alerts related to critical levels, unusual consumption and supply events.",
+  "critical-banner": "Critical alerts active",
+  "empty": "No alerts found.",
+  "filter": {
+    "allTypes": "All types",
+    "critical": "Critical",
+    "low": "Low",
+    "sensorOffline": "Sensor offline",
+    "highUsage": "High usage",
+    "allStatuses": "All statuses",
+    "pending": "Pending",
+    "inProgress": "In progress",
+    "resolved": "Resolved"
   },
+  "level": {
+    "low": "Low level",
+    "resolved": "Resolved",
+    "critical": "Critical"
+  },
+  "sample": {
+    "lowTitle": "Cistern approaching warning threshold",
+    "lowDescription": "The system can notify the administrator before the cistern reaches a critical level.",
+    "resolvedTitle": "Refill registered successfully",
+    "resolvedDescription": "This placeholder confirms how resolved events will appear in the alert history."
+  }
+},
+"notifications": {
+  "title": "Notifications",
+  "empty": "No new notifications."
+},
   "iam": {
     "login": {
       "title": "Welcome back",
