@@ -288,7 +288,8 @@
       "profile": "Perfil"
     },
     "user": {
-      "role": "Administrador"
+      "role": "Administrador",
+      "logout": "Cerrar sesión"
     }
   },
   "reports": {

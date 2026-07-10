@@ -1,11 +1,16 @@
 import { Component, computed, inject } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
 import { WaterMonitoringStore } from '../../../application/water-monitoring.store';
+import { Building } from '../../../domain/model/building.entity';
+import { Cistern } from '../../../domain/model/cistern.entity';
+import { Sensor } from '../../../domain/model/sensor.entity';
+import { WaterLevel } from '../../../domain/model/water-level.entity';
 
 @Component({
   selector: 'app-monitoring',
@@ -13,6 +18,7 @@ import { WaterMonitoringStore } from '../../../application/water-monitoring.stor
   imports: [
     DatePipe,
     DecimalPipe,
+    FormsModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatButtonModule,
@@ -77,6 +83,18 @@ export class Monitoring {
       ` ${pts[pts.length - 1].x},${bottom}`;
   });
 
+  showBuildingForm = false;
+  buildingForm = { name: '', address: '', district: '' };
+
+  showCisternForm = false;
+  cisternForm = { capacityLiters: 0, currentLevelPercent: 0, alertThresholdPercent: 20, buildingId: 0 };
+
+  showSensorForm = false;
+  sensorForm = { hardwareId: '', type: 'ULTRASONIC', status: 'ACTIVE', cisternId: 0 };
+
+  showReadingForm = false;
+  readingForm = { levelPercent: 0, volumeLiters: 0, recordedAt: '', sensorId: 0 };
+
   scaleY(value: number): number {
     const top = this.chartPadding.top;
     const bottom = this.chartHeight - this.chartPadding.bottom;
@@ -85,6 +103,57 @@ export class Monitoring {
 
   toggleChartView(): void {
     this.chartShowBars = !this.chartShowBars;
+  }
+
+  submitBuilding(): void {
+    const b = this.buildingForm;
+    if (!b.name || !b.address || !b.district) return;
+    this.store.createBuilding(new Building({ id: 0, name: b.name, address: b.address, district: b.district }));
+    this.buildingForm = { name: '', address: '', district: '' };
+    this.showBuildingForm = false;
+  }
+
+  submitCistern(): void {
+    const c = this.cisternForm;
+    if (!c.buildingId) return;
+    this.store.createCistern(new Cistern({
+      id: 0,
+      capacityLiters: c.capacityLiters,
+      currentLevelPercent: c.currentLevelPercent,
+      alertThresholdPercent: c.alertThresholdPercent,
+      buildingId: c.buildingId,
+    }));
+    this.cisternForm = { capacityLiters: 0, currentLevelPercent: 0, alertThresholdPercent: 20, buildingId: 0 };
+    this.showCisternForm = false;
+  }
+
+  submitSensor(): void {
+    const s = this.sensorForm;
+    if (!s.hardwareId || !s.cisternId) return;
+    this.store.createSensor(new Sensor({
+      id: 0,
+      hardwareId: s.hardwareId,
+      type: s.type,
+      status: s.status,
+      lastSyncAt: new Date().toISOString(),
+      cisternId: s.cisternId,
+    }));
+    this.sensorForm = { hardwareId: '', type: 'ULTRASONIC', status: 'ACTIVE', cisternId: 0 };
+    this.showSensorForm = false;
+  }
+
+  submitReading(): void {
+    const r = this.readingForm;
+    if (!r.sensorId || !r.recordedAt) return;
+    this.store.createWaterLevel(new WaterLevel({
+      id: 0,
+      levelPercent: r.levelPercent,
+      volumeLiters: r.volumeLiters,
+      recordedAt: new Date(r.recordedAt).toISOString(),
+      sensorId: r.sensorId,
+    }));
+    this.readingForm = { levelPercent: 0, volumeLiters: 0, recordedAt: '', sensorId: 0 };
+    this.showReadingForm = false;
   }
 
   generateReport(): void {
