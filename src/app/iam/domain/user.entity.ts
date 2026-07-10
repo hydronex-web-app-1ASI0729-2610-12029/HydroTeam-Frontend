@@ -11,6 +11,7 @@ export interface UserProps {
   email: string;
   password?: string;
   role: UserRole;
+  buildingId?: number | null;
   phoneNumber?: string;
   apartmentNumber?: string;
 }
@@ -21,6 +22,7 @@ export class User {
   readonly email: string;
   readonly password: string;
   readonly role: UserRole;
+  readonly buildingId: number | null;
 
   constructor(props: UserProps) {
     this.userId = props.userId;
@@ -28,6 +30,7 @@ export class User {
     this.email = props.email;
     this.password = props.password ?? '';
     this.role = props.role;
+    this.buildingId = props.buildingId ?? null;
   }
 
   get isAdministrator(): boolean {
