@@ -276,7 +276,7 @@
     "rights": "Todos los derechos reservados."
   },
   "dashboardLayout": {
-    "title": "Dashboard",
+    "title": "Bienvenido",
     "subtitle": "Edificio Los Pinos · SJL · Actualizado hace 3 min",
     "nav": {
       "home": "Inicio",
@@ -285,7 +285,8 @@
       "history": "Historial",
       "reports": "Reportes",
       "settings": "Configuración",
-      "profile": "Perfil"
+      "profile": "Perfil",
+      "refill": "Recarga"
     },
     "user": {
       "role": "Administrador",

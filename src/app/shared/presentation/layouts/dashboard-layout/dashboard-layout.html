@@ -4,15 +4,15 @@
       <span class="dashboard-brand__mark">◆</span>
       <span>Tank<span>IQ</span></span>
     </a>
-    
-      
+
     <nav class="dashboard-sidebar__nav">
       @for (option of navigationOptions(); track option.label) {
-      <a
+        <a
           class="dashboard-sidebar__link"
           [routerLink]="option.link"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: option.exact }">
+          [routerLinkActiveOptions]="{ exact: option.exact }"
+        >
           <span class="dashboard-sidebar__icon">{{ option.icon }}</span>
           <span>{{ option.label | translate }}</span>
         </a>
@@ -21,13 +21,25 @@
 
     <div class="dashboard-user-card">
       <span class="dashboard-user-card__avatar">{{ userInitials }}</span>
+      <!--
       <div>
         <strong>{{ userName }}</strong>
         <small>{{ userEmail }}</small>
       </div>
-      <button class="dashboard-logout-button" type="button" (click)="logout()" aria-label="Logout">
-        {{ 'dashboardLayout.user.logout' | translate }}
-      </button>
+    -->
+      <div class="dashboard-user-card__info">
+        <strong>{{ userName }}</strong>
+        <small>{{ userEmail }}</small>
+
+        <button
+          class="dashboard-logout-button"
+          type="button"
+          (click)="logout()"
+          aria-label="Logout"
+        >
+          {{ 'dashboardLayout.user.logout' | translate }}
+        </button>
+      </div>
     </div>
   </aside>
 
