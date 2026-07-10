@@ -259,4 +259,178 @@
       </article>
     </div>
   }
+
+  <div class="management-grid">
+
+    <article class="tankiq-card">
+      <div class="management-header">
+        <h3 class="management-title">Buildings</h3>
+        <button mat-stroked-button (click)="showBuildingForm = !showBuildingForm">
+          <mat-icon>{{ showBuildingForm ? 'close' : 'add' }}</mat-icon>
+          {{ showBuildingForm ? 'Cancel' : 'New' }}
+        </button>
+      </div>
+
+      @if (showBuildingForm) {
+        <form class="crud-form" (ngSubmit)="submitBuilding()">
+          <input class="crud-input" [(ngModel)]="buildingForm.name" name="name" placeholder="Name" required />
+          <input class="crud-input" [(ngModel)]="buildingForm.address" name="address" placeholder="Address" required />
+          <input class="crud-input" [(ngModel)]="buildingForm.district" name="district" placeholder="District" required />
+          <button mat-flat-button color="primary" type="submit">Save</button>
+        </form>
+      }
+
+      <div class="entity-list">
+        @for (b of store.buildings(); track b.id) {
+          <div class="entity-item">
+            <div>
+              <strong>{{ b.name }}</strong>
+              <small>{{ b.address }} · {{ b.district }}</small>
+            </div>
+            <button mat-icon-button (click)="store.deleteBuilding(b.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        }
+        @if (!store.buildings().length) {
+          <p class="empty-msg">No buildings yet</p>
+        }
+      </div>
+    </article>
+
+    <article class="tankiq-card">
+      <div class="management-header">
+        <h3 class="management-title">Cisterns</h3>
+        <button mat-stroked-button (click)="showCisternForm = !showCisternForm">
+          <mat-icon>{{ showCisternForm ? 'close' : 'add' }}</mat-icon>
+          {{ showCisternForm ? 'Cancel' : 'New' }}
+        </button>
+      </div>
+
+      @if (showCisternForm) {
+        <form class="crud-form" (ngSubmit)="submitCistern()">
+          <select class="crud-input" [(ngModel)]="cisternForm.buildingId" name="buildingId" required>
+            <option value="0" disabled>Select building</option>
+            @for (b of store.buildings(); track b.id) {
+              <option [value]="b.id">{{ b.name }}</option>
+            }
+          </select>
+          <input class="crud-input" type="number" [(ngModel)]="cisternForm.capacityLiters" name="capacityLiters" placeholder="Capacity (L)" required />
+          <input class="crud-input" type="number" [(ngModel)]="cisternForm.currentLevelPercent" name="currentLevelPercent" placeholder="Current level (%)" min="0" max="100" required />
+          <input class="crud-input" type="number" [(ngModel)]="cisternForm.alertThresholdPercent" name="alertThresholdPercent" placeholder="Alert threshold (%)" min="0" max="100" required />
+          <button mat-flat-button color="primary" type="submit">Save</button>
+        </form>
+      }
+
+      <div class="entity-list">
+        @for (c of store.cisterns(); track c.id) {
+          <div class="entity-item">
+            <div>
+              <strong>Cistern #{{ c.id }}</strong>
+              <small>{{ c.currentLevelPercent }}% · {{ c.capacityLiters }}L cap · Building {{ c.buildingId }}</small>
+            </div>
+            <button mat-icon-button (click)="store.deleteCistern(c.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        }
+        @if (!store.cisterns().length) {
+          <p class="empty-msg">No cisterns yet</p>
+        }
+      </div>
+    </article>
+
+    <article class="tankiq-card">
+      <div class="management-header">
+        <h3 class="management-title">Sensors</h3>
+        <button mat-stroked-button (click)="showSensorForm = !showSensorForm">
+          <mat-icon>{{ showSensorForm ? 'close' : 'add' }}</mat-icon>
+          {{ showSensorForm ? 'Cancel' : 'New' }}
+        </button>
+      </div>
+
+      @if (showSensorForm) {
+        <form class="crud-form" (ngSubmit)="submitSensor()">
+          <select class="crud-input" [(ngModel)]="sensorForm.cisternId" name="cisternId" required>
+            <option value="0" disabled>Select cistern</option>
+            @for (c of store.cisterns(); track c.id) {
+              <option [value]="c.id">Cistern #{{ c.id }} (Building {{ c.buildingId }})</option>
+            }
+          </select>
+          <input class="crud-input" [(ngModel)]="sensorForm.hardwareId" name="hardwareId" placeholder="Hardware ID (e.g. SN-001)" required />
+          <select class="crud-input" [(ngModel)]="sensorForm.type" name="type">
+            <option value="ULTRASONIC">ULTRASONIC</option>
+            <option value="PRESSURE">PRESSURE</option>
+          </select>
+          <select class="crud-input" [(ngModel)]="sensorForm.status" name="status">
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="MAINTENANCE">MAINTENANCE</option>
+            <option value="OFFLINE">OFFLINE</option>
+          </select>
+          <button mat-flat-button color="primary" type="submit">Save</button>
+        </form>
+      }
+
+      <div class="entity-list">
+        @for (s of store.sensors(); track s.id) {
+          <div class="entity-item">
+            <div>
+              <strong>{{ s.hardwareId }}</strong>
+              <small>{{ s.type }} · {{ s.status }} · Cistern {{ s.cisternId }}</small>
+            </div>
+            <button mat-icon-button (click)="store.deleteSensor(s.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        }
+        @if (!store.sensors().length) {
+          <p class="empty-msg">No sensors yet</p>
+        }
+      </div>
+    </article>
+
+    <article class="tankiq-card">
+      <div class="management-header">
+        <h3 class="management-title">Water Level Readings</h3>
+        <button mat-stroked-button (click)="showReadingForm = !showReadingForm">
+          <mat-icon>{{ showReadingForm ? 'close' : 'add' }}</mat-icon>
+          {{ showReadingForm ? 'Cancel' : 'New' }}
+        </button>
+      </div>
+
+      @if (showReadingForm) {
+        <form class="crud-form" (ngSubmit)="submitReading()">
+          <select class="crud-input" [(ngModel)]="readingForm.sensorId" name="sensorId" required>
+            <option value="0" disabled>Select sensor</option>
+            @for (s of store.sensors(); track s.id) {
+              <option [value]="s.id">{{ s.hardwareId }} (Cistern {{ s.cisternId }})</option>
+            }
+          </select>
+          <input class="crud-input" type="number" [(ngModel)]="readingForm.levelPercent" name="levelPercent" placeholder="Level (%)" min="0" max="100" required />
+          <input class="crud-input" type="number" [(ngModel)]="readingForm.volumeLiters" name="volumeLiters" placeholder="Volume (L)" required />
+          <input class="crud-input" type="datetime-local" [(ngModel)]="readingForm.recordedAt" name="recordedAt" required />
+          <button mat-flat-button color="primary" type="submit">Save</button>
+        </form>
+      }
+
+      <div class="entity-list">
+        @for (r of store.waterLevels(); track r.id) {
+          <div class="entity-item">
+            <div>
+              <strong>{{ r.levelPercent }}% · {{ r.volumeLiters | number:'1.0-0' }}L</strong>
+              <small>Sensor {{ r.sensorId }} · {{ r.recordedAt | date:'dd/MM/yyyy HH:mm' }}</small>
+            </div>
+            <button mat-icon-button (click)="store.deleteWaterLevel(r.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        }
+        @if (!store.waterLevels().length) {
+          <p class="empty-msg">No readings yet</p>
+        }
+      </div>
+    </article>
+
+  </div>
+
 </section>
