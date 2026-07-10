@@ -60,13 +60,16 @@ export class IamApi {
     password: string,
     role: UserRole,
     phoneNumber?: string,
-    apartmentNumber?: string,
+    apartmentNumber?: string
   ): Observable<void> {
     const newUser = {
       name,
       email,
       password,
       phoneNumber: phoneNumber ?? '',
+      buildingId: 1,
+      role: role === UserRole.ADMINISTRATOR ? 'ADMIN' : 'RESIDENT',
+      apartmentNumber: apartmentNumber ?? '',
     };
     return this.http.post<void>(IAM_API_ENDPOINTS.SIGN_UP, newUser);
   }

@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-
+import { AuthenticationStore } from '../../../../iam/application/authentication.store';
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
@@ -23,4 +23,23 @@ export class DashboardLayout {
     //{ link: '/dashboard/settings', icon: '⚙', label: 'dashboardLayout.nav.settings', exact: false },
     //{ link: '/dashboard/profile', icon: '👤', label: 'dashboardLayout.nav.profile', exact: false }
   ]);
+
+  constructor(protected readonly authStore: AuthenticationStore) {}
+
+  protected get userName(): string {
+    return this.authStore.currentUser()?.name ?? 'Usuario';
+  }
+
+  protected get userEmail(): string {
+    return this.authStore.currentUser()?.email ?? '';
+  }
+
+  protected get userInitials(): string {
+    const name = this.userName;
+    return name.length >= 2 ? name.substring(0, 2).toUpperCase() : 'US';
+  }
+
+  logout(): void {
+    this.authStore.signOut();
+  }
 }
