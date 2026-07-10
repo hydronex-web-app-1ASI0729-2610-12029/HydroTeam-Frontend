@@ -13,7 +13,7 @@ export class DashboardLayout {
   protected readonly navigationOptions = signal([
     //{ link: '/dashboard', icon: '▦', label: 'dashboardLayout.nav.home', exact: true },
     { link: '/dashboard/monitoring', icon: '📊', label: 'dashboardLayout.nav.monitoring', exact: false },
-    { link: '/dashboard/alerts', icon: '⚠️', label: 'dashboardLayout.nav.alerts', exact: false },
+    { link: '/dashboard/notifications', icon: '⚠️', label: 'dashboardLayout.nav.alerts', exact: false },
     { link: '/dashboard/reports', icon: '📄', label: 'dashboardLayout.nav.reports', exact: false },
     //TODO: Translate later
     { link: '/dashboard/refill-management', icon: '🔄', label: 'Refill Management', exact: false },
