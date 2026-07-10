@@ -35,7 +35,49 @@
       <option value="IN_PROGRESS">{{ 'alerts.filter.inProgress' | translate }}</option>
       <option value="RESOLVED">{{ 'alerts.filter.resolved' | translate }}</option>
     </select>
+
+    <button class="btn-create" (click)="toggleForm()">
+      <mat-icon>add</mat-icon>
+      Nueva alerta
+    </button>
   </div>
+
+  @if (showForm()) {
+    <div class="create-form">
+      <select class="filter-select" (change)="onNewTypeChange($event)">
+        <option value="CRITICAL">{{ 'alerts.filter.critical' | translate }}</option>
+        <option value="LOW">{{ 'alerts.filter.low' | translate }}</option>
+        <option value="SENSOR_OFFLINE">{{ 'alerts.filter.sensorOffline' | translate }}</option>
+        <option value="HIGH_USAGE">{{ 'alerts.filter.highUsage' | translate }}</option>
+      </select>
+
+      <input
+        class="form-input"
+        type="text"
+        placeholder="Mensaje"
+        [value]="newMessage()"
+        (input)="onNewMessageChange($event)"
+      />
+
+      <input
+        class="form-input"
+        type="text"
+        placeholder="Cistern ID"
+        [value]="newCisternId()"
+        (input)="onNewCisternIdChange($event)"
+      />
+
+      <div class="form-actions">
+        <button class="btn-create" (click)="submitCreate()">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+        <button class="btn-cancel" (click)="toggleForm()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  }
 
   <div class="alerts-list">
     @for (alert of filteredAlerts(); track alert.id) {
@@ -58,11 +100,23 @@
             <mat-icon>warning</mat-icon>
           }
         </span>
+
         <div>
           <strong>{{ alert.message }}</strong>
           <p>{{ alert.triggeredAt | date:'dd/MM/yyyy HH:mm' }}</p>
         </div>
-        <small>{{ alert.status }}</small>
+
+        <div class="card-actions">
+          <small>{{ alert.status }}</small>
+          @if (alert.status !== 'RESOLVED') {
+            <button class="btn-resolve" (click)="onResolve(alert.id)">
+              <mat-icon>check</mat-icon>
+            </button>
+          }
+          <button class="btn-delete" (click)="onDelete(alert.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </article>
     }
 
