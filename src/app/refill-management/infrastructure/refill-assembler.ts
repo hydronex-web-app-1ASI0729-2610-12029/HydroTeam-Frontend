@@ -5,13 +5,19 @@ export class RefillAssembler {
   static toEntityFromResource(resource: RefillResource): Refill {
     return new Refill(
       resource.id,
-      resource.refill_date,
+      //resource.refill_date,
+      resource.refillDate,
       resource.liters,
-      resource.cost_soles,
-      resource.supplier_name,
-      resource.invoice_number,
-      resource.building_id,
-      resource.registered_by_user_id
+      //resource.cost_soles,
+      resource.costSoles,
+      //resource.supplier_name,
+      resource.supplierName,
+      //resource.invoice_number,
+      resource.invoiceNumber,
+      //resource.building_id,
+      resource.buildingId,
+      //resource.registered_by_user_id
+      resource.registeredByUserId
     );
   }
 
@@ -22,26 +28,26 @@ export class RefillAssembler {
 
   static toResourceFromEntity(entity: Refill): CreateRefillResource {
     return {
-      refill_date: entity.refillDate,
+      refillDate: entity.refillDate,
       liters: entity.liters,
-      cost_soles: entity.costSoles,
-      supplier_name: entity.supplierName,
-      invoice_number: entity.invoiceNumber,
-      building_id: entity.buildingId,
-      registered_by_user_id: entity.registeredByUserId
+      costSoles: entity.costSoles,
+      supplierName: entity.supplierName,
+      invoiceNumber: entity.invoiceNumber,
+      buildingId: entity.buildingId,
+      registeredByUserId: entity.registeredByUserId
     };
   }
 
   static toUpdateResourceFromEntity(entity: Refill): UpdateRefillResource {
     return {
       id: entity.id,
-      refill_date: entity.refillDate,
+      refillDate: entity.refillDate,
       liters: entity.liters,
-      cost_soles: entity.costSoles,
-      supplier_name: entity.supplierName,
-      invoice_number: entity.invoiceNumber,
-      building_id: entity.buildingId,
-      registered_by_user_id: entity.registeredByUserId
+      costSoles: entity.costSoles,
+      supplierName: entity.supplierName,
+      invoiceNumber: entity.invoiceNumber,
+      buildingId: entity.buildingId,
+      registeredByUserId: entity.registeredByUserId
     };
   }
 }

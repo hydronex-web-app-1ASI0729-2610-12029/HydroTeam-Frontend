@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed } from '@angular/core';
+import { Component, OnInit, computed, effect  } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
@@ -39,6 +39,8 @@ readonly isEditMode = computed(() => this.refillId > 0);
 
 refillForm!: ReturnType<FormBuilder['group']>;
 
+private refillLoaded = false;
+
 constructor(
   private readonly formBuilder: FormBuilder,
   private readonly route: ActivatedRoute,
@@ -56,12 +58,27 @@ constructor(
     buildingId: [1, [Validators.required, Validators.min(1)]],
     registeredByUserId: [1, [Validators.required, Validators.min(1)]]
   });
+
+    effect(() => {
+
+    if (!this.isEditMode() || this.refillLoaded) return;
+
+    const refill = this.store.refills()
+      .find(item => item.id === this.refillId);
+
+    if (!refill) return;
+
+    this.loadForm(refill);
+    this.refillLoaded = true;
+  });
 }
 
   ngOnInit(): void {
-    this.store.loadRefills();
 
+    this.store.loadRefills();
+/* 
     if (this.isEditMode()) {
+
       const refill = this.store.refills().find((item) => item.id === this.refillId);
 
       if (refill) {
@@ -75,7 +92,9 @@ constructor(
           registeredByUserId: refill.registeredByUserId
         });
       }
+
     }
+      */
   }
 
   save(): void {
@@ -109,4 +128,16 @@ constructor(
   cancel(): void {
     this.router.navigate(['/dashboard/refill-management']);
   }
+
+  private loadForm(refill: Refill): void {
+  this.refillForm.patchValue({
+    refillDate: new Date(refill.refillDate),
+    liters: refill.liters,
+    costSoles: refill.costSoles,
+    supplierName: refill.supplierName,
+    invoiceNumber: refill.invoiceNumber,
+    buildingId: refill.buildingId,
+    registeredByUserId: refill.registeredByUserId
+  });
+}
 }

@@ -1,7 +1,10 @@
 export const environment = {
   production: false,
+<<<<<<< HEAD
   tankiqApiBaseUrl: 'https://hydroteam-backend.onrender.com/api/v1',
   monitoringApiBaseUrl: 'http://localhost:8080/api/v1',
+=======
+>>>>>>> feature/tb2-refill-management
   //databaseProviderApiBaseUrl: 'https://fakeapi-opensource.onrender.com/api/v1',
   databaseProviderApiBaseUrl: 'https://hydroteam-backend.onrender.com/api/v1',
   databaseProviderUsersEndpointPath: '/users',
